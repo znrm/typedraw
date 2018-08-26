@@ -1,0 +1,26 @@
+{
+  "name": "typedraw",
+  "version": "0.0.1",
+  "description": "A cross-platform app for real-time casual collaboration.",
+  "scripts": {
+    "server": "nodemon server/server.js",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/znrm/typedraw.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/znrm/typedraw/issues"
+  },
+  "homepage": "https://github.com/znrm/typedraw#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0"
+  }
+}

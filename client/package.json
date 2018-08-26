@@ -1,0 +1,37 @@
+{
+  "name": "typedraw-client",
+  "version": "0.0.1",
+  "description": "A cross-platform app for real-time casual collaboration.",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/znrm/typedraw.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/znrm/typedraw/issues"
+  },
+  "homepage": "https://github.com/znrm/typedraw#readme",
+  "dependencies": {
+    "babel-plugin-react-native-web": "^0.8.9",
+    "babel-polyfill": "^6.26.0",
+    "react": "^16.4.2",
+    "react-native": "^0.56.0",
+    "react-native-web": "^0.8.9",
+    "react-navigation": "^2.12.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "^4.0.0"
+  }
+}

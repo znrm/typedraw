@@ -1,0 +1,20 @@
+{
+  "extends": ["airbnb"],
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/prop-types": "off",
+    "arrow-parens": "off",
+    "object-curly-newline": "off",
+    "no-console": "off",
+    "comma-dangle": "off"
+  }
+}

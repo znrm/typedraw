@@ -6,13 +6,6 @@
 
 ## Functionality & MVP (Matt)
 
-<<<<<<< HEAD
-- [ ]
-
-### Bonus Features
-
-- [ ]
-=======
 - [ ] Documents will have a text editor and a drawing pad layered on top of each other so that users can type and draw at the same time 
 - [ ] Documents support multi-user document sharing by allowing invitations to other users through either Facebook or Gmail
 - [ ] Real-time communication between devices (Mobile and Browser)
@@ -26,7 +19,6 @@
 - [ ] End-to-end encryption
 - [ ] Document Parsing to parse over different type of document text files, and generating our own extension with drawing ontop of the document
 - [ ] Group chat and voice chat for users to communicate as they are drawing and/or typing up a document
->>>>>>> 9e71dcb0df2ac225465ebfc0601312f4b1c08545
 
 ## Technologies & Challenges
 
@@ -38,7 +30,6 @@
 
 ### Realtime Communication (Matt)
 
-<<<<<<< HEAD
 ### Cross-Platform Typing & Drawing (Aidan)
 
 ## UI/UX (Mason)
@@ -69,20 +60,6 @@ images by Danilo De Marco at http://www.danilodemarco.com/
 #### Type page (no sidebar)
 ![Type with no sidebar](./docs/wireframes/type-wireframe-no-sidebar.png)
 
-=======
-We will be incorporating websockets with our app to implement real-time communication between our users. 
-
-Our server will be listening for incoming connections and will establish a connection between clients through the WebSocket handshake when a request is made by a client.
-
-We will be managing real-time display of changes by processing information from the upstream and downstream communications between our server and the clients.
-
-### Cross-Platform Typing & Drawing (Aidan)
-
-## UI/UX (Mason)
-
-### Wireframes
-
->>>>>>> 9e71dcb0df2ac225465ebfc0601312f4b1c08545
 ## Accomplished over the Weekend (Zaniar)
 
 ## Group Members & Work Breakdown (We'll come back to this)

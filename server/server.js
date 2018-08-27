@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const db = require('./config/keys').mongoURI;
+const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
 
 const users = require('./routes/api/users');

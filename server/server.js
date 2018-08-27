@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const db = require('./config/keys').mongoURI;
+const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const users = require('./routes/api/users');
 
 mongoose
@@ -12,6 +12,8 @@ mongoose
 
 
 const app = express();
+
+app.use(cors())
 
 // middleware for body parser
 app.use(bodyParser.urlencoded({ extended: false }));

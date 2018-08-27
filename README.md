@@ -64,7 +64,11 @@ Given that mobile devices support web technology (JS, HTML, CSS), the typical ap
 TypeDraw's solution is to take the opposite approach and begin by writing all components in React Native. From there, the React Native for Web package will be used to adapt the existing components for use in TypeDraw's web app.
 
 ### Realtime Communication
+We will be incorporating websockets with our app to implement real-time communication between our users. 
 
+Our server will be listening for incoming connections and will establish a connection between clients through the WebSocket handshake when a request is made by a client.
+
+We will be managing real-time display of changes by processing information from the upstream and downstream communications between our server and the clients.
 ### Cross-Platform Typing & Drawing
 
 Our aim with this project is to create a cohesive experience across all web browsers for both mobile and desktop users. Users must be able to type, draw, and collaboratively edit documents, regardless of platform.

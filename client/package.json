@@ -2,7 +2,10 @@
   "name": "typedraw-client",
   "version": "0.0.1",
   "description": "A cross-platform app for real-time casual collaboration.",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "webpack --mode=production",
+    "start": "webpack --watch --mode=development"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/znrm/typedraw.git"

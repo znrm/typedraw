@@ -30,7 +30,12 @@
 
 ### Realtime Communication (Matt)
 
-### Cross-Platform Typing & Drawing (Aidan)
+### Cross-Platform Typing & Drawing 
+Our aim with this project is to create a cohesive experience across all web browsers for both mobile and desktop users. Users must be able to type, draw, and collaboratively edit documents, regardless of platform. 
+
+While building our application in React Native will allow us to utilize a platform's various native components, we are faced with the challenge of creating a drawing and text-editing UI that looks good and functions uniformly. 
+
+Along with React Native, we plan to use a **multi-layer approach** to the editor itself - a bottom layer for text-editing, with an **HTML5 Canvas** layer above. This will give collaborators the ability to easily add comments, make changes, or mark up a document.
 
 ## UI/UX (Mason)
 

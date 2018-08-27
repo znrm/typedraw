@@ -4,6 +4,7 @@ const db = require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
 
 const users = require('./routes/api/users');
+const session = require('./routes/api/session');
 
 mongoose
   .connect(encodeURI(db), { useNewUrlParser: true })
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 
 // routes
 app.use('/api/users', users);
+app.use('/api/session', session);
 
 app.get('/', (req, res) => res.send('Hello, TypeDraw!'));
 

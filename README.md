@@ -25,18 +25,43 @@ TypeDraw is primarily built with the MERN stack, a combination of following four
 - [ ] Getting on the App Store
 - [ ] Uploading a text document and allowing our app to draw over it
 - [ ] End-to-end encryption
-- [ ] Document Parsing to parse over different type of document text files, and generating our own extension with drawing ontop of the document
+- [ ] Document Parsing to parse over different type of document text files, and generating our own extension with drawing on top of the document
 - [ ] Group chat and voice chat for users to communicate as they are drawing and/or typing up a document
 
 ## Technologies & Challenges
 
 ### Architecture
 
+The overall application architecture is geared toward rapid development and maintainability of an application that is deployed on both web and mobile.
+
+To that end, TypeDraw is built with the MERN stack (MongoDB, Express, React, and Node). It features a frontend agnostic API servicing both web and mobile in conjunction with client side rendering with React.
+
+Additionally, React Native is used for mobile development, bundling of client-side javascript is accomplished by Webpack, and Babel is used to transpile ES6+ Javascript for backward browser compatibility.
+
+The overall architecture is summarized in the diagram below:
+
 ![Splash](./docs/overview.png)
 
 #### Backend: Node, Express, MongoDB
 
+The backend will be entirely platform agnostic with the exception of potential performance optimizations per platform. The separation of the back and front allows for either to be modified, built, updated, or swapped out entirely with minimal impact to the other.
+
+TypeDraw's back-end HTTP API is expected to be relatively small since it's role is limited to retrieving user records and establishing a websocket connection to rapidly synchronize data between users.
+
+Despite significant advances in both the software and infrastructure of the web, achieving scaleable, real-time communication is still a non-trivial challenge. The requirements to meet this challenge are a particularly well-suited use case for a noSQL database:
+
+- TypeDraw has only two models (users and documents), and a fixed schema is not preferable for either model.
+- Relations between models are simple and inexpensive to query without a relational database.
+- Nearly all of the data is unstructured text or image data that is not well suited for relational databases.
+- Most importantly, low-latency/availability is preferred over a guarantee of immediate consistency.
+
 #### Frontend: React and React Native with Redux
+
+Increasing code reuse across platforms is essential to achieving a rapid development cycle and a codebase that is more easily maintained.
+
+Given that mobile devices support web technology (JS, HTML, CSS), the typical approach to building mobile and web applications simultaneously has been to begin by building the web application and then running a modified version of that application in a mobile WebView. However, this approach tends toward creating mobile applications that still feel distinctly like web applications.
+
+TypeDraw's solution is to take the opposite approach and begin by writing all components in React Native. From there, the React Native for Web package will be used to adapt the existing components for use in TypeDraw's web app.
 
 ### Realtime Communication
 
@@ -76,28 +101,12 @@ The top of the screen will feature an unobtrusive fixed bar for document informa
 
 ![Type with no sidebar](./docs/wireframes/type-wireframe-no-sidebar.png)
 
-## Accomplished over the Weekend
-
 ## Group Members & Work Breakdown
 
 **Zaniar Moradian**,
 **Mason Anders**,
 **Matt Moe**,
 **Aidan Gadberry**,
-
-### Day 1
-
-### Day 2
-
-### Day 3
-
-### Day 4
-
-### Day 5
-
-### Day 6
-
-### Day 7
 
 ## Attribution
 

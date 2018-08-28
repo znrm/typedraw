@@ -5,12 +5,9 @@ class Home extends React.Component {
         this.props.state.session.loggedIn ? null : this.props.history.replace('/login');
     }
 
-    componentWillReceiveProps() {
-        this.props.state.session.loggedIn ? null : this.props.history.replace('/login');     
-    }
-
     handleLogout() {
-        this.props.logout();
+        this.props.logout()
+            .then(() => this.props.history.replace('/login'));
     }
 
     render() {

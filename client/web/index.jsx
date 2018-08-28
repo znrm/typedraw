@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const store = configureStore();
   const root = document.getElementById('root');
-  fetchCurrentSession()(store.dispatch);
+  // fetchCurrentSession()(store.dispatch);
 
   // TODO: remove after development
   window.store = store;

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 require('../models/User');
 
 const User = mongoose.model('users');
-const keys = require('../config/keys');
+const keys = { secretOrKey: process.env.SECRET_OR_KEY } || require('../config/keys');
 
 const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();

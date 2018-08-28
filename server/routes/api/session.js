@@ -1,11 +1,12 @@
 const express = require('express');
+
+const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 
 const User = require('../../models/User');
-const keys = require('../../config/keys');
+const keys = { secretOrKey: process.env.SECRET_OR_KEY } || require('../../config/keys');
 
-const router = express.Router();
 
 router.post('/login', (req, res) => {
   const { email } = req.body;

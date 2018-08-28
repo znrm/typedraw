@@ -4,17 +4,17 @@ import { logout } from '../../actions/session_actions';
 import Home from './home';
 
 const mapStateToProps = (state, ownProps) => ({
-    state,
-    ownProps
+  state,
+  ownProps
 });
 
 const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logout())
+  logout: () => dispatch(logout())
 });
 
 export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Home)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Home)
 );

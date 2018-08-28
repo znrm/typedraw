@@ -13,9 +13,10 @@ class Form extends React.Component {
   }
 
   handleSubmit(e) {
+    const { action } = this.props;
     e.preventDefault();
     const user = merge({}, this.state);
-    this.props.action(user);
+    action(user);
   }
 
   update(field) {
@@ -23,8 +24,11 @@ class Form extends React.Component {
   }
 
   render() {
-    let title, buttontxt;
-    if (this.props.formType === 'login') {
+    let title;
+    let buttontxt;
+    const { formType } = this.props;
+    const { username, password } = this.state;
+    if (formType === 'login') {
       title = 'TypeDraw Log In';
       buttontxt = 'Log In';
     } else {
@@ -42,7 +46,7 @@ class Form extends React.Component {
               <label>Username</label>
               <input
                 type="text"
-                value={this.state.username}
+                value={username}
                 placeholder="Username"
                 onChange={this.update('username')}
                 className="form-username-input"
@@ -52,8 +56,8 @@ class Form extends React.Component {
             <div className="form-password">
               <label>Password</label>
               <input
-                type="passsword"
-                value={this.state.password}
+                type="password"
+                value={password}
                 placeholder="Password"
                 onChange={this.update('password')}
                 className="form-password-input"

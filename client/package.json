@@ -18,6 +18,9 @@
   "homepage": "https://github.com/znrm/typedraw#readme",
   "dependencies": {
     "react": "^16.4.2",
+    "axios": "^0.18.0",
+    "lodash.merge": "^4.6.1",
+    "react-dom": "^16.4.2",
     "react-native": "^0.56.0",
     "react-native-web": "^0.8.9",
     "react-navigation": "^2.12.1",

@@ -1,5 +1,4 @@
 const axios = require('axios');
-window.axios = axios;
 
 export const fetchCurrentSession = () => (
     axios.get('http://localhost:5000/api/session')

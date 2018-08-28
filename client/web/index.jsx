@@ -16,6 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.state = () => store.getState();
     window.test = 'Window assignment is working';
 
-
     ReactDOM.render(<h1>TEST</h1>, root)
 });

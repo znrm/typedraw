@@ -1,14 +1,15 @@
 import * as UserAPIUtil from '../util/user_api_util';
+import { startSession } from './session_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 
-const receiveUser = user => ({
+const receiveUser = res => ({
     type: RECEIVE_USER,
-    user
+    res
 });
 
 export const createUser = newUser => dispatch => (
     UserAPIUtil.createUser(newUser)
-        .then(user => dispatch(receiveUser(user)))
+        .then(res => dispatch(startSession(res)))
         .catch(err => console.log(err))
 );

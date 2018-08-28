@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
+
 const User = require('../../models/User');
 
-router.get('/test', (req, res) => res.json({ msg: 'This is the users route' }));
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.send(req.payload);
+});
 
 router.post('/register', (req, res) => {
     // Check to make sure nobody has already registered with this email

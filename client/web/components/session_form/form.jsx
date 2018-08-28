@@ -13,15 +13,11 @@ class Form extends React.Component {
     this.removeErrors = this.removeErrors.bind(this);
   }
 
-  componentDidMount() {
-    this.props.session.loggedIn ? this.props.history.replace('/home') : null;
-  }
-
   handleSubmit(e) {
     const { action } = this.props;
     e.preventDefault();
     const user = merge({}, this.state);
-    action(user).then(() => this.props.history.replace('/home'));
+    action(user);
   }
 
   update(field) {

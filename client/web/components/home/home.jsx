@@ -1,14 +1,8 @@
 import React from 'react';
 
 class Home extends React.Component {
-  componentDidMount() {
-    this.props.state.session.loggedIn
-      ? null
-      : this.props.history.replace('/login');
-  }
-
   handleLogout() {
-    this.props.logout().then(() => this.props.history.replace('/login'));
+    this.props.logout();
   }
 
   render() {

@@ -8,7 +8,7 @@ const receiveUser = user => ({
 });
 
 export const createUser = newUser => dispatch => (
-    UserAPIUtil.createUser(user)
+    UserAPIUtil.createUser(newUser)
         .then(user => dispatch(receiveUser(user)))
         .catch(err => console.log(err))
 );

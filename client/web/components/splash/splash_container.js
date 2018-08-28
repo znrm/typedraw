@@ -1,12 +1,18 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Splash from './splash';
 
-const mapStateToProps = (state) => ({
-    
+const mapStateToProps = () => ({
+
 });
 
 const mapDispatchToProps = () => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Splash);
+export default withRouter(
+    connect(
+        mapStateToProps, 
+        mapDispatchToProps
+    )(Splash)
+);

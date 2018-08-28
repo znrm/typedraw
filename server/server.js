@@ -1,21 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const db = require('./config/keys').mongoURI;
-const bodyParser = require('body-parser'); 
+const bodyParser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
 
 require('./config/passport')(passport);
+const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
 const session = require('./routes/api/session');
 
 mongoose
-  .connect(encodeURI(db), { useNewUrlParser: true })
+  .connect(
+    encodeURI(db),
+    { useNewUrlParser: true }
+  )
   .then(() => console.log('Connected to MongoDB successfully'))
   .catch(err => console.log(err));
 
 const app = express();
 
+// temporary:
+app.use(cors());
+
 // middleware
+
+// middleware for body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());

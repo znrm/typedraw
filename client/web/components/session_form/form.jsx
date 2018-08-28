@@ -38,8 +38,8 @@ class Form extends React.Component {
     const { errors } = this.props;
     return (
       <ul>
-        {Object.values(errors).map((error) => (
-          <li>
+        {Object.values(errors).map((error, idx) => (
+          <li key={`error-${idx}`}>
             {error}
           </li>
         ))}

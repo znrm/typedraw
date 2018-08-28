@@ -6,17 +6,21 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.session.loggedIn ? this.props.history.replace('/home') : null;
   }
 
   handleSubmit(e) {
     const { action } = this.props;
     e.preventDefault();
     const user = merge({}, this.state);
-    action(user);
+    action(user).then(() => this.props.history.replace('/home'));
   }
 
   update(field) {
@@ -27,7 +31,7 @@ class Form extends React.Component {
     let title;
     let buttontxt;
     const { formType } = this.props;
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     if (formType === 'login') {
       title = 'TypeDraw Log In';
       buttontxt = 'Log In';
@@ -42,14 +46,14 @@ class Form extends React.Component {
             <h1>{title}</h1>
           </div>
           <div className="form-info">
-            <div className="form-username">
-              <label>Username</label>
+            <div className="form-email">
+              <label>email</label>
               <input
                 type="text"
-                value={username}
-                placeholder="Username"
-                onChange={this.update('username')}
-                className="form-username-input"
+                value={email}
+                placeholder="email"
+                onChange={this.update('email')}
+                className="form-email-input"
               />
             </div>
 

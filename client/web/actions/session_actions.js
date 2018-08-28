@@ -3,7 +3,7 @@ import * as SessionAPIUtil from '../util/session_api_util';
 export const START_SESSION = 'START_SESSION';
 export const END_SESSION = 'END_SESSION';
 
-const startSession = res => ({
+export const startSession = res => ({
     type: START_SESSION,
     res
 });

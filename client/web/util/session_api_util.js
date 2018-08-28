@@ -5,7 +5,7 @@ export const fetchCurrentSession = () => (
 );
 
 export const startSession = user => (
-    axios.post('http://localhost:5000/api/session', user)
+    axios.post('http://localhost:5000/api/session/login', user)
 );
 
 export const endSession = () => (

@@ -6,7 +6,10 @@ const passport = require('passport');
 const User = require('../../models/User');
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.send(req.payload);
+    res.json({
+        id: req.user.id,
+        email: req.user.email
+    });
 });
 
 router.post('/register', (req, res) => {

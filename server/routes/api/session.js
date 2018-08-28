@@ -7,8 +7,10 @@ const User = require('../../models/User');
 const keys = require('../../config/keys');
 
 router.post('/login', (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    let email = req.body.email;
+    let password = req.body.password;
+
+    console.log(req.body);
 
     User.findOne({ email })
         .then(user => {
@@ -37,6 +39,14 @@ router.post('/login', (req, res) => {
                     }
                 })
         });
+});
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    // res.redirect('/');
+    res.json({
+        success: true
+    });
 });
 
 module.exports = router;

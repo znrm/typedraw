@@ -1,20 +1,23 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { login } from '../../actions/session_actions';
+import { removeErrors } from '../../actions/errors_actions';
 import Form from './form';
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({ errors, session }) => ({
   session,
+  errors,
   formType: 'login'
 });
 
 const mapDispatchToProps = dispatch => ({
-  action: user => dispatch(login(user))
+  action: user => dispatch(login(user)),
+  clearErrors: () => dispatch(removeErrors())
 });
 
 export default withRouter(
   connect(
-    mapStateToProps, 
+    mapStateToProps,
     mapDispatchToProps
   )(Form)
 );

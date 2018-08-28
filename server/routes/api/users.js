@@ -1,15 +1,18 @@
 const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-
 const User = require('../../models/User');
+
+const router = express.Router();
 
 router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    res.send(req.payload);
+    res.json({
+      id: req.user.id,
+      email: req.user.email
+    });
   }
 );
 
@@ -20,26 +23,26 @@ router.post('/register', (req, res) => {
       return res
         .status(400)
         .json({ email: 'A user with this email address already exists' });
-    } else {
-      console.log(req.body);
-
-      const newUser = new User({
-        email: req.body.email,
-        password: req.body.password
-      });
-
-      // encrypt password
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
-        });
-      });
     }
+
+    const newUser = new User({
+      email: req.body.email,
+      password: req.body.password
+    });
+
+    // encrypt password
+    bcrypt.genSalt(10, (_, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser
+          .save()
+          .then(userRes => res.json(userRes))
+          .catch(userErr => console.log(userErr));
+      });
+    });
+
+    return newUser;
   });
 });
 

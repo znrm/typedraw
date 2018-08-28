@@ -10,6 +10,7 @@ class Form extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.removeErrors = this.removeErrors.bind(this);
   }
 
   handleSubmit(e) {
@@ -22,6 +23,26 @@ class Form extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
+  
+
+
+  removeErrors() {
+    return (e) => this.props.clearErrors();
+  }
+
+  renderErrors() {
+    const { errors } = this.props;
+    return (
+      <ul>
+        {Object.values(errors).map((error, idx) => (
+          <li key={`error-${idx}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
 
   render() {
     let title;
@@ -49,6 +70,7 @@ class Form extends React.Component {
                 value={email}
                 placeholder="email"
                 onChange={this.update('email')}
+                onClick={this.removeErrors()}
                 className="form-email-input"
               />
             </div>
@@ -60,14 +82,18 @@ class Form extends React.Component {
                 value={password}
                 placeholder="Password"
                 onChange={this.update('password')}
+                onClick={this.removeErrors()}
                 className="form-password-input"
               />
             </div>
           </div>
-
           <button type="submit" className="submit-btn">
             {buttontxt}
           </button>
+          <div>
+            {this.renderErrors()}
+          </div>
+
         </form>
       </div>
     );

@@ -17,8 +17,7 @@
     "url": "https://github.com/znrm/typedraw/issues"
   },
   "homepage": "https://github.com/znrm/typedraw#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "prettier": "^1.14.2",
     "eslint-plugin-import": "^2.14.0",

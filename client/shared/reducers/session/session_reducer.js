@@ -12,13 +12,14 @@ const nullUser = {
 
 const SessionReducer = (oldState = nullUser, action) => {
   Object.freeze(oldState);
-  let newState = {};
+  const newState = {};
   switch (action.type) {
-    case START_SESSION:
+    case START_SESSION: {
       const userId = action.res.data.id;
       const token = action.token ? action.token.Authorization : action.res.data.token;
       sessionStorage.setItem('token', token);
       return merge(newState, oldState, { currentUser: userId, loggedIn: true });
+    }
     case END_SESSION:
       sessionStorage.setItem('token', '');
       return merge(newState, oldState, nullUser);

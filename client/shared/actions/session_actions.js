@@ -21,9 +21,8 @@ export const fetchCurrentSession = token => dispatch =>
 
 export const login = user => dispatch =>
   SessionAPIUtil.startSession(user)
-    .then(res => dispatch(startSession(res)), err => (
-      dispatch(ErrorActions.receiveErrors(err.response.data))
-    ));
+    .then(res => fetchCurrentSession({ Authorization: res.data.token })(dispatch),
+      err => dispatch(ErrorActions.receiveErrors(err.response.data)));
 
 export const logout = () => dispatch =>
   SessionAPIUtil.endSession()

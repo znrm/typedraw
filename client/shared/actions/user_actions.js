@@ -4,7 +4,7 @@ import { startSession } from './session_actions';
 
 export const RECEIVE_USER = 'RECEIVE_USER';
 
-const receiveUser = res => ({
+export const receiveUser = res => ({
   type: RECEIVE_USER,
   res
 });

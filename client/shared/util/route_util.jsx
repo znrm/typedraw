@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 
 
 const Auth = ({ component: Component, path, exact, loggedIn }) => {
-  const render = (props) => {
-    return (loggedIn ? <Redirect to='/home' /> : (<Component {...props} />));
-  };
+  const render = (props) => (loggedIn ? <Redirect to='/home' /> : (<Component {...props} />));
 
   return (
     <Route exact={exact} path={path} render={render} />
@@ -14,9 +12,7 @@ const Auth = ({ component: Component, path, exact, loggedIn }) => {
 };
 
 const Protected = ({ component: Component, path, exact, loggedIn }) => {
-  const render = (props) => {
-    return (loggedIn ? <Component {...props} /> : <Redirect to='/login' />);
-  };
+  const render = (props) => (loggedIn ? <Component {...props} /> : <Redirect to='/login' />);
 
   return (
     <Route exact={exact} path={path} render={render} />

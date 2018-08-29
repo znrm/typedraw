@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from './store';
+import configureStore from '../shared/store/store';
 import Root from './components/root';
 
-import { fetchCurrentSession } from './actions/session_actions';
+import * as Session from '../shared/actions/session_actions';
 
 // TODO: remove after development
-import * as Users from './actions/user_actions';
-import * as Session from './actions/session_actions';
+import * as Users from '../shared/actions/user_actions';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('webpack is working');
 
   const store = configureStore();
   const root = document.getElementById('root');
+
+  // const { fetchCurrentSession } = Session;
   // fetchCurrentSession()(store.dispatch);
 
-  // TODO: remove after development
+  // TODO: remove after developm            ent
   window.store = store;
   window.state = () => store.getState();
   window.test = 'Window assignment is working';

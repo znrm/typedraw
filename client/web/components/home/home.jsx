@@ -6,11 +6,13 @@ class Home extends React.Component {
   }
 
   render() {
-    const currentUser = this.props.state.session.currentUser;
+    const { currentUser } = this.props.state.session;
     return (
       <div>
         <h1>Welcome to TypeDraw</h1>
-        <button onClick={() => this.handleLogout()}>Logout</button>
+        <button type="button" onClick={() => this.handleLogout()}>
+          Logout
+        </button>
       </div>
     );
   }

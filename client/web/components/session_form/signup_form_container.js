@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createUser } from '../../actions/user_actions';
-import { removeErrors } from '../../actions/errors_actions';
+import { createUser } from '../../../shared/actions/user_actions';
+import { removeErrors } from '../../../shared/actions/errors_actions';
 import Form from './form';
 
 const mapStateToProps = ({ errors, session }) => ({

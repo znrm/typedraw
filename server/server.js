@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cors = require('cors');
+const socketIO = require('socket.io');
+const path = require('path');
 
 require('./config/passport')(passport);
 const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
@@ -33,6 +35,23 @@ app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/session', session);
 
+// serve static frontend files
+app.use(express.static(path.join(__dirname, '../client/web/dist')));
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/web/dist', 'index.html'));
+});
+
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+const server = app.listen(port, () =>
+  console.log(`Server is running on port ${port}`));
+
+const io = socketIO.listen(server);
+
+io.sockets.on('connection', socket => {
+  console.log(socket);
+});
+
+module.export = server;

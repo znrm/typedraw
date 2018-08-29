@@ -10,15 +10,14 @@ import * as Users from '../shared/actions/user_actions';
 import socket from '../shared/util/socket_util';
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('webpack is working');
-
   const store = configureStore();
   const root = document.getElementById('root');
 
   // const { fetchCurrentSession } = Session;
   // fetchCurrentSession()(store.dispatch);
 
-  // TODO: remove after developm            ent
+  // TODO: remove after development
+  console.log('webpack is working');
   window.store = store;
   window.state = () => store.getState();
   window.test = 'Window assignment is working';

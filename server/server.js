@@ -5,11 +5,12 @@ const passport = require('passport');
 const cors = require('cors');
 const socketIO = require('socket.io');
 const path = require('path');
-
-require('./config/passport')(passport);
-const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
 const session = require('./routes/api/session');
+const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
+
+require('./config/passport')(passport);
+
 
 mongoose
   .connect(
@@ -51,7 +52,10 @@ const server = app.listen(port, () =>
 const io = socketIO.listen(server);
 
 io.sockets.on('connection', socket => {
-  console.log(socket);
+  socket.on('working', res => {
+    console.log(res);
+    io.emit('greeting', 'welcome to typedraw, this was sent with a socket');
+  });
 });
 
-module.export = server;
+module.exports = server;

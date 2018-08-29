@@ -5,3 +5,5 @@ export const createUser = ({ email, password }) =>
     email,
     password
   });
+
+export const dummmy = 'dummy so linter will ctfo';

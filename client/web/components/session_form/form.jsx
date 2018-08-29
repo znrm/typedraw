@@ -23,11 +23,9 @@ class Form extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
-  
-
 
   removeErrors() {
-    return (e) => this.props.clearErrors();
+    return () => this.props.clearErrors();
   }
 
   renderErrors() {

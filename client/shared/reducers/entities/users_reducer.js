@@ -11,7 +11,7 @@ const UsersReducer = (oldState = {}, action) => {
   switch (action.type) {
     case START_SESSION:
     case RECEIVE_USER: {
-      const userId = action.res.data._id;
+      const userId = action.res.data.id;
       return merge(newState, oldState, { [userId]: action.res.data });
     }
     default:

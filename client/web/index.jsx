@@ -2,28 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from '../shared/store/store';
 import Root from './components/root';
+import startSocket from '../shared/util/socket_util';
+import { fetchCurrentSession } from '../shared/actions/session_actions';
 
-import * as Session from '../shared/actions/session_actions';
-
-// TODO: remove after development
-import * as Users from '../shared/actions/user_actions';
-import socket from '../shared/util/socket_util';
+const axios = require('axios');
 
 document.addEventListener('DOMContentLoaded', () => {
+  const socket = startSocket();
+  socket.emit('working', 'Client is able to emit with socket');
+  socket.on('greeting', res => console.log(res));
+
   const store = configureStore();
   const root = document.getElementById('root');
 
-  // const { fetchCurrentSession } = Session;
-  // fetchCurrentSession()(store.dispatch);
+  window.axios = axios;
 
-  // TODO: remove after development
-  console.log('webpack is working');
-  window.store = store;
-  window.state = () => store.getState();
-  window.test = 'Window assignment is working';
-  window.users = Users;
-  window.session = Session;
-  window.socket = socket;
+  if (sessionStorage.token) {
+    const token = { Authorization: sessionStorage.getItem('token') };
+    fetchCurrentSession(token)(store.dispatch);
+  }
 
   ReactDOM.render(<Root store={store} />, root);
 });

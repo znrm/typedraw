@@ -17,15 +17,13 @@ const quitSession = res => ({
 
 export const fetchCurrentSession = token => dispatch =>
   SessionAPIUtil.fetchCurrentSession(token)
-    .then(res => dispatch(startSession(res, token)), err => console.log(err, 'error'))
-    .catch(err => console.log(err));
+    .then(res => dispatch(startSession(res, token)), err => console.log(err, 'error'));
 
 export const login = user => dispatch =>
   SessionAPIUtil.startSession(user)
     .then(res => dispatch(startSession(res)), err => (
       dispatch(ErrorActions.receiveErrors(err.response.data))
-    ))
-    .catch(err => console.log(err));
+    ));
 
 export const logout = () => dispatch =>
   SessionAPIUtil.endSession()

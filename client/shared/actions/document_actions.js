@@ -3,6 +3,7 @@ import * as DocAPIUtil from '../somwhereTBD';
 
 export const UPDATE_TEXT = 'UPDATE_TEXT';
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
+export const RECEIVE_NEW_KEYS = 'RECEIVE_NEW_KEYS';
 
 export const onUpdateText = (document) => ({
   type: UPDATE_TEXT,
@@ -14,12 +15,18 @@ export const onUpdateImage = (image) => ({
   image
 });
 
-export const updateText = (document) => dispatch => {
-  return DocAPIUtil.updateText(document)
-    .then(res => dispatch(onUpdateText(res, document)), err => console.log(err, 'edit error'));
-};
+export const receiveKeys = (docId, keys) => ({
+  type: RECEIVE_NEW_KEYS,
+  docId,
+  keys
+});
 
-export const updateImage = (image) => dispatch => {
-  return DocAPIUtil.updateImage(image)
-    .then(res => dispatch(onUpdateImage(res, image)), err => console.log(err, 'pic error'));
-};
+export const updateText = (document) => dispatch => (
+  DocAPIUtil.updateText(document)
+    .then(servDoc => dispatch(onUpdateText(servDoc)), err => console.log(err, 'edit error'))
+);
+
+export const updateImage = (image) => dispatch => (
+  DocAPIUtil.updateImage(image)
+    .then(servImg => dispatch(onUpdateImage(servImg)), err => console.log(err, 'pic error'))
+);

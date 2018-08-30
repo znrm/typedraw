@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import Documents from './documents';
-import { updateText, updateImage } from '../../shared/actions/document_actions';
+import { updateText, updateImage, receiveKeys } from '../../shared/actions/document_actions';
 //image change and text change action
 
 //updateText, updateImageLayer
 
 const mapStateToProps = (state) => ({
-  imageLayer: state.document.imageLayer,
-  text: state.document.textLayer
+  // this is what it will eventually look like
+  // imageLayer: state.documents[state.ui.selectedDocumentId].imageLayer,
+  // textLayer: state.documemnts[state.ui.selectedDocumentId].textLayer
+  textLayer: state.documents.textLayer
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateText: document => dispatch(updateText(document)),
+  updateText: document => dispatch(receiveKeys(document)),
   updateImage: image => dispatch(updateImage(image))
 });
 

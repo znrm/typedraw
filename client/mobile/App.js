@@ -10,13 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-// export default class App extends React.Component {
-//   render() {
-//     return (
 
-//     );
-//   }
-// }
 const App = () => (
   <View style={styles.container}>
     <Text>TypeDraw!!</Text>

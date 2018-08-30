@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { typing } from '../../shared/actions/testing_actions';
+import { receiveKeys } from '../../shared/actions/document_actions';
 
 const mapDispatchToProps = dispatch => ({
-  onTyping: key => dispatch(typing(key))
+  onTyping: key => dispatch(receiveKeys(0, key))
 });
 
 const TextSocket = ({ onTyping }) => (

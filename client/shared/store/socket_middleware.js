@@ -5,7 +5,7 @@ const socket = startSocket();
 
 const socketMiddleware = store => next => action => {
   if (action.type === RECEIVE_NEW_KEYS) {
-    socket.emit('typing', action.key);
+    socket.emit('typing', action.keys);
   } else {
     next(action);
   }

@@ -1,4 +1,4 @@
-import { connect } from '../../shared/stupid_fix';
+import { connect } from 'react-redux';
 import Documents from './documents';
 import { receiveKeys } from '../../shared/actions/document_actions';
 // image change and text change action

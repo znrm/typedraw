@@ -16,12 +16,9 @@ const DocumentSchema = new Schema({
   textLayer: {
     type: String
   },
-  imageLayer: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'canvas'
-    }
-  ]
+  imageLayer: {
+    type: Buffer
+  }
 });
 
 module.exports = mongoose.model('users', DocumentSchema);

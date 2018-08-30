@@ -1,7 +1,5 @@
 import React from 'react';
 
-import TextSocket from '../text_socket';
-
 class Splash extends React.Component {
   toPage(route) {
     this.props.history.push(route);
@@ -21,12 +19,6 @@ class Splash extends React.Component {
         <p>or</p>
         <button type="button" onClick={() => this.toPage('/login')}>Sign in</button>
         <h4>Connect on multiple platforms</h4>
-        <TextSocket />
-        <div>
-          <img />
-          <img />
-          <img />
-        </div>
       </div>
     );
   }

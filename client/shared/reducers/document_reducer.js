@@ -6,7 +6,7 @@ import {
   RECEIVE_NEW_KEYS
 } from '../actions/document_actions';
 
-const DocumentReducer = (oldState = { 0: { textLayer: '' } }, action) => {
+const DocumentReducer = (oldState = { 0: { textLayer: 'hi' } }, action) => {
   Object.freeze(oldState);
   const newState = merge({}, oldState);
 

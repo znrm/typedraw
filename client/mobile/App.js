@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from '../shared/stupid_fix';
 import Document from './components/documents';
+import configureStore from '../shared/store/store';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,11 +13,15 @@ const styles = StyleSheet.create({
   },
 });
 
+const store = configureStore();
+
 const App = () => (
-  <View style={styles.container}>
-    <Text>TypeDraw!!</Text>
-    <Document />
-  </View>
+  <Provider store={store}>
+    <View style={styles.container}>
+      <Text>TypeDraw!!!</Text>
+      <Document />
+    </View>
+  </Provider>
 );
 
 

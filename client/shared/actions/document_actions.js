@@ -1,5 +1,5 @@
 // import api stuff
-import * as DocAPIUtil from '../somwhereTBD';
+// import * as DocAPIUtil from '../somwhereTBD';
 
 export const UPDATE_TEXT = 'UPDATE_TEXT';
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
@@ -21,12 +21,12 @@ export const receiveKeys = (docId, keys) => ({
   keys
 });
 
-export const updateText = (document) => dispatch => (
-  DocAPIUtil.updateText(document)
-    .then(servDoc => dispatch(onUpdateText(servDoc)), err => console.log(err, 'edit error'))
-);
+// export const updateText = (document) => dispatch => (
+//   DocAPIUtil.updateText(document)
+//     .then(servDoc => dispatch(onUpdateText(servDoc)), err => console.log(err, 'edit error'))
+// );
 
-export const updateImage = (image) => dispatch => (
-  DocAPIUtil.updateImage(image)
-    .then(servImg => dispatch(onUpdateImage(servImg)), err => console.log(err, 'pic error'))
-);
+// export const updateImage = (image) => dispatch => (
+//   DocAPIUtil.updateImage(image)
+//     .then(servImg => dispatch(onUpdateImage(servImg)), err => console.log(err, 'pic error'))
+// );

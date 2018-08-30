@@ -5,6 +5,7 @@ const Document = () => (
   <TextInput onKeyPress={(keyPress) => console.log(keyPress.nativeEvent.key)} 
     placeholder = 'enter text here'
   />
+  
 );
 
 export default Document;

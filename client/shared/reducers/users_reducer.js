@@ -1,10 +1,9 @@
-import merge from 'lodash.merge';
-import InitialState from '../store/initial_store';
-import { RECEIVE_USER } from '../actions/user_actions';
+import { merge } from 'lodash';
 
 import { START_SESSION } from '../actions/session_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 
-const UsersReducer = (oldState = InitialState.users, action) => {
+const UsersReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   const newState = {};
 

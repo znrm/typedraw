@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Documents from './documents';
-import { receiveKeys } from '../../shared/actions/document_actions';
+import Document from './document';
+import { receiveKeys } from '../actions/document_actions';
 // image change and text change action
 
 // updateText, updateImageLayer
@@ -20,4 +20,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Documents);
+)(Document);

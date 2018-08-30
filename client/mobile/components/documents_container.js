@@ -5,6 +5,7 @@ import Documents from './documents';
 const mapStateToProps = (state) => ({
   imageLayer: state.document.imageLayer,
   textLayer: state.document.textLayer
+  
 });
 
 const mapDispatchToProps = dispatch => ({

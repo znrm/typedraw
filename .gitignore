@@ -1,4 +1,6 @@
-/**/node_modules
-/**/keys.js
-/**/main.js
-/**/main.js.map
+**/node_modules
+**/keys.js
+**/main.js
+**/main.js.map
+**/.expo
+**/npm-debug.*

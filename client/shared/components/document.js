@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Canvas = ({ updateText }) => (
+const Document = ({ updateText }) => (
   <div>
     <canvas />
     <input type="text" onKeyDown={updateText()} />
   </div>
 );
 
-export default Canvas;
+export default Document;

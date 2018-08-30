@@ -5,11 +5,10 @@ import { receiveKeys } from '../actions/document_actions';
 
 // updateText, updateImageLayer
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   // this is what it will eventually look like
   // imageLayer: state.documents[state.ui.selectedDocumentId].imageLayer,
   // textLayer: state.documemnts[state.ui.selectedDocumentId].textLayer
-  textLayer: state.documents[0].textLayer
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: './web/index.jsx',
+  entry: './client/web/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'web', 'dist'),
+    path: path.resolve(__dirname, 'server', 'static'),
     filename: 'main.js',
   },
   resolve: {
@@ -14,11 +14,11 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['env', 'react'],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },

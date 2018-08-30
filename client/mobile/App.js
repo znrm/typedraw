@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Document from './components/documents';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

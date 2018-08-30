@@ -1,4 +1,4 @@
-//import api stuff
+// import api stuff
 import * as DocAPIUtil from '../somwhereTBD';
 
 export const UPDATE_TEXT = 'UPDATE_TEXT';

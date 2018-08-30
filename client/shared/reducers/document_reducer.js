@@ -6,7 +6,7 @@ import {
   RECEIVE_NEW_KEYS
 } from '../actions/document_actions';
 
-const DocumentReducer = (oldState = {}, action) => {
+const DocumentReducer = (oldState = { 0: { textLayer: '' } }, action) => {
   Object.freeze(oldState);
   const newState = merge({}, oldState);
 
@@ -16,7 +16,7 @@ const DocumentReducer = (oldState = {}, action) => {
     case UPDATE_IMAGE:
       return merge(oldState, newState, action.image);
     case RECEIVE_NEW_KEYS:
-      newState.documents[action.docId].textLayer += action.keys;
+      newState[action.docId].textLayer += action.keys;
       return newState;
     default:
       return oldState;

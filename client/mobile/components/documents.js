@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-const Document = ({imageLayer, textLayer, updateText, updateImage}) => (
+const Document = ({ imageLayer, textLayer, updateText, updateImage }) => (
   <TextInput
-    onKeyPress={(keyPress) => updateText(keyPress.nativeEvent.key)}
+    onKeyPress={(keyPress) => updateText(0, keyPress.nativeEvent.key)}
     placeholder="enter text here"
     placeholderTextColor="red"
     value={textLayer}

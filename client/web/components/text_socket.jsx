@@ -1,18 +1,16 @@
 import React from 'react';
-import startSocket from '../../shared/util/socket_util';
-import {typing} from '../../shared/actions/testing_actions';
-
-const socket = startSocket();
+import { connect } from 'react-redux';
+import { typing } from '../../shared/actions/testing_actions';
 
 const mapDispatchToProps = dispatch => ({
-  typing: 
-})
+  onTyping: key => dispatch(typing(key))
+});
 
-const TextSocket = ({ typing }) => (
+const TextSocket = ({ onTyping }) => (
   <div>
     <h5>Type yo text up in here</h5>
-    <input type="text" onChange={typing} />
+    <input type="text" onKeyPress={e => onTyping(e.key)} />
   </div>
 );
 
-export default TextSocket;
+export default connect(null, mapDispatchToProps)(TextSocket);

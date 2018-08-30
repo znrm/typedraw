@@ -1,7 +1,7 @@
 import {
   RECEIVE_ERRORS,
   CLEAR_ERRORS
-} from '../../actions/errors_actions';
+} from '../actions/errors_actions';
 
 export default (state = [], action) => {
   Object.freeze(state);

@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 import {
   START_SESSION,
   END_SESSION
-} from '../../actions/session_actions';
+} from '../actions/session_actions';
 
 const nullUser = {
   currentUser: null,

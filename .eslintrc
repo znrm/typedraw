@@ -15,6 +15,7 @@
     "arrow-parens": "off",
     "object-curly-newline": "off",
     "no-console": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "react/jsx-filename-extension": "off"
   }
 }

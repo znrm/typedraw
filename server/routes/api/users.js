@@ -42,6 +42,7 @@ router.post('/register', (req, res) => {
       });
     });
 
+    newUser.id = newUser._id;
     return newUser;
   });
 });

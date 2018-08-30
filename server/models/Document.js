@@ -5,12 +5,12 @@ const { Schema } = mongoose;
 const DocumentSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'documents'
   },
   collaborators: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'users'
+      ref: 'documents'
     }
   ],
   title: {
@@ -24,4 +24,4 @@ const DocumentSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('users', DocumentSchema);
+module.exports = mongoose.model('documents', DocumentSchema);

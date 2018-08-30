@@ -13,6 +13,9 @@ const DocumentSchema = new Schema({
       ref: 'users'
     }
   ],
+  title: {
+    type: String
+  },
   textLayer: {
     type: String
   },

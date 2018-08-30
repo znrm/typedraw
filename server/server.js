@@ -8,6 +8,7 @@ require('./config/passport')(passport);
 const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
 const session = require('./routes/api/session');
+const documents = require('./routes/api/documents');
 
 mongoose
   .connect(
@@ -32,6 +33,7 @@ app.use(passport.initialize());
 // routes
 app.use('/api/users', users);
 app.use('/api/session', session);
+app.use('/api/documents', documents);
 
 const port = process.env.PORT || 5000;
 

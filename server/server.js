@@ -52,6 +52,7 @@ const server = app.listen(port, () =>
 const io = socketIO.listen(server);
 
 io.sockets.on('connection', socket => {
+  socket.on('typing', letter => console.log(letter));
   socket.on('working', res => {
     console.log(res);
     io.emit('greeting', 'welcome to typedraw, this was sent with a socket');

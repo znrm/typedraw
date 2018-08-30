@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import RootReducer from '../reducers/root_reducer';
+import socketMiddleware from './socket_middleware';
 
 const configureStore = (preloadedState = {}) => (
   createStore(
@@ -9,7 +10,8 @@ const configureStore = (preloadedState = {}) => (
     preloadedState,
     applyMiddleware(
       thunk,
-      logger
+      logger,
+      socketMiddleware,
     )
   )
 );

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const socket = startSocket();
   socket.emit('working', 'Client is able to emit with socket');
   socket.on('greeting', res => console.log(res));
-
+  window.socket = socket;
   const store = configureStore();
   const root = document.getElementById('root');
 

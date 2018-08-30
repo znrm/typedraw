@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "typedraw",
     "description": "This project is really great.",
     "slug": "mobile",
     "privacy": "public",
@@ -8,9 +8,9 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./mobile/assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./mobile/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

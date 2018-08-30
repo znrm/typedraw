@@ -37,11 +37,11 @@ app.use('/api/users', users);
 app.use('/api/session', session);
 
 // serve static frontend files
-app.use(express.static(path.join(__dirname, '../client/web/dist')));
+app.use(express.static(path.join(__dirname, './static')));
 
-// Handle React routing, return all requests to React app
+// react should handle all other requests
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/web/dist', 'index.html'));
+  res.sendFile(path.join(__dirname, './static', 'index.html'));
 });
 
 const port = process.env.PORT || 5000;

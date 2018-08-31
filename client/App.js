@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
-import Splash from './mobile/components/auth_splash_screen/auth_splash';
-import WelcomeScreen from './mobile/components/welcome/welcome';
+import Splash from './mobile/components/splash/splash';
+import WelcomeScreen from './mobile/components/splash/welcome';
 import HomeScreen from './mobile/components/home/home_container';
 import configureStore from './shared/store/store';
 

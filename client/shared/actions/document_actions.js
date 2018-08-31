@@ -21,6 +21,7 @@ export const receiveKeys = (docId, keys) => ({
   keys
 });
 
+
 // export const updateText = (document) => dispatch => (
 //   DocAPIUtil.updateText(document)
 //     .then(servDoc => dispatch(onUpdateText(servDoc)), err => console.log(err, 'edit error'))

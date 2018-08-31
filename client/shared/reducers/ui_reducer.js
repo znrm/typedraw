@@ -1,8 +1,9 @@
 import { merge } from 'lodash';
-import { SELECT_DOCUMENT_ACTION } from '../actions/ui_actions';
+import { SELECT_DOCUMENT_ACTION, selectDocument } from '../actions/ui_actions';
 
 const initialUI = {
-  documentAction: 'typing'
+  documentAction: 'typing',
+  selectDocument: 0
 };
 
 const uiReducer = (state = initialUI, action) => {

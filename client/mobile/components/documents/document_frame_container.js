@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DocumentFrame from './document_frame';
-import { updateText, updateImage } from '../../../shared/actions/document_actions';
+import { selectDocumentAction } from '../../../shared/actions/ui_actions';
 
 const mapStateToProps = (state) => ({
   document: state.documents.textLayer,
@@ -8,8 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateText: () => dispatch(updateText),
-  updateImage: () => dispatch(updateImage)
+  // typing, drawing
+
 });
 
 const DocumentFrameContainer = connect(

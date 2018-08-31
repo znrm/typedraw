@@ -3,7 +3,9 @@ import { SELECT_DOCUMENT_ACTION, SELECT_DOCUMENT } from '../actions/ui_actions';
 
 const initialUI = {
   documentAction: 'typing',
-  selectedDocument: 0
+  selectedDocument: 0,
+  erasing: false,
+  color: '#000000'
 };
 
 const uiReducer = (state = initialUI, action) => {

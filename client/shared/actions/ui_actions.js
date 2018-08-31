@@ -10,3 +10,5 @@ export const selectDocument = documentId => ({
   type: SELECT_DOCUMENT,
   documentId,
 });
+
+// toggle eraser action

@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  stackNavigation: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 

@@ -1,20 +1,31 @@
 import React from 'react';
-import { View, Text, StatusBar, Button } from 'react-native';
+import { View, StatusBar, Button } from 'react-native';
 import Document from './document';
+import styles from '../../styles';
 
 const DocumentTools = () => (
   <View>
     <StatusBar
       barStyle="dark-content"
     />
-    <View>
-      <Text>Welcome to Document Frame</Text>
+    <View style={styles.stackNavigation}>
       <Button
-        title="clickme"
-        onPress={() => console.log('im clicked')}
+        title="Type"
+        onPress={() => console.log('type')}
+      />
+      <Button
+        title="Draw"
+        onPress={() => console.log('draw')}
+      />
+      <Button
+        title="black"
+        onPress={() => console.log('black')}
+      />
+      <Button
+        title="eraser"
+        onPress={() => console.log('eraseme')}
       />
     </View>
-    <View />
   </View>
 );
 

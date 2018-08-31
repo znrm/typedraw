@@ -1,15 +1,10 @@
-
-import { UPDATE_TEXT, UPDATE_IMAGE } from '../actions/document_actions';
-
-const calculateTextDifference = () => ({});
-const calculateImageDifference = () => ({});
-const sendTextDifference = () => ({});
+import { RECEIVE_DOCUMENT } from '../actions/document_actions';
 
 const differ = store => next => action => {
   switch (action.type) {
-    case UPDATE_TEXT:
-      break;
-    case UPDATE_IMAGE:
+    case RECEIVE_DOCUMENT:
+      console.log('differ middleware received document');
+      next(action);
       break;
     default:
       next(action);

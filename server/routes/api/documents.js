@@ -1,23 +1,25 @@
 const express = require('express');
-const passport = require('passport');
+// const passport = require('passport');
 const Document = require('../../models/Document');
+const User = require('../../models/User');
 
 const router = express.Router();
 
 router.get('/:documentId', (req, res) => {
-  Document.findOne({ '_id.$oid': req.params.documentId }).then(document => {
-    if (document) return document;
+  Document.findById(req.params.documentId).then(document => {
+    if (document) return res.json({ document });
 
     return res.status(404).json({
-      id: 'A document with that id does not exist'
+      message: `Document with id ${req.params.documentId} not found`
     });
   });
 });
 
 router.post('/', (req, res) => {
   const newDocument = new Document({
-    owner: req.body.id,
+    owner: User.findOne({ email: 'agadberr@gmail.com' }).id,
     collaborators: [],
+    title: 'Untitled Document',
     textLayer: '',
     imageLayer: ''
   });
@@ -25,46 +27,57 @@ router.post('/', (req, res) => {
   newDocument
     .save()
     .then(docRes => res.json(docRes))
-    .catch(docErr => res.status(422).json({ document: docErr }));
+    .catch(docErr => res.status(422).json({ message: docErr }));
 });
 
-// router.put('/:documentId', (req, res) => {
-//   Document.findOne({ '_id.$oid': req.params.documentId }).then(document => {
-//     if (document) {
-//       document.save().then(docRes => res.json(docRes))
-//         .catch(docErr => res.status(422).json({ document: docErr }));
-//     }
+router.put('/:documentId', (req, res) => {
+  Document.findByIdAndUpdate(
+    req.params.documentId,
+    {
+      title: req.body.title || 'Untitled Document'
+    },
+    { new: true }
+  )
+    .then(document => {
+      if (!document) {
+        return res.status(404).send({
+          message: `Document with id ${req.params.documentId} not found`
+        });
+      }
+      return res.send(document);
+    })
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: `Document with id ${req.params.documentId} not found`
+        });
+      }
+      return res.status(500).send({
+        message: `Error updating document with id ${req.params.documentId}`
+      });
+    });
+});
 
-//     return res
-//       .status(404)
-//       .json({
-//         id: 'A document with that id does not exist'
-//       });
-//   });
-// });
-
-// Note.findByIdAndUpdate(req.params.noteId, {
-//   title: req.body.title || "Untitled Note",
-//   content: req.body.content
-// }, { new: true })
-//   .then(note => {
-//     if (!note) {
-//       return res.status(404).send({
-//         message: "Note not found with id " + req.params.noteId
-//       });
-//     }
-//     res.send(note);
-//   }).catch(err => {
-//     if (err.kind === 'ObjectId') {
-//       return res.status(404).send({
-//         message: "Note not found with id " + req.params.noteId
-//       });
-//     }
-//     return res.status(500).send({
-//       message: "Error updating note with id " + req.params.noteId
-//     });
-//   });
-
-// delete
+router.delete('/:documentId', (req, res) => {
+  Document.findByIdAndRemove(req.params.documentId)
+    .then(document => {
+      if (!document) {
+        return res.status(404).send({
+          message: `Document with id ${req.params.documentId} not found`
+        });
+      }
+      return res.send({ message: 'Document successfully deleted' });
+    })
+    .catch(err => {
+      if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+        return res.status(404).send({
+          message: `Document with id ${req.params.documentId} not found`
+        });
+      }
+      return res.status(500).send({
+        message: `Could not delete document with id ${req.params.documentId}`
+      });
+    });
+});
 
 module.exports = router;

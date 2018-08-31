@@ -1,19 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import AuthContainer from '../auth/auth_container';
+import styles from '../../styles';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
 
-const AuthSplash = () => (
-  <View>
-    <Text>I AM THE AUTH SPLASH YO</Text>
+const Splash = () => (
+  <View style={styles.container}>
+    <Text>this is the splash page</Text>
+    <AuthContainer />
   </View>
 );
 
-export default AuthSplash;
+export default Splash;

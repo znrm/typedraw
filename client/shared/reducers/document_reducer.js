@@ -1,25 +1,42 @@
 import { merge } from 'lodash';
-
 import {
-  UPDATE_TEXT,
-  UPDATE_IMAGE,
-  RECEIVE_NEW_KEYS
+  RECEIVE_DOCUMENT,
+  RECEIVE_DOCUMENT_DIFFS
 } from '../actions/document_actions';
 
-const DocumentReducer = (oldState = { 0: { textLayer: 'hi' } }, action) => {
-  Object.freeze(oldState);
-  const newState = merge({}, oldState);
+// This has not been implemented yet
+// At the moment, it is just returning previousDocument and
+// console logging changes that have been sent from the server
+const combineDocumentWithDiffs = (previousDocument, documentDiffs) => {
+  console.log(documentDiffs);
+  return previousDocument;
+};
+
+const initialState = {
+  0: {
+    textLayer: 'hi',
+    imageLayer: []
+  }
+};
+
+const DocumentReducer = (state = initialState, action) => {
+  Object.freeze(state);
+  const newState = merge({}, state);
 
   switch (action.type) {
-    case UPDATE_TEXT:
-      return merge(oldState, newState, action.document);
-    case UPDATE_IMAGE:
-      return merge(oldState, newState, action.image);
-    case RECEIVE_NEW_KEYS:
-      newState[action.docId].textLayer += action.keys;
+    case RECEIVE_DOCUMENT: {
+      const previousDocument = newState[action.document.id];
+      merge(previousDocument, action.document);
       return newState;
+    }
+    case RECEIVE_DOCUMENT_DIFFS: {
+      const previousDocument = newState[action.document.id];
+      const newDocument = combineDocumentWithDiffs(previousDocument, action.documentDiffs);
+      merge(previousDocument, newDocument);
+      return newState;
+    }
     default:
-      return oldState;
+      return state;
   }
 };
 

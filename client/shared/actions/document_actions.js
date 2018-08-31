@@ -1,14 +1,12 @@
-export const UPDATE_TEXT = 'UPDATE_TEXT';
-export const UPDATE_IMAGE = 'UPDATE_IMAGE';
+export const RECEIVE_DOCUMENT = 'RECEIVE_DOCUMENT';
+export const RECEIVE_DOCUMENT_DIFFS = 'RECEIVE_DOCUMENT_DIFFS';
 
-export const updateText = (documentId, text) => ({
-  type: UPDATE_TEXT,
-  documentId,
-  text
+export const receiveDocument = document => ({
+  type: RECEIVE_DOCUMENT,
+  document
 });
 
-export const updateImage = (documentId, image) => ({
-  type: UPDATE_IMAGE,
-  documentId,
-  image
+export const receiveDocumentDiffs = document => ({
+  type: RECEIVE_DOCUMENT_DIFFS,
+  document
 });

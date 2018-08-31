@@ -5,12 +5,12 @@ const { Schema } = mongoose;
 const DocumentSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'documents'
+    ref: 'users'
   },
   collaborators: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'documents'
+      ref: 'users'
     }
   ],
   title: {

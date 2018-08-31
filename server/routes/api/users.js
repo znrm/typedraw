@@ -50,7 +50,7 @@ router.post('/register', (req, res) => {
               { expiresIn: 3600 },
               (tokenErr, token) => {
                 res.json({
-                  id: userRes._id,
+                  id: userRes.id,
                   email: userRes.email,
                   token: `Bearer ${token}`,
                   success: true
@@ -62,7 +62,6 @@ router.post('/register', (req, res) => {
       });
     });
 
-    newUser.id = newUser._id;
     return newUser;
   });
 });

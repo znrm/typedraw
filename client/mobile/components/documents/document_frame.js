@@ -1,9 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
+import Document from './document';
 
 const DocumentFrame = () => (
   <View>
-    <Text>Welcome to Document Frame scene bitsh</Text>
+    <StatusBar
+      backgroundColor="blue"
+      barStyle="light-content"
+    />
+    <View>
+      <Text>Welcome to Document Frame</Text>
+    </View>
+    <View>
+      <Document />
+    </View>
   </View>
 );
 

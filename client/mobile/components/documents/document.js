@@ -1,6 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
-const Document = () => <View />;
-
+const Document = () => (
+  <View>
+    <Text>Document</Text>
+  </View>
+);
 export default Document;

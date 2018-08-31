@@ -7,8 +7,8 @@ const Home = ({ navigation, createDoc }) => (
     <Button title="+" onPress={() => createDoc()} />
     <Text>Create A new Doc</Text>
     <Button
-      title="addcollabtest"
-      onPress={() => navigation.navigate('AddCollaboratorsContainer')}
+      title="adddocframetest"
+      onPress={() => navigation.navigate('DocumentFrameContainer')}
     />
   </View>
 );

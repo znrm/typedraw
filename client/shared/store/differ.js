@@ -5,14 +5,14 @@ const calculateTextDifference = () => ({});
 const calculateImageDifference = () => ({});
 const sendTextDifference = () => ({});
 
-cost differ = store => next => action => {
+const differ = store => next => action => {
   switch (action.type) {
     case UPDATE_TEXT:
       break;
     case UPDATE_IMAGE:
       break;
     default:
-      next(action)
+      next(action);
   }
 };
 

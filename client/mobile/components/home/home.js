@@ -13,15 +13,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'powderblue',
     borderWidth: 1,
     borderColor: 'red',
-    borderRadius: 100,
-    height: 30
-  },
-  buttonSection: {
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'center'
+    height: 30,
+    width: 30,
+    borderRadius: 30 / 2,
 
-  }
+  },
 });
 
 const Home = ({ navigation, createDoc }) => (
@@ -31,7 +27,7 @@ const Home = ({ navigation, createDoc }) => (
     </Text>
     <View style={styles.buttonContainer}>
       <Button
-        style={styles.buttonSection}
+        color="black"
         title="+"
         onPress={() => createDoc()}
       />

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Document from './document';
-import { updateText, updateImage } from '../../shared/actions/document_actions';
+import { updateText, updateImage } from '../../../shared/actions/document_actions';
 // image change and text change action
 
 // updateText, updateImageLayer

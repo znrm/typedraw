@@ -7,6 +7,7 @@ const socketIO = require('socket.io');
 const path = require('path');
 const users = require('./routes/api/users');
 const session = require('./routes/api/session');
+const documents = require('./routes/api/documents');
 const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 
 require('./config/passport')(passport);
@@ -35,6 +36,7 @@ app.use(passport.initialize());
 // routes
 app.use('/api/users', users);
 app.use('/api/session', session);
+app.use('/api/documents', documents);
 
 // serve static frontend files
 app.use(express.static(path.join(__dirname, './static')));

@@ -21,7 +21,9 @@ const AppStack = createStackNavigator(
     DocumentFrameContainer,
     AddCollaboratorsContainer,
   },
-  { initialRouteName: 'HomeContainer' }
+  {
+    initialRouteName: 'HomeContainer',
+  }
 );
 
 const mapState = ({ session }) => ({ loggedIn: session.loggedIn });

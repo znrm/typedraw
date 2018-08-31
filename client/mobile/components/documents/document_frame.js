@@ -1,20 +1,33 @@
 import React from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, Button } from 'react-native';
 import Document from './document';
 
-const DocumentFrame = () => (
+const DocumentTools = () => (
   <View>
     <StatusBar
-      backgroundColor="blue"
-      barStyle="light-content"
+      barStyle="dark-content"
     />
     <View>
       <Text>Welcome to Document Frame</Text>
+      <Button
+        title="clickme"
+        onPress={() => console.log('im clicked')}
+      />
     </View>
-    <View>
-      <Document />
-    </View>
+    <View />
   </View>
 );
+
+class DocumentFrame extends React.Component {
+  static get navigationOptions() {
+    return ({
+      headerTitle: DocumentTools
+    });
+  }
+
+  render() {
+    return <Document />;
+  }
+}
 
 export default DocumentFrame;

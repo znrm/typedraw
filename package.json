@@ -4,9 +4,10 @@
   "author": "",
   "homepage": "https://typedraw.herokuapp.com/",
   "license": "MIT",
-  "description": "A cross-platform app for real-time casual collaboration.",
+  "description": "A cross-platform app for real-time collaboration.",
   "scripts": {
     "test": "webpack --watch --mode=development & nodemon server/server.js",
+    "preinstall": "npm install --prefix ./client",
     "postinstall": "webpack --mode=production",
     "start": "node server/server.js"
   },

@@ -15,7 +15,9 @@ const mapDispatchToProps = dispatch => ({
   updateImage: (imageId, image) => dispatch(updateImage(image))
 });
 
-export default connect(
+const DocumentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Document);
+
+export default DocumentContainer;

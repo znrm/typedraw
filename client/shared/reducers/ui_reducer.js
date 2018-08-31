@@ -1,9 +1,9 @@
 import { merge } from 'lodash';
-import { SELECT_DOCUMENT_ACTION, selectDocument } from '../actions/ui_actions';
+import { SELECT_DOCUMENT_ACTION, SELECT_DOCUMENT } from '../actions/ui_actions';
 
 const initialUI = {
   documentAction: 'typing',
-  selectDocument: 0
+  selectedDocument: 0
 };
 
 const uiReducer = (state = initialUI, action) => {
@@ -13,6 +13,9 @@ const uiReducer = (state = initialUI, action) => {
   switch (action.type) {
     case SELECT_DOCUMENT_ACTION:
       newState.documentAction = action.documentAction;
+      return newState;
+    case SELECT_DOCUMENT:
+      newState.selectedDocument = action.documentId;
       return newState;
     default:
       return state;

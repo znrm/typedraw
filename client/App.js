@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Button, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import HomeScreen from './mobile/components/home/home';
+import WelcomeScreen from './mobile/components/welcome/welcome';
 import AuthSplash from './mobile/components/auth_splash_screen/auth_splash';
 
 const styles = StyleSheet.create({
@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Welcome: WelcomeScreen,
     Splash: AuthSplash,
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Welcome'
   }
 );
 

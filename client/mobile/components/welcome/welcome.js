@@ -14,16 +14,16 @@ const styles = StyleSheet.create({
 
 const store = configureStore();
 
-const HomeScreen = ({ navigation, loggedIn }) => (
+const Welcome = ({ navigation, loggedIn }) => (
 
   loggedIn ? (
     navigation.navigate('Splash')
   ) : (
     <Provider store={store}>
       <View style={styles.container}>
-        <Text>TypeDraw!!!</Text>
+        <Text>Welcome to TypeDraw</Text>
         <Button
-          title="goto splash"
+          title="Click here to Login/Signup"
           onPress={() => navigation.navigate('Splash')}
         />
       </View>
@@ -31,4 +31,4 @@ const HomeScreen = ({ navigation, loggedIn }) => (
   )
 );
 
-export default HomeScreen;
+export default Welcome;

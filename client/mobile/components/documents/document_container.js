@@ -3,14 +3,14 @@ import Document from './document';
 import { receiveDocument } from '../../../shared/actions/document_actions';
 
 const mapStateToProps = ({ ui, documents }) => ({
-  documentId: ui.selectedDocument,
-  documentAction: ui.documentAction,
+  id: ui.selectedDocument,
+  action: ui.documentAction,
   imageLayer: documents[ui.selectedDocument].imageLayer,
   textLayer: documents[ui.selectedDocument].textLayer
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateDocument: document => dispatch(receiveDocument(document))
+  update: document => dispatch(receiveDocument(document))
 });
 
 const DocumentContainer = connect(

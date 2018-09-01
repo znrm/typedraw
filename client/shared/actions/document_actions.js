@@ -1,4 +1,5 @@
 import * as DocAPIUtil from '../util/document_api_util';
+import { selectDocument } from './ui_actions';
 
 export const RECEIVE_DOCUMENT = 'RECEIVE_DOCUMENT';
 export const RECEIVE_DOCUMENT_DIFFS = 'RECEIVE_DOCUMENT_DIFFS';
@@ -18,6 +19,15 @@ const removeDocument = documentId => ({
   type: REMOVE_DOCUMENT,
   documentId
 });
+
+export const createDocument = userId => dispatch =>
+  DocAPIUtil.createDocument(userId).then(
+    newDoc => {
+      dispatch(receiveDocument(newDoc));
+      dispatch(selectDocument(newDoc.id));
+    },
+    err => console.log(err, 'new doc error')
+  );
 
 export const updateTitle = (document, title) => dispatch =>
   DocAPIUtil.updateTitle(document, title).then(

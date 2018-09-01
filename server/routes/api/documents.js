@@ -2,6 +2,7 @@ const express = require('express');
 // const passport = require('passport');
 const Document = require('../../models/Document');
 const User = require('../../models/User');
+const { merge } = require('lodash');
 
 const router = express.Router();
 
@@ -18,11 +19,12 @@ router.get('/:documentId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  User.findById(req.body.id).then(owner => {
-    new Document({ owner })
-      .save()
-      .then(docRes => res.json(docRes))
-      .catch(docErr => res.status(422).json({ message: docErr }));
+  User.findById(req.body.userId).then(owner => {
+    new Document({ owner }).save().then(docRes => {
+      res
+        .json({ ...docRes._doc, id: docRes._id })
+        .catch(docErr => res.status(422).json({ message: docErr }));
+    });
   });
 });
 

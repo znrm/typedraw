@@ -1,12 +1,16 @@
 import { connect } from 'react-redux';
 import Home from './home';
+import { createDocument } from '../../../shared/util/document_api_util';
 
 const mapStateToProps = state => ({
   userId: state.session.currentUser
 });
 
-const mapDispatchToProps = () => ({
-  createDoc: () => console.log('create new doc in home_container for mobile')
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  createDoc: () =>
+    dispatch(createDocument(ownProps.userId)).then(
+      ownProps.navigation.navigate('DocumentFrameContainer')
+    )
 });
 
 const HomeContainer = connect(

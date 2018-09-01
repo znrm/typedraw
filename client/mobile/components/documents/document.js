@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, TextInput } from 'react-native';
 
-const Document = () => (
+const Document = ({ action, id, update, textLayer }) => (
   <View>
-    <Text>Document</Text>
+    <TextInput
+      zIndex={action === 'typing' ? 1 : 0}
+      onChangeText={text => update({ id, textLayer: text })}
+      placeholder="enter text here"
+      value={textLayer}
+    />
   </View>
 );
+
 export default Document;

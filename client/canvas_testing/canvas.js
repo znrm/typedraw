@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateDiff(imageBefore, imageAfter, range);
   }
 
-  document.querySelector('canvas').onmousedown = e => {
+  document.onmousedown = e => {
     Object.assign(pointer, { x: e.clientX, y: e.clientY });
     pressing = true;
   };

@@ -1,5 +1,8 @@
 const axios = require('axios');
 
+export const getDocument = documentId =>
+  axios.get(`https://typedraw.herokuapp.com/api/documents/${documentId}`);
+
 // should send web token in the future
 export const createDocument = userId =>
   axios.post('https://typedraw.herokuapp.com/api/documents', { userId });

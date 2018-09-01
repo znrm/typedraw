@@ -3,7 +3,6 @@ import { View, TextInput, WebView } from 'react-native';
 import io from 'socket.io-client';
 import styles from '../../styles';
 
-
 class Document extends React.Component {
   constructor(props) {
     super(props);
@@ -11,12 +10,15 @@ class Document extends React.Component {
   }
 
   componentDidMount() {
-    const { documentId } = this.props;
-    this.socket = io();
+    const { documentId, receiveDocument } = this.props;
+    this.socket = io('https://typedraw.herokuapp.com');
 
     this.socket.on('connect', () => {
       this.socket.emit('document', documentId);
     });
+
+    this.socket.on('text', text =>
+      receiveDocument({ id: documentId, textLayer: text }));
   }
 
   sendText(text) {
@@ -28,7 +30,7 @@ class Document extends React.Component {
     return (
       <View style={styles.container} zIndex={action === 'typing' ? 1 : -1}>
         <TextInput
-          onChangeText={() => this.sendText()}
+          onChangeText={text => this.sendText(text)}
           placeholder="enter text here"
           value={textLayer}
           multiline

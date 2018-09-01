@@ -21,6 +21,12 @@ const removeDocument = documentId => ({
   documentId
 });
 
+export const getDocument = documentId => dispatch =>
+  DocAPIUtil.getDocument(documentId).then(res => {
+    dispatch(receiveDocument(res.data));
+    dispatch(selectDocument(res.data.id));
+  });
+
 export const createDocument = userId => dispatch =>
   DocAPIUtil.createDocument(userId).then(
     newDoc => {

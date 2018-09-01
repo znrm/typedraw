@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import Document from './document';
 import styles from '../../styles';
 import { selectDocumentAction } from '../../../shared/actions/ui_actions';
+import AddCollaborators from './add_collaborators';
 
 
 // prop is sent to document tools instead of DocumentFrame in the container
 // go fix it
-const DocumentTools = ({ selectAction }) => (
+const DocumentTools = ({ navigation, selectAction }) => (
   <View>
     <StatusBar
       barStyle="dark-content"
@@ -32,12 +33,13 @@ const DocumentTools = ({ selectAction }) => (
         title="eraser"
         onPress={() => console.log('eraseme')}
       />
+
     </View>
   </View>
 );
 
 const mapProps = dispatch => ({
-  selectAction: (action) => dispatch(selectDocumentAction(action))
+  selectAction: (action) => dispatch(selectDocumentAction(action)),
 });
 
 const DocumentToolsContainer = connect(null, mapProps)(DocumentTools);

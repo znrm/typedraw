@@ -25,10 +25,7 @@ const DocumentReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_DOCUMENT: {
-      // 1: {id: 1, name: 'document name'}
-      const previousDocument = newState[action.document.id];
-      merge(previousDocument, action.document);
-      return newState;
+      return merge(newState, { [action.document.id]: action.document });
     }
     case RECEIVE_DOCUMENT_DIFFS: {
       const previousDocument = newState[action.document.id];

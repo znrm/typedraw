@@ -23,7 +23,8 @@ const AppStack = createStackNavigator(
   },
   {
     initialRouteName: 'HomeContainer',
-  }
+  },
+
 );
 
 const mapState = ({ session }) => ({ loggedIn: session.loggedIn });

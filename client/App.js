@@ -1,26 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider } from 'react-redux';
-import DocumentsContainer from './mobile/components/documents_container';
+import { createStackNavigator } from 'react-navigation';
+import { connect, Provider } from 'react-redux';
+import Splash from './mobile/components/splash/splash';
+import Welcome from './mobile/components/splash/welcome';
+import HomeContainer from './mobile/components/home/home_container';
 import configureStore from './shared/store/store';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+const RootStack = createStackNavigator(
+  {
+    Welcome,
+    Splash
+  },
+  {
+    initialRouteName: 'Welcome'
   }
-});
+);
 
 const store = configureStore();
 
+const Root = connect(({ session }) => ({ loggedIn: session.loggedIn }))(
+  ({ loggedIn }) => (loggedIn ? <HomeContainer /> : <RootStack />)
+);
+
 const App = () => (
   <Provider store={store}>
-    <View style={styles.container}>
-      <Text>TypeDraw!!!</Text>
-      <DocumentsContainer />
-    </View>
+    <Root />
   </Provider>
 );
 

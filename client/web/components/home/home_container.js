@@ -3,9 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { logout } from '../../../shared/actions/session_actions';
 import Home from './home';
 
-const mapStateToProps = (state, ownProps) => ({
-  state,
-  ownProps
+const mapStateToProps = (state) => ({
+  currentUser: state.session.currentUser,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -19,7 +19,7 @@ router.get('/:documentId', (req, res) => {
 
 router.post('/', (req, res) => {
   const newDocument = new Document({
-    owner: User.findOne({ email: 'agadberr@gmail.com' }).id,
+    owner: User.findOne({ email: 'agadberr@gmail.com' })._id,
     collaborators: [],
     title: 'Untitled Document',
     textLayer: '',

@@ -13,35 +13,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const pointer = { x: 0, y: 0 };
   let pressing = false;
 
-  function calculateDiff(imageBefore, imageAfter) {
+  const boundingBox = (from, to) => {
+    const minX = Math.min(from.x, to.x);
+    const minY = Math.min(from.y, to.y);
+    const maxX = Math.max(from.x, to.x);
+    const maxY = Math.max(from.y, to.y);
+
+    const startIndex = 4 * (minY * width + minX);
+    const endIndex = 4 * (maxY * width + maxX);
+
+    return [startIndex, endIndex];
+  };
+
+  function calculateDiff(imageBefore, imageAfter, range) {
     const { length } = imageBefore;
-    const diff = Uint8ClampedArray.from(imageAfter);
+    const diffs = {};
 
     for (let i = 0; i < length; i += 1) {
-      diff[i] -= imageBefore[i];
+      const diff = imageAfter[i] - imageBefore[i];
+
+      if (diff !== 0) {
+        diffs[i + range[0]] = diff;
+      }
     }
 
-    console.log(diff);
+    console.log(diffs);
   }
 
   function draw(from, to) {
-    const imageBefore = ctx.getImageData(
-      0,
-      0,
-      ctx.canvas.width,
-      ctx.canvas.height
-    ).data;
+    const range = boundingBox(from, to);
+    console.log(from, to);
+    console.log(range);
+
+    const imageBefore = ctx
+      .getImageData(0, 0, width, height)
+      .data.slice(...range);
+
     ctx.beginPath();
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
     ctx.stroke();
-    const imageAfter = ctx.getImageData(
-      0,
-      0,
-      ctx.canvas.width,
-      ctx.canvas.height
-    ).data;
-    calculateDiff(imageBefore, imageAfter);
+
+    const imageAfter = ctx.getImageData(0, 0, width, height).data;
+    calculateDiff(imageBefore, imageAfter, range);
   }
 
   document.querySelector('canvas').onmousedown = e => {

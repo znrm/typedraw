@@ -18,18 +18,12 @@ router.get('/:documentId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const newDocument = new Document({
-    owner: User.findOne({ email: 'agadberr@gmail.com' })._id,
-    collaborators: [],
-    title: 'Untitled Document',
-    textLayer: '',
-    imageLayer: ''
+  User.findById(req.body.id).then(owner => {
+    new Document({ owner })
+      .save()
+      .then(docRes => res.json(docRes))
+      .catch(docErr => res.status(422).json({ message: docErr }));
   });
-
-  newDocument
-    .save()
-    .then(docRes => res.json(docRes))
-    .catch(docErr => res.status(422).json({ message: docErr }));
 });
 
 router.put('/:documentId', (req, res) => {

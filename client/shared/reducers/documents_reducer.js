@@ -1,7 +1,8 @@
 import { merge } from 'lodash';
 import {
   RECEIVE_DOCUMENT,
-  RECEIVE_DOCUMENT_DIFFS
+  RECEIVE_DOCUMENT_DIFFS,
+  REMOVE_DOCUMENT
 } from '../actions/document_actions';
 
 // This has not been implemented yet
@@ -29,10 +30,17 @@ const DocumentReducer = (state = initialState, action) => {
     }
     case RECEIVE_DOCUMENT_DIFFS: {
       const previousDocument = newState[action.document.id];
-      const newDocument = combineDocumentWithDiffs(previousDocument, action.documentDiffs);
+      const newDocument = combineDocumentWithDiffs(
+        previousDocument,
+        action.documentDiffs
+      );
       merge(previousDocument, newDocument);
       return newState;
     }
+    case REMOVE_DOCUMENT:
+      delete newState[action.documentId];
+      return newState;
+
     default:
       return state;
   }

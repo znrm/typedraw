@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -12,9 +12,10 @@ class Auth extends React.Component {
   }
 
   render() {
-    const { login, createUser } = this.props;
+    const { login, createUser, errors } = this.props;
     return (
       <View>
+        {errors.length ? <Text>{errors.join(' ')}</Text> : null}
         <TextInput
           placeholder="email"
           onChangeText={email => this.setState({ email })}

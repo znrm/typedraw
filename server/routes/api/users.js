@@ -40,11 +40,9 @@ router.post('/register', (req, res) => {
         newUser.password = hash;
         newUser
           .save()
-          .then(userRes => {
-            const payload = { id: newUser.id, email: newUser.email };
-
-            return jsonwebtoken.sign(
-              payload,
+          .then(userRes =>
+            jsonwebtoken.sign(
+              null,
               secretOrKey,
               // Tell the key to expire in one hour
               { expiresIn: 3600 },
@@ -56,8 +54,7 @@ router.post('/register', (req, res) => {
                   success: true
                 });
               }
-            );
-          })
+            ))
           .catch(userErr => console.log(userErr));
       });
     });

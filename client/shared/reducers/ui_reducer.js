@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { SELECT_DOCUMENT_ACTION, SELECT_DOCUMENT } from '../actions/ui_actions';
+import { SELECT_DOCUMENT_ACTION, SELECT_DOCUMENT, ERASE_TOGGLE, SELECT_COLOR } from '../actions/ui_actions';
 
 const initialUI = {
   documentAction: 'typing',
@@ -7,6 +7,8 @@ const initialUI = {
   erasing: false,
   color: '#000000'
 };
+
+// reducer for erasor and color fix blah blah
 
 const uiReducer = (state = initialUI, action) => {
   Object.freeze(state);
@@ -19,6 +21,10 @@ const uiReducer = (state = initialUI, action) => {
     case SELECT_DOCUMENT:
       newState.selectedDocument = action.documentId;
       return newState;
+    case ERASE_TOGGLE:
+      return 'blah';
+    case SELECT_COLOR:
+      return 'blahblah';
     default:
       return state;
   }

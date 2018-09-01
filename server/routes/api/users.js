@@ -3,7 +3,8 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
 const User = require('../../models/User');
-const keys = { secretOrKey: process.env.SECRET_OR_KEY } || require('../../config/keys');
+
+const secretOrKey = process.env.SECRET_OR_KEY || 'DevelopmentSecretNotNeeded';
 
 const router = express.Router();
 
@@ -40,12 +41,11 @@ router.post('/register', (req, res) => {
         newUser
           .save()
           .then(userRes => {
-            const payload = { id: user.id, email: user.email };
+            const payload = { id: newUser.id, email: newUser.email };
 
-            // IDK IF IM DOING THIS PART RIGHT
             return jsonwebtoken.sign(
               payload,
-              keys.secretOrKey,
+              secretOrKey,
               // Tell the key to expire in one hour
               { expiresIn: 3600 },
               (tokenErr, token) => {
@@ -61,7 +61,6 @@ router.post('/register', (req, res) => {
           .catch(userErr => console.log(userErr));
       });
     });
-
     return newUser;
   });
 });

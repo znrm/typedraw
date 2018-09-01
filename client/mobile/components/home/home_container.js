@@ -1,15 +1,26 @@
 import { connect } from 'react-redux';
 import Home from './home';
+import {
+  getDocument,
+  createDocument
+} from '../../../shared/actions/document_actions';
 
-const mapStateToProps = (state) => ({
-  userId: state.session.currentUser
+const mapStateToProps = ({ session }) => ({
+  userId: session.currentUser
 });
 
-const mapDispatchToProps = () => ({
-  createDoc: () => console.log('create new doc in home_container for mobile')
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  createDoc: userId =>
+    dispatch(createDocument(userId)).then(() =>
+      ownProps.navigation.navigate('DocumentFrameContainer')),
+  getPublicDoc: () =>
+    dispatch(getDocument('5b8ade489b77030014ecbec5')).then(() =>
+      ownProps.navigation.navigate('DocumentFrameContainer'))
 });
 
-export default connect(
+const HomeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home);
+
+export default HomeContainer;

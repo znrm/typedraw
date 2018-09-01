@@ -16,7 +16,7 @@ const SessionReducer = (oldState = nullUser, action) => {
   switch (action.type) {
     case START_SESSION: {
       const userId = action.res.data.id;
-      const token = action.token ? action.token.Authorization : action.res.data.token;
+      // const token = action.token ? action.token.Authorization : action.res.data.token;
       // sessionStorage.setItem('token', token);
       return merge(newState, oldState, { currentUser: userId, loggedIn: true });
     }

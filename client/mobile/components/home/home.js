@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Button, Text } from 'react-native';
 import styles from '../../styles';
 
-const Home = ({ navigation, createDoc }) => (
+const Home = ({ getPublicDoc, userId, createDoc }) => (
   <View style={styles.container}>
-    <Button title="+" onPress={() => createDoc()} />
-    <Text>Create A new Doc</Text>
+    <Text style={{ fontSize: 32 }}>+</Text>
+    <Button title="Create a New Doc" onPress={() => createDoc(userId)} />
     <Button
-      title="adddocframetest"
-      onPress={() => navigation.navigate('DocumentFrameContainer')}
+      title="Check out the Public Doc"
+      onPress={() => getPublicDoc()}
     />
   </View>
 );

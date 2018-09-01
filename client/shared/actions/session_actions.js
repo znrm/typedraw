@@ -1,5 +1,6 @@
 import * as SessionAPIUtil from '../util/session_api_util';
-import * as ErrorActions from './errors_actions';
+import { receiveErrors } from './errors_actions';
+import { receiveUser } from './user_actions';
 
 export const START_SESSION = 'START_SESSION';
 export const END_SESSION = 'END_SESSION';
@@ -16,13 +17,19 @@ const quitSession = res => ({
 });
 
 export const fetchCurrentSession = token => dispatch =>
-  SessionAPIUtil.fetchCurrentSession(token)
-    .then(res => dispatch(startSession(res, token)), err => console.log(err, 'error'));
+  SessionAPIUtil.fetchCurrentSession(token).then(
+    res => dispatch(startSession(res, token)),
+    err => dispatch(receiveErrors(Object.values(err.response.data)))
+  );
 
 export const login = user => dispatch =>
-  SessionAPIUtil.startSession(user)
-    .then(res => fetchCurrentSession({ Authorization: res.data.token })(dispatch),
-      err => dispatch(ErrorActions.receiveErrors(err.response.data)));
+  SessionAPIUtil.startSession(user).then(
+    res => {
+      dispatch(receiveUser(res));
+      dispatch(startSession(res));
+    },
+    err => dispatch(receiveErrors(Object.values(err.response.data)))
+  );
 
 export const logout = () => dispatch =>
   SessionAPIUtil.endSession()

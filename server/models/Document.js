@@ -2,25 +2,28 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const DocumentSchema = new Schema({
+const DocumentSchema = new mongoose.Schema({
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User'
   },
   collaborators: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'users'
+      ref: 'User',
     }
   ],
   title: {
-    type: String
+    type: String,
+    default: 'Untitled Document'
   },
   textLayer: {
-    type: String
+    type: String,
+    default: ''
   },
   imageLayer: {
-    type: Buffer
+    type: Buffer,
+    default: []
   }
 });
 

@@ -12,7 +12,6 @@ const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
 
 require('./config/passport')(passport);
 
-
 mongoose
   .connect(
     encodeURI(db),
@@ -54,10 +53,13 @@ const server = app.listen(port, () =>
 const io = socketIO.listen(server);
 
 io.sockets.on('connection', socket => {
-  socket.on('typing', letter => console.log(letter));
-  socket.on('working', res => {
-    console.log(res);
-    io.emit('greeting', 'welcome to typedraw, this was sent with a socket');
+  socket.on('document', documentId => {
+    socket.join(documentId);
+
+    socket.on('typing', text => {
+      console.log(text);
+      socket.to(documentId).emit('text', text);
+    });
   });
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StatusBar, Button } from 'react-native';
 import { connect } from 'react-redux';
-import Document from './document';
+import DocumentContainer from './document_container';
 import styles from '../../styles';
 import { selectDocumentAction } from '../../../shared/actions/ui_actions';
 import AddCollaborators from './add_collaborators';
@@ -52,7 +52,7 @@ class DocumentFrame extends React.Component {
   }
 
   render() {
-    return <Document />;
+    return <DocumentContainer />;
   }
 }
 

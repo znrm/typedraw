@@ -7,55 +7,47 @@ const router = express.Router();
 
 router.get('/:documentId', (req, res) => {
   Document.findById(req.params.documentId).then(document => {
-    if (document) return res.json({ document });
-
+    if (document) {
+      const { imageLayer, textLayer, id, collaborators, title } = document;
+      return res.json({ imageLayer, textLayer, id, collaborators, title });
+    }
     return res.status(404).json({
       message: `Document with id ${req.params.documentId} not found`
     });
   });
 });
 
-router.post('/', (req, res) => {
-  const newDocument = new Document({
-    owner: User.findOne({ email: 'agadberr@gmail.com' }).id,
-    collaborators: [],
-    title: 'Untitled Document',
-    textLayer: '',
-    imageLayer: ''
-  });
-
-  newDocument
-    .save()
-    .then(docRes => res.json(docRes))
-    .catch(docErr => res.status(422).json({ message: docErr }));
+router.post('/', async (req, res) => {
+  try {
+    const owner = await User.findById(req.body.userId);
+    const newDoc = await new Document({ owner }).save();
+    res.json(newDoc.toObject({ getters: true }));
+  } catch (error) {
+    res.status(422).json(error);
+  }
 });
 
 router.put('/:documentId', (req, res) => {
-  Document.findByIdAndUpdate(
-    req.params.documentId,
-    {
-      title: req.body.title || 'Untitled Document'
-    },
-    { new: true }
-  )
-    .then(document => {
-      if (!document) {
-        return res.status(404).send({
-          message: `Document with id ${req.params.documentId} not found`
-        });
+  Document.findById(req.params.documentId).then(document => {
+    if (document) {
+      const { body } = req;
+      if (body.collaborators) {
+        document.collaborators.push(body.collaborators);
+        body.collaborators = document.collaborators;
       }
-      return res.send(document);
-    })
-    .catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: `Document with id ${req.params.documentId} not found`
-        });
-      }
-      return res.status(500).send({
-        message: `Error updating document with id ${req.params.documentId}`
-      });
-    });
+      Object.assign(document, body);
+
+      const updatedDocument = new Document(document);
+
+      updatedDocument
+        .save()
+        .then(docRes => {
+          const { imageLayer, textLayer, id, collaborators, title } = docRes;
+          res.json({ imageLayer, textLayer, id, collaborators, title });
+        })
+        .catch(docErr => res.status(422).json({ message: docErr }));
+    }
+  });
 });
 
 router.delete('/:documentId', (req, res) => {

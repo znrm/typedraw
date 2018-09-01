@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 import Home from './home';
-import { createDocument } from '../../../shared/util/document_api_util';
+import { createDocument } from '../../../shared/actions/document_actions';
 
-const mapStateToProps = state => ({
-  userId: state.session.currentUser
+const mapStateToProps = ({ session }) => ({
+  userId: session.currentUser
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  createDoc: () =>
-    dispatch(createDocument(ownProps.userId)).then(
-      ownProps.navigation.navigate('DocumentFrameContainer')
-    )
+  createDoc: userId =>
+    dispatch(createDocument(userId)).then(() =>
+      ownProps.navigation.navigate('DocumentFrameContainer'))
 });
 
 const HomeContainer = connect(

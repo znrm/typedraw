@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
 import Document from './document';
-import { receiveDocument } from '../../../shared/actions/document_actions';
+import { updateText } from '../../../shared/actions/document_actions';
 
 const mapStateToProps = ({ ui, documents }) => ({
-  id: ui.selectedDocument,
+  document: documents[ui.selectedDocument],
+  documentId: ui.selectedDocument,
   action: ui.documentAction,
   imageLayer: documents[ui.selectedDocument].imageLayer,
   textLayer: documents[ui.selectedDocument].textLayer
 });
 
 const mapDispatchToProps = dispatch => ({
-  update: document => dispatch(receiveDocument(document))
+  updateText: (docId, text) => dispatch(updateText(docId, text))
 });
 
 const DocumentContainer = connect(

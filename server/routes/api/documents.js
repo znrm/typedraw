@@ -2,7 +2,6 @@ const express = require('express');
 // const passport = require('passport');
 const Document = require('../../models/Document');
 const User = require('../../models/User');
-const { merge } = require('lodash');
 
 const router = express.Router();
 
@@ -18,14 +17,14 @@ router.get('/:documentId', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
-  User.findById(req.body.userId).then(owner => {
-    new Document({ owner }).save().then(docRes => {
-      res
-        .json({ ...docRes._doc, id: docRes._id })
-        .catch(docErr => res.status(422).json({ message: docErr }));
-    });
-  });
+router.post('/', async (req, res) => {
+  try {
+    const owner = await User.findById(req.body.userId);
+    const newDoc = await new Document({ owner }).save();
+    res.json(newDoc.toObject({ getters: true }));
+  } catch (error) {
+    res.status(422).json(error);
+  }
 });
 
 router.put('/:documentId', (req, res) => {

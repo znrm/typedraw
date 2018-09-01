@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Button, Text } from 'react-native';
 import styles from '../../styles';
 
-const Home = ({ navigation, createDoc }) => (
+const Home = ({ navigation, userId, createDoc }) => (
   <View style={styles.container}>
-    <Button style={{ height: 200 }} title="+" onPress={() => createDoc()} />
-    <Text>Create A New Doc</Text>
+    <Text style={{ fontSize: 32 }}>+</Text>
+    <Button title="Create A New Doc" onPress={() => createDoc(userId)} />
   </View>
 );
 

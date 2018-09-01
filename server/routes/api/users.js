@@ -42,7 +42,7 @@ router.post('/register', (req, res) => {
           .save()
           .then(userRes =>
             jsonwebtoken.sign(
-              null,
+              { id: user.id },
               secretOrKey,
               // Tell the key to expire in one hour
               { expiresIn: 3600 },

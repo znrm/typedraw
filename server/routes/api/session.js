@@ -1,16 +1,13 @@
 const express = require('express');
-
-const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
-
 const User = require('../../models/User');
 
+const router = express.Router();
 const secretOrKey = process.env.SECRET_OR_KEY || 'DevelopmentSecretNotNeeded';
 
 router.post('/login', (req, res) => {
-  const { email } = req.body;
-  const { password } = req.body;
+  const { email, password } = req.body;
 
   User.findOne({ email }).then(user => {
     if (!user) {
@@ -20,7 +17,7 @@ router.post('/login', (req, res) => {
     return bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         return jsonwebtoken.sign(
-          null,
+          { id: user.id },
           secretOrKey,
           // Tell the key to expire in one hour
           { expiresIn: 3600 },
@@ -29,7 +26,7 @@ router.post('/login', (req, res) => {
               id: user.id,
               email: user.email,
               token: `Bearer ${token}`,
-              success: true
+              success: true,
             });
           }
         );

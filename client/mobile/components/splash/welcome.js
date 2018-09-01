@@ -17,7 +17,7 @@ const Welcome = ({ navigation, demoLogin }) => (
       onPress={() => navigation.navigate('Splash')}
     />
     <Button
-      title="try it first"
+      title="take a look around"
       onPress={demoLogin}
     />
   </View>

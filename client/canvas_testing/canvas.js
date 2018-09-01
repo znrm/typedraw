@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.querySelector('canvas');
   const ctx = canvas.getContext('2d', { alpha: true });
-  const width = 100 || window.innerWidth;
-  const height = 100 || window.innerHeight;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
   canvas.width = width;
   canvas.height = height;
 
@@ -28,22 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
   function calculateDiff(imageBefore, imageAfter, range) {
     const { length } = imageBefore;
     const diffs = {};
+    let thereWasAtLeastOneDiff = false;
 
     for (let i = 0; i < length; i += 1) {
+      thereWasAtLeastOneDiff = true;
       const diff = imageAfter[i] - imageBefore[i];
 
       if (diff !== 0) {
         diffs[i + range[0]] = diff;
       }
     }
-
-    console.log(diffs);
+    if (thereWasAtLeastOneDiff) {
+      console.log(diffs);
+    }
   }
 
   function draw(from, to) {
     const range = boundingBox(from, to);
-    console.log(from, to);
-    console.log(range);
 
     const imageBefore = ctx
       .getImageData(0, 0, width, height)
@@ -54,7 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineTo(to.x, to.y);
     ctx.stroke();
 
-    const imageAfter = ctx.getImageData(0, 0, width, height).data;
+    const imageAfter = ctx
+      .getImageData(0, 0, width, height)
+      .data.slice(...range);
+
     calculateDiff(imageBefore, imageAfter, range);
   }
 

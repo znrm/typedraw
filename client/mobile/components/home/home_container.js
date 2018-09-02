@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Home from './home';
+import { logout } from '../../../shared/actions/session_actions';
 import {
   getDocument,
   createDocument
@@ -10,6 +11,8 @@ const mapStateToProps = ({ session }) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  logout: () =>
+    dispatch(logout()),
   createDoc: userId =>
     dispatch(createDocument(userId)).then(() =>
       ownProps.navigation.navigate('DocumentFrameContainer')),

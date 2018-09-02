@@ -32,6 +32,13 @@ router.put('/:documentId', (req, res) => {
     if (document) {
       const { body } = req;
       if (body.collaborators) {
+        User.findById({ email: body.collaborators })
+          .then(userRes => {
+            document.collaborators.push(userRes.id);
+            body.collaborators = document.collaborators;
+          })
+          .catch(userErr => res.status(422).json({ message: userErr }));
+
         document.collaborators.push(body.collaborators);
         body.collaborators = document.collaborators;
       }

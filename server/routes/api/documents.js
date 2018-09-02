@@ -27,34 +27,36 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:documentId', (req, res) => {
-  Document.findById(req.params.documentId).then(document => {
-    if (document) {
-      const { body } = req;
-      if (body.collaborators) {
-        User.findById({ email: body.collaborators })
-          .then(userRes => {
-            document.collaborators.push(userRes.id);
-            body.collaborators = document.collaborators;
-          })
-          .catch(userErr => res.status(422).json({ message: userErr }));
+router.put('/:documentId', async (req, res) => {
+  const document = await Document.findById(req.params.documentId);
 
-        document.collaborators.push(body.collaborators);
-        body.collaborators = document.collaborators;
+  if (document) {
+    const { body } = req;
+    if (body.collaborators) {
+      let user;
+
+      try {
+        user = await User.findOne({ email: body.collaborators });
+      } catch (userErr) {
+        res.status(422).json({ message: userErr });
       }
-      Object.assign(document, body);
 
-      const updatedDocument = new Document(document);
-
-      updatedDocument
-        .save()
-        .then(docRes => {
-          const { imageLayer, textLayer, id, collaborators, title } = docRes;
-          res.json({ imageLayer, textLayer, id, collaborators, title });
-        })
-        .catch(docErr => res.status(422).json({ message: docErr }));
+      document.collaborators.push(user.id);
+      body.collaborators = document.collaborators;
     }
-  });
+
+    Object.assign(document, body);
+
+    const updatedDocument = new Document(document);
+
+    try {
+      const saved = await updatedDocument.save();
+      const { imageLayer, textLayer, id, collaborators, title } = saved;
+      res.json({ imageLayer, textLayer, id, collaborators, title });
+    } catch (docErr) {
+      res.status(422).json({ message: docErr });
+    }
+  }
 });
 
 router.delete('/:documentId', (req, res) => {

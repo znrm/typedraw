@@ -7,8 +7,8 @@ import { fetchCurrentSession } from './shared/actions/session_actions';
 
 const store = configureStore();
 
-const checkForCurrentUser = () => {
-  const token = getAuthToken();
+const checkForCurrentUser = async () => {
+  const token = await getAuthToken();
   if (token) {
     fetchCurrentSession({ Authorization: token })(store.dispatch);
   }

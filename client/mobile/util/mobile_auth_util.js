@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { fetchCurrentSession } from '../../shared/util/session_api_util';
 
-const TOKEN = 'TOKEN';
+const TOKEN = 'WEB_TOKEN';
 
 export const getAuthToken = () => AsyncStorage.getItem(TOKEN);
 

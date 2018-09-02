@@ -1,31 +1,26 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
-import { connect, Provider } from 'react-redux';
-import Splash from './mobile/components/splash/splash';
-import Welcome from './mobile/components/splash/welcome';
-import HomeContainer from './mobile/components/home/home_container';
+import { Provider } from 'react-redux';
 import configureStore from './shared/store/store';
-
-const RootStack = createStackNavigator(
-  {
-    Welcome,
-    Splash
-  },
-  {
-    initialRouteName: 'Welcome'
-  }
-);
+import RootContainer from './mobile/root';
+import { getAuthToken } from './shared/util/mobile_auth_util';
+import { fetchCurrentSession } from './shared/actions/session_actions';
 
 const store = configureStore();
 
-const Root = connect(({ session }) => ({ loggedIn: session.loggedIn }))(
-  ({ loggedIn }) => (loggedIn ? <HomeContainer /> : <RootStack />)
-);
+const checkForCurrentUser = async () => {
+  const token = await getAuthToken();
+  if (token) {
+    fetchCurrentSession({ Authorization: token })(store.dispatch);
+  }
+};
 
-const App = () => (
-  <Provider store={store}>
-    <Root />
-  </Provider>
-);
+const App = () => {
+  checkForCurrentUser();
+  return (
+    <Provider store={store}>
+      <RootContainer />
+    </Provider>
+  );
+};
 
 export default App;

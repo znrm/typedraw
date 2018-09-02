@@ -3,7 +3,7 @@ import { View, StatusBar, Button } from 'react-native';
 import { connect } from 'react-redux';
 import DocumentContainer from './document_container';
 import styles from '../../styles';
-import { selectDocumentAction } from '../../../shared/actions/ui_actions';
+import { selectDocumentAction, toggle, selectColor } from '../../../shared/actions/ui_actions';
 import AddCollaborators from './add_collaborators';
 
 
@@ -26,12 +26,12 @@ const DocumentTools = ({ navigation, selectAction }) => (
       {/* some action to handle color change */}
       <Button
         title="black"
-        onPress={() => console.log('black')}
+        onPress={() => selectColor('black')}
       />
       {/* some action to handle erasing */}
       <Button
         title="eraser"
-        onPress={() => console.log('eraseme')}
+        onPress={() => toggle('eraseme')}
       />
 
     </View>
@@ -40,6 +40,8 @@ const DocumentTools = ({ navigation, selectAction }) => (
 
 const mapProps = dispatch => ({
   selectAction: (action) => dispatch(selectDocumentAction(action)),
+  toggle: (uiElement) => dispatch(toggle(uiElement)),
+  selectColor: (color) => dispatch(selectColor(color))
 });
 
 const DocumentToolsContainer = connect(null, mapProps)(DocumentTools);

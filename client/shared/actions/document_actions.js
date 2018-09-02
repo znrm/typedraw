@@ -6,7 +6,7 @@ export const RECEIVE_DOCUMENT = 'RECEIVE_DOCUMENT';
 export const RECEIVE_DOCUMENT_DIFFS = 'RECEIVE_DOCUMENT_DIFFS';
 export const REMOVE_DOCUMENT = 'REMOVE_DOCUMENT';
 
-const receiveDocument = document => ({
+export const receiveDocument = document => ({
   type: RECEIVE_DOCUMENT,
   document
 });

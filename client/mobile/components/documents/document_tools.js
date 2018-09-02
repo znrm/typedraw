@@ -3,8 +3,8 @@ import { View, StatusBar, Button } from 'react-native';
 import styles from '../../styles';
 // prop is sent to document tools instead of DocumentFrame in the container
 // go fix it
-const DocumentTools = ({ selectAction, toggle, selectColor, goCollabs }) => (
-  <View>
+const DocumentTools = ({ navigation, selectAction, toggles, colorSelect, goCollabs }) => (
+  <View style={styles.header}>
     <StatusBar
       barStyle="dark-content"
     />
@@ -20,17 +20,18 @@ const DocumentTools = ({ selectAction, toggle, selectColor, goCollabs }) => (
       {/* some action to handle color change */}
       <Button
         title="black"
-        onPress={() => selectColor('black')}
+        onPress={() => colorSelect('black')}
       />
       {/* some action to handle erasing */}
       <Button
         title="eraser"
-        onPress={() => toggle('eraser')}
+        onPress={() => toggles('erasing')}
       />
       <Button
-        title="addCollabs"
-        onPress={() => goCollabs()}
+        title="share"
+        onPress={() => navigation.navigate('AddCollaboratorsContainer')}
       />
+
     </View>
   </View>
 );

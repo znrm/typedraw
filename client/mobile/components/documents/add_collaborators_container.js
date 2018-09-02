@@ -4,6 +4,7 @@ import AddCollaborators from './add_collaborators';
 
 const mapStateToProps = (state) => ({
   collaboraters: state.documents.collaboraters,
+  documentId: state.ui.selectedDocument
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -55,8 +55,8 @@ export const updateImage = (document, image) => dispatch =>
   );
 
 export const addCollaborator = (document, user) => dispatch =>
-  DocAPIUtil.updateImage(document, user).then(
-    servImg => dispatch(receiveDocument(servImg)),
+  DocAPIUtil.addCollaborator(document, user).then(
+    servDoc => dispatch(receiveDocument(servDoc)),
     err => console.log(err, 'collaborator error')
   );
 

@@ -17,14 +17,14 @@ class AddCollaborators extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={{ alignItems: 'flex-start' }}>
+        <View style={{ alignItems: 'center' }}>
           <TextInput
             style={styles.input}
             placeholder="Collaborators Email"
             onChangeText={(text) => this.setState({ user: text })}
           />
           <Button
-            style={styles.row}
+            style={styles.text}
             title="Add Collaborator"
             onPress={() => addCollaborator({ id: documentId }, user)}
           />

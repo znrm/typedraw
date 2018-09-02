@@ -1,4 +1,5 @@
 import { merge } from 'lodash';
+import { setAuthToken, destroyAuthToken } from '../util/mobile_auth_util';
 
 import {
   START_SESSION,
@@ -16,12 +17,12 @@ const SessionReducer = (oldState = nullUser, action) => {
   switch (action.type) {
     case START_SESSION: {
       const userId = action.res.data.id;
-      // const token = action.token ? action.token.Authorization : action.res.data.token;
-      // sessionStorage.setItem('token', token);
+      const token = action.token ? action.token.Authorization : action.res.data.token;
+      setAuthToken(token);
       return merge(newState, oldState, { currentUser: userId, loggedIn: true });
     }
     case END_SESSION:
-      // sessionStorage.setItem('token', '');
+      destroyAuthToken();
       return merge(newState, oldState, nullUser);
     default:
       return oldState;

@@ -18,7 +18,8 @@ class Document extends React.Component {
     });
 
     this.socket.on('text', text =>
-      receiveDocument({ id: documentId, textLayer: text }));
+      receiveDocument({ id: documentId, textLayer: text })
+    );
   }
 
   sendText(text) {
@@ -28,16 +29,37 @@ class Document extends React.Component {
   render() {
     const { action, textLayer } = this.props;
     return (
-      <View style={styles.container} zIndex={action === 'typing' ? 1 : -1}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          height: '100%',
+          width: '100%',
+        }}
+      >
         <TextInput
           onChangeText={text => this.sendText(text)}
-          placeholder="enter text here"
-          value={textLayer}
           multiline
-          height="100%"
-          width="100%"
+          value={textLayer}
+          style={{
+            height: '100%',
+            width: '100%',
+            position: 'absolute',
+            zIndex: action === 'typing' ? 1 : -1
+          }}
         />
-        <View style={{ flex: 1 }} zIndex={action === 'typing' ? -1 : 1}>
+        <View
+          style={{
+            flex: 1,
+            zIndex: action === 'typing' ? -1 : 1,
+            position: 'absolute',
+            width: '100%',
+            height: '100%'
+          }}
+        >
           <WebView source={{ url: 'https://google.com' }} />
         </View>
       </View>

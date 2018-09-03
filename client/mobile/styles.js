@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    padding: 10
   },
   error: {
     flex: 0.5,
@@ -34,6 +35,15 @@ const styles = StyleSheet.create({
     minWidth: 300,
     borderColor: 'lightgray',
     borderWidth: 1
+  },
+  header: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  text: {
+    alignItems: 'center',
+    margin: 10,
   }
 });
 

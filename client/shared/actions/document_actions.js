@@ -38,25 +38,25 @@ export const createDocument = userId => dispatch =>
 
 export const updateTitle = (document, title) => dispatch =>
   DocAPIUtil.updateTitle(document, title).then(
-    servDoc => dispatch(receiveDocument(servDoc)),
+    servDoc => dispatch(receiveDocument(servDoc.data)),
     err => console.log(err, 'title error')
   );
 
 export const updateText = (document, text) => dispatch =>
   DocAPIUtil.updateText(document, text).then(
-    servDoc => dispatch(receiveDocument(servDoc)),
+    servDoc => dispatch(receiveDocument(servDoc.data)),
     err => console.log(err, 'text error')
   );
 
 export const updateImage = (document, image) => dispatch =>
   DocAPIUtil.updateImage(document, image).then(
-    servImg => dispatch(receiveDocument(servImg)),
+    servImg => dispatch(receiveDocument(servImg.data)),
     err => console.log(err, 'image error')
   );
 
 export const addCollaborator = (document, user) => dispatch =>
   DocAPIUtil.addCollaborator(document, user).then(
-    servDoc => dispatch(receiveDocument(servDoc)),
+    servDoc => dispatch(receiveDocument(servDoc.data)),
     err => console.log(err, 'collaborator error')
   );
 

@@ -11,6 +11,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  documents: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Document'
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

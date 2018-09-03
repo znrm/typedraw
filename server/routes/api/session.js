@@ -25,6 +25,7 @@ router.post('/login', (req, res) => {
             res.json({
               id: user.id,
               email: user.email,
+              documents: user.documents,
               token: `Bearer ${token}`,
               success: true,
             });

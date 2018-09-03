@@ -21,15 +21,20 @@ class TextLayer extends React.Component {
     this.socket.on('text', diff => this.receiveTextDiff(diff));
   }
 
+  componentWillUnmount() {
+    const { updateText, documentId, textLayer } = this.props;
+    updateText(documentId, textLayer);
+  }
+
   sendTextDiff(text) {
-    const { textLayer } = this.props;
+    const { textLayer, receiveDocument, documentId } = this.props;
+    receiveDocument({ id: documentId, textLayer: text });
     const diff = this.dmp.diff_main(textLayer, text);
 
     this.socket.emit('typing', diff);
   }
 
   receiveTextDiff(diff) {
-    debugger;
     const { textLayer, receiveDocument, documentId } = this.props;
     const patch = this.dmp.patch_make(textLayer, diff);
     const patchedText = this.dmp.patch_apply(patch, textLayer)[0];

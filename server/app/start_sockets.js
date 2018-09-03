@@ -17,8 +17,8 @@ const startSockets = server => {
 
       socket.on('typing', text => {
         const responseText = handleText(text);
-        io.in(documentId).emit('text', responseText);
-        // socket.to(documentId).emit('text', responseText);
+
+        socket.to(documentId).emit('text', responseText);
       });
     });
   });

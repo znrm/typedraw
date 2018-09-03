@@ -3,7 +3,13 @@ import { View } from 'react-native';
 import TextLayer from './text_layer';
 import ImageLayer from './image_layer';
 
-const Document = ({ action, textLayer, documentId, receiveDocument }) => (
+const Document = ({
+  action,
+  textLayer,
+  updateText,
+  documentId,
+  receiveDocument
+}) => (
   <View
     style={{
       flex: 1,
@@ -20,6 +26,7 @@ const Document = ({ action, textLayer, documentId, receiveDocument }) => (
       documentId={documentId}
       receiveDocument={receiveDocument}
       action={action}
+      updateText={updateText}
     />
     <View
       style={{

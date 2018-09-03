@@ -47,13 +47,15 @@ class Document extends React.Component {
             height: '100%',
             width: '100%',
             position: 'absolute',
-            zIndex: action === 'typing' ? 1 : -1
+            zIndex: action === 'typing' ? 2 : 1
           }}
         />
         <View
+          onStartShouldSetResponder={() => true}
           style={{
+            opacity: 0.7,
             flex: 1,
-            zIndex: action === 'typing' ? -1 : 1,
+            zIndex: action === 'typing' ? 1 : 2,
             position: 'absolute',
             width: '100%',
             height: '100%'

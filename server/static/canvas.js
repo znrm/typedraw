@@ -6,7 +6,7 @@ const getData = () => {
   const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const imgRows = {};
 
-  for (let i = 0; i < canvas.height; i++) {
+  for (let i = 0; i < canvas.height; i += 1) {
     const start = i * canvas.width * 4;
     imgRows[i] = imgData.data.slice(start, start + canvas.width * 4);
   }

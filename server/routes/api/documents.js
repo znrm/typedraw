@@ -21,6 +21,8 @@ router.post('/', async (req, res) => {
   try {
     const owner = await User.findById(req.body.userId);
     const newDoc = await new Document({ owner }).save();
+    owner.documents.push(newDoc.id);
+    await owner.save();
     res.json(newDoc.toObject({ getters: true }));
   } catch (error) {
     res.status(422).json(error);
@@ -41,6 +43,8 @@ router.put('/:documentId', async (req, res) => {
         res.status(422).json({ message: userErr });
       }
 
+      user.documents.push(document);
+      user.save();
       document.collaborators.push(user.id);
       body.collaborators = document.collaborators;
     }

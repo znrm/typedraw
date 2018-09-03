@@ -1,11 +1,10 @@
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import HomeContainer from './components/home/home_container';
 import Welcome from './components/splash/welcome';
 import Splash from './components/splash/splash';
 import DocumentTools from './components/documents/document_tools';
 import DocumentFrameContainer from './components/documents/document_frame_container';
 import AddCollaboratorsContainer from './components/documents/add_collaborators_container';
-import DocumentContainer from './components/documents/document_container';
 
 export const RootStack = createStackNavigator(
   {
@@ -23,11 +22,4 @@ export const AppStack = createStackNavigator(
     DocumentTools
   },
   { initialRouteName: 'HomeContainer' }
-);
-
-export const drawerNav = createDrawerNavigator(
-  {
-    DocumentContainer
-  },
-  { initialRouteName: 'DocumentContainer' }
 );

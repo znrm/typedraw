@@ -6,15 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const paths = [];
   let currentPath = '<path d="M';
 
-  const pointer = { x: 0, y: 0 };
   let pressing = false;
 
   svg.addEventListener(
     'mousedown',
     e => {
-      Object.assign(pointer, { x: e.clientX, y: e.clientY });
       pressing = true;
-      currentPath = `${pointer.x} ${pointer.y} `;
+      currentPath += `${e.clientX},${e.clientY} s`;
     },
     false
   );
@@ -22,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   svg.addEventListener(
     'mousemove',
     e => {
-      Object.assign(pointer, { x: e.clientX, y: e.clientY });
       if (pressing) {
-        currentPath += `${pointer.x} ${pointer.y} `;
+        currentPath += `${e.clientX},${e.clientY} `;
+        console.log(e.clientX, e.clientY);
       }
     },
     false
@@ -33,11 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
   svg.addEventListener(
     'mouseup',
     e => {
-      Object.assign(pointer, { x: e.clientX, y: e.clientY });
-      currentPath += `${pointer.x} ${
-        pointer.y
+      pressing = false;
+      currentPath += `${e.clientX},${
+        e.clientY
       }" stroke="black" stroke-width="2" fill="none" />`;
       paths.push(currentPath);
+      svg.innerHTML = currentPath;
+      currentPath = '<path d="M';
     },
     true
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, TextInput, WebView } from 'react-native';
+import { View, TextInput } from 'react-native';
 import io from 'socket.io-client';
-import styles from '../../styles';
+import ImageLayer from './image_layer';
 
 class Document extends React.Component {
   constructor(props) {
@@ -18,8 +18,7 @@ class Document extends React.Component {
     });
 
     this.socket.on('text', text =>
-      receiveDocument({ id: documentId, textLayer: text })
-    );
+      receiveDocument({ id: documentId, textLayer: text }));
   }
 
   sendText(text) {
@@ -60,7 +59,7 @@ class Document extends React.Component {
             height: '100%'
           }}
         >
-          <WebView source={{ url: 'https://google.com' }} />
+          <ImageLayer />
         </View>
       </View>
     );

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, TextInput, WebView } from 'react-native';
+import { View, WebView } from 'react-native';
 import io from 'socket.io-client';
 import styles from '../../styles';
+import TextLayer from './text_layer';
 
 class Document extends React.Component {
   constructor(props) {
@@ -26,16 +27,13 @@ class Document extends React.Component {
   }
 
   render() {
-    const { action, textLayer } = this.props;
+    const { action, textLayer, documentId, receiveDocument } = this.props;
     return (
       <View style={styles.container} zIndex={action === 'typing' ? 1 : -1}>
-        <TextInput
-          onChangeText={text => this.sendText(text)}
-          placeholder="enter text here"
-          value={textLayer}
-          multiline
-          height="100%"
-          width="100%"
+        <TextLayer
+          textLayer={textLayer}
+          documentId={documentId}
+          receiveDocument={receiveDocument}
         />
         <View style={{ flex: 1 }} zIndex={action === 'typing' ? -1 : 1}>
           <WebView source={{ url: 'https://google.com' }} />

@@ -24,9 +24,5 @@ module.exports = {
       }
     ]
   },
-  engines: {
-    node: '8.11.4',
-    npm: '6.4.1'
-  },
   devtool: 'source-map'
 };

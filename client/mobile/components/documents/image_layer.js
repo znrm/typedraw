@@ -7,7 +7,7 @@ const ImageLayer = () => (
     scrollEnabled={false}
     source={{
       uri:
-        'https://type-draw.herokuapp.com/canvas'
+        'https://typedraw.herokuapp.com/canvas'
     }}
   />
 );

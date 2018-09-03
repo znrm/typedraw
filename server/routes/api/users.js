@@ -14,7 +14,8 @@ router.get(
   (req, res) => {
     res.json({
       id: req.user.id,
-      email: req.user.email
+      email: req.user.email,
+      documents: req.user.documents
     });
   }
 );
@@ -30,7 +31,8 @@ router.post('/register', (req, res) => {
 
     const newUser = new User({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      documents: []
     });
 
     // encrypt password
@@ -42,7 +44,7 @@ router.post('/register', (req, res) => {
           .save()
           .then(userRes =>
             jsonwebtoken.sign(
-              { id: user.id },
+              { id: userRes.id },
               secretOrKey,
               // Tell the key to expire in one hour
               { expiresIn: 3600 },
@@ -50,6 +52,7 @@ router.post('/register', (req, res) => {
                 res.json({
                   id: userRes.id,
                   email: userRes.email,
+                  documents: userRes.documents,
                   token: `Bearer ${token}`,
                   success: true
                 });

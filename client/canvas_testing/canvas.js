@@ -1,73 +1,76 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.querySelector('canvas');
-  const ctx = canvas.getContext('2d', { alpha: true });
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+const canvas = document.getElementsByTagName('canvas')[0];
+const ctx = canvas.getContext('2d');
+let initDiff = null;
 
-  canvas.width = width;
-  canvas.height = height;
+const getData = () => {
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const imgRows = {};
 
-  ctx.fillStyle = 'rgba(0,0,0,1)';
-  ctx.strokeStyle = 'rgba(0,0,0,1)';
-  window.ctx = ctx;
-
-  const pointer = { x: 0, y: 0 };
-  let pressing = false;
-
-  let previousImage = ctx.getImageData(0, 0, width, height).data;
-  let currentImage;
-
-  function calculateDiffs() {
-    let thereWasAtLeastOneDiff;
-
-    currentImage = ctx.getImageData(0, 0, width, height).data;
-    const diffs = {};
-    const { length } = currentImage;
-
-    for (let i = 0; i < length; i += 1) {
-      const diff = currentImage[i] - previousImage[i];
-
-      if (diff !== 0) {
-        thereWasAtLeastOneDiff = true;
-        diffs[i] = diff;
-      }
-    }
-    if (thereWasAtLeastOneDiff) console.log(diffs);
-
-    previousImage = currentImage;
+  for (let i = 0; i < canvas.height; i++) {
+    const start = i * canvas.width * 4;
+    imgRows[i] = imgData.data.slice(start, start + canvas.width * 4);
   }
+  return imgRows;
+};
 
-  canvas.addEventListener(
-    'mousedown',
-    e => {
-      window.setInterval(calculateDiffs, 100);
-      Object.assign(pointer, { x: e.clientX, y: e.clientY });
-      pressing = true;
-    },
-    false
+let data = null;
+let drawing = false;
+
+const diff = (data1, data2) => {
+  const diffData = {};
+  const keys = Object.keys(data2).filter(
+    key => data1[key].toString() !== data2[key].toString()
   );
 
-  canvas.addEventListener(
-    'mousemove',
-    e => {
-      const currentPointer = { x: e.clientX, y: e.clientY };
-      if (pressing) {
-        ctx.beginPath();
-        ctx.moveTo(pointer.x, pointer.y);
-        ctx.lineTo(currentPointer.x, currentPointer.y);
-        ctx.stroke();
-      }
-      Object.assign(pointer, currentPointer);
-    },
-    false
-  );
+  keys.forEach(key => {
+    diffData[key] = data2[key];
+  });
+  data = data2;
+  // doSomethingWith(diffData);
+};
 
-  canvas.addEventListener(
-    'mouseup',
-    () => {
-      window.clearInterval(calculateDiffs, 500);
-      pressing = false;
-    },
-    true
-  );
+const startDraw = e => {
+  const x = e.touches ? e.touches[0].clientX : e.clientX;
+  const y = e.touches ? e.touches[0].clientY : e.clientY;
+  drawing = true;
+  ctx.beginPath();
+  ctx.moveTo(x - 1, y - 1);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  initDiff = setInterval(() => diff(data, getData()), 1000);
+};
+
+const draw = e => {
+  if (drawing) {
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
+    ctx.lineTo(x, y);
+    ctx.stroke();
+  }
+};
+
+const endDraw = () => {
+  clearInterval(initDiff);
+  const data2 = getData();
+  diff(data, data2);
+  drawing = false;
+  ctx.closePath();
+};
+
+document.addEventListener('mousedown', startDraw);
+
+document.addEventListener('mousemove', draw);
+
+document.addEventListener('mouseup', endDraw);
+
+document.addEventListener('touchstart', startDraw);
+
+document.addEventListener('touchmove', draw);
+
+document.addEventListener('touchend', endDraw);
+
+document.addEventListener('DOMContentLoaded', () => {
+  canvas.width = document.body.clientWidth;
+  canvas.height = document.body.clientHeight;
+  data = getData();
 });

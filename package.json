@@ -9,7 +9,8 @@
     "test": "webpack --watch --mode=development & nodemon server/server.js",
     "preinstall": "npm install --prefix ./client",
     "postinstall": "webpack --mode=production",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,9 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-react-native-web": "^0.8.9",
+    "babel-preset-react-native": "^4.0.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",

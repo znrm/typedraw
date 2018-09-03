@@ -18,7 +18,8 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "**/*",
+      "node_modules/react-navigation/src/**/*.png"
     ],
     "ios": {
       "supportsTablet": true

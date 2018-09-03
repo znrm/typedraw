@@ -5,9 +5,9 @@ const ImageLayer = () => (
   <WebView
     javaScriptEnabled
     scrollEnabled={false}
+    style={{ backgroundColor: 'transparent' }}
     source={{
-      uri:
-        'https://typedraw.herokuapp.com/canvas'
+      uri: 'https://typedraw.herokuapp.com/canvas'
     }}
   />
 );

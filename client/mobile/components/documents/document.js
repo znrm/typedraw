@@ -44,18 +44,12 @@ class Document extends React.Component {
           textLayer={textLayer}
           documentId={documentId}
           receiveDocument={receiveDocument}
-          style={{
-            height: '100%',
-            width: '100%',
-            position: 'absolute',
-            zIndex: action === 'typing' ? 2 : 1
-          }}
+          action={action}
         />
         <View
           style={{
-            opacity: 0.7,
             flex: 1,
-            zIndex: action === 'typing' ? 1 : 2,
+            zIndex: action === 'typing' ? -1 : 1,
             position: 'absolute',
             width: '100%',
             height: '100%'

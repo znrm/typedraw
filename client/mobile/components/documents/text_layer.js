@@ -37,15 +37,19 @@ class TextLayer extends React.Component {
   }
 
   render() {
-    const { textLayer } = this.props;
+    const { textLayer, action } = this.props;
     return (
       <TextInput
         onChangeText={text => this.sendTextDiff(text)}
         placeholder="Enter text here"
         value={textLayer}
         multiline
-        height="100%"
-        width="100%"
+        style={{
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
+          zIndex: action === 'typing' ? 1 : -1
+        }}
       />
     );
   }

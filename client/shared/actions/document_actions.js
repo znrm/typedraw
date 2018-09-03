@@ -6,7 +6,7 @@ export const RECEIVE_DOCUMENT = 'RECEIVE_DOCUMENT';
 export const RECEIVE_DOCUMENT_DIFFS = 'RECEIVE_DOCUMENT_DIFFS';
 export const REMOVE_DOCUMENT = 'REMOVE_DOCUMENT';
 
-const receiveDocument = document => ({
+export const receiveDocument = document => ({
   type: RECEIVE_DOCUMENT,
   document
 });
@@ -55,8 +55,8 @@ export const updateImage = (document, image) => dispatch =>
   );
 
 export const addCollaborator = (document, user) => dispatch =>
-  DocAPIUtil.updateImage(document, user).then(
-    servImg => dispatch(receiveDocument(servImg)),
+  DocAPIUtil.addCollaborator(document, user).then(
+    servDoc => dispatch(receiveDocument(servDoc)),
     err => console.log(err, 'collaborator error')
   );
 

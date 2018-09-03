@@ -7,30 +7,34 @@ class AddCollaborators extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newCollaborator: ''
+      user: ''
     };
   }
 
   render() {
-    const { collaborators, addCollaborator, removeCollaborator } = this.props;
-    const { newCollaborator } = this.state;
+    const { documentId, collaborators, addCollaborator, removeCollaborator } = this.props;
+    const { user } = this.state;
+
     return (
       <View style={styles.container}>
-        <Text>Add Colloborators</Text>
-        <View style={{ alignItems: 'flex-start' }}>
-          <Text>Email</Text>
+        <View style={{ alignItems: 'center' }}>
           <TextInput
-            placeholder="Collaborators email"
-            onChangeText={(text) => this.setState({ newCollaborator: text })}
+            style={styles.input}
+            placeholder="Collaborators Email"
+            onChangeText={(text) => this.setState({ user: text })}
           />
           <Button
+            style={styles.text}
             title="Add Collaborator"
-            onPress={() => addCollaborator(newCollaborator)}
+            onPress={() => addCollaborator({ id: documentId }, user)}
           />
-          <Button
+          <View style={styles.text}>
+            {collaborators ? collaborators.map((collaborator) => <Text>{collaborator}</Text>) : <Text>No Collaborators Yet</Text>}
+          </View>
+          {/* <Button
             title="remove collaborator"
             onPress={() => removeCollaborator()}
-          />
+          /> */}
         </View>
       </View>
     );

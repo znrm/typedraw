@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar, Button, Modal, Text } from 'react-native';
+import { View, StatusBar, Button, Modal, Text, TouchableOpacity } from 'react-native';
 import styles from '../../styles';
 // prop is sent to document tools instead of DocumentFrame in the container
 // go fix it
@@ -9,10 +9,21 @@ class DocumentTools extends React.Component {
     this.state = {
       showModal: false
     };
+    this.handleDocSwitch = this.handleDocSwitch.bind(this);
+  }
+
+
+  handleDocSwitch(docId) {
+    const { selectDoc } = this.props;
+    const { showModal } = this.state;
+    selectDoc(docId);
+    this.setState({
+      showModal: !showModal
+    });
   }
 
   render() {
-    const { selectAction, colorSelect, toggles, navigation } = this.props;
+    const { selectAction, colorSelect, toggles, navigation, documents, selectDoc } = this.props;
     const { showModal } = this.state;
     return (
       <View style={styles.header}>
@@ -62,6 +73,19 @@ class DocumentTools extends React.Component {
               <View style={styles.fixPadding}>
 
                 <Text>Your Documents: </Text>
+                <View>
+                  {documents ? Object.values(documents).map((document) => (
+
+                    <TouchableOpacity
+                      style={styles.modalContent}
+                      key={(document.id)}
+                      onPress={() => this.handleDocSwitch(document.id)}
+                    >
+                      <Text>{document.title}</Text>
+                    </TouchableOpacity>
+
+                  )) : <Text>No documents Yet</Text>}
+                </View>
               </View>
             </View>
           </View>

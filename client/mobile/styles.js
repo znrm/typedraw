@@ -57,6 +57,13 @@ const styles = StyleSheet.create({
   },
   fixPadding: {
     padding: 10
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 5,
+    borderRadius: 5,
+    margin: 10,
+    height: 50
   }
 
 });

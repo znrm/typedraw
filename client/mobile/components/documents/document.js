@@ -18,7 +18,8 @@ class Document extends React.Component {
     });
 
     this.socket.on('text', text =>
-      receiveDocument({ id: documentId, textLayer: text }));
+      receiveDocument({ id: documentId, textLayer: text })
+    );
   }
 
   sendText(text) {
@@ -36,7 +37,7 @@ class Document extends React.Component {
           justifyContent: 'center',
           position: 'relative',
           height: '100%',
-          width: '100%',
+          width: '100%'
         }}
       >
         <TextInput
@@ -51,7 +52,6 @@ class Document extends React.Component {
           }}
         />
         <View
-          onStartShouldSetResponder={() => true}
           style={{
             opacity: 0.7,
             flex: 1,

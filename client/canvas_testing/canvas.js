@@ -14,7 +14,7 @@ const getData = () => {
 };
 
 let data = null;
-let draw = false;
+let drawing = false;
 
 const diff = (data1, data2) => {
   const diffData = {};
@@ -26,41 +26,51 @@ const diff = (data1, data2) => {
     diffData[key] = data2[key];
   });
   data = data2;
-  // console.log(diffData);
+  // doSomethingWith(diffData);
 };
 
-document.addEventListener('mouseup', () => {
+const startDraw = e => {
+  const x = e.touches ? e.touches[0].clientX : e.clientX;
+  const y = e.touches ? e.touches[0].clientY : e.clientY;
+  drawing = true;
+  ctx.beginPath();
+  ctx.moveTo(x - 1, y - 1);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  initDiff = setInterval(() => diff(data, getData()), 1000);
+};
+
+const draw = e => {
+  if (drawing) {
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
+    ctx.lineTo(x, y);
+    ctx.stroke();
+  }
+};
+
+const endDraw = () => {
   clearInterval(initDiff);
   const data2 = getData();
   diff(data, data2);
-  draw = false;
+  drawing = false;
   ctx.closePath();
-});
+};
 
-document.addEventListener('mousedown', e => {
-  console.log('moused down');
-  draw = true;
-  ctx.beginPath();
-  ctx.moveTo(e.clientX - 8, e.clientY - 8);
-  ctx.lineTo(e.clientX - 7, e.clientY - 7);
-  ctx.stroke();
-  initDiff = setInterval(() => diff(data, getData()), 1000);
-});
+document.addEventListener('mousedown', startDraw);
 
-document.addEventListener('mousemove', e => {
-  if (draw) {
-    ctx.lineTo(e.clientX - 7, e.clientY - 7);
-    ctx.stroke();
-  }
-});
+document.addEventListener('mousemove', draw);
+
+document.addEventListener('mouseup', endDraw);
+
+document.addEventListener('touchstart', startDraw);
+
+document.addEventListener('touchmove', draw);
+
+document.addEventListener('touchend', endDraw);
 
 document.addEventListener('DOMContentLoaded', () => {
   canvas.width = document.body.clientWidth;
   canvas.height = document.body.clientHeight;
   data = getData();
-  // below is just for testing
-  setInterval(() => {
-    let color = canvas.style.backgroundColor;
-    canvas.style.backgroundColor = color === 'red' ? 'green' : 'red';
-  }, 500);
 });

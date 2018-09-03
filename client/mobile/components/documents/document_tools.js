@@ -21,7 +21,7 @@ class DocumentTools extends React.Component {
         />
         <View style={styles.stackNavigation}>
           <Button
-            title="stuff"
+            title="Docs"
             onPress={() => this.setState({
               showModal: !showModal
             })}
@@ -36,12 +36,12 @@ class DocumentTools extends React.Component {
           />
           {/* some action to handle color change */}
           <Button
-            title="black"
+            title="blk"
             onPress={() => colorSelect('black')}
           />
           {/* some action to handle erasing */}
           <Button
-            title="eraser"
+            title="erase"
             onPress={() => toggles('erasing')}
           />
           <Button

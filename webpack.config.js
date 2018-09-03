@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const appDirectory = path.resolve(__dirname, 'client');
 
@@ -6,21 +7,20 @@ const babelLoaderConfiguration = {
   test: /\.js$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
-    path.resolve(appDirectory, 'node_modules', 'expo', 'AppEntry.js'),
+    path.resolve(__dirname),
+    path.resolve(appDirectory, 'web', 'index.web.js'),
     path.resolve(appDirectory, 'shared'),
     path.resolve(appDirectory, 'mobile'),
-    path.resolve(appDirectory, 'node_modules/react-native'),
-    path.resolve(appDirectory, 'node_modules/react-navigation'),
-    path.resolve(appDirectory, 'node_modules/native-base')
+    path.resolve(appDirectory, 'node_modules', 'react-native'),
+    path.resolve(appDirectory, 'node_modules', 'react-navigation'),
+    path.resolve(appDirectory, 'node_modules', 'native-base')
   ],
   use: {
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
-      // The 'react-native' preset is recommended to match React Native's packager
-      presets: ['react-native'],
-      // Re-write paths to import only the modules needed by the app
-      plugins: ['react-native-web']
+      presets: ['react-native', 'react', 'env'],
+      plugins: ['react-native-web', 'transform-react-jsx', 'transform-class-properties']
     }
   }
 };
@@ -36,6 +36,8 @@ const imageLoaderConfiguration = {
 };
 
 module.exports = {
+  context: path.resolve(__dirname),
+
   entry: [path.resolve(appDirectory, 'web', 'index.web.js')],
 
   output: {

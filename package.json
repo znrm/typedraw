@@ -10,7 +10,8 @@
     "preinstall": "npm install --prefix ./client",
     "postinstall": "webpack --mode=production",
     "start": "node server/server.js",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "server": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
-    "babel-loader": "^8.0.0",
+    "babel-loader": "^7.1.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
@@ -40,11 +41,12 @@
     "webpack": "^4.17.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-native-web": "^0.8.9",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-react-native": "^4.0.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",

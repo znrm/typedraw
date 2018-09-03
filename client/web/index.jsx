@@ -1,17 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import configureStore from '../shared/store/store';
-import Root from './components/root';
-import { fetchCurrentSession } from '../shared/actions/session_actions';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import configureStore from '../shared/store/store';
+// import Root from './components/root';
+// import { fetchCurrentSession } from '../shared/actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const store = configureStore();
-  const root = document.getElementById('root');
+  console.log('web implementation underway');
+  // const store = configureStore();
+  // const root = document.getElementById('root');
 
-  if (sessionStorage.token) {
-    const token = { Authorization: sessionStorage.getItem('token') };
-    fetchCurrentSession(token)(store.dispatch);
-  }
+  // if (sessionStorage.token) {
+  //   const token = { Authorization: sessionStorage.getItem('token') };
+  //   fetchCurrentSession(token)(store.dispatch);
+  // }
 
-  ReactDOM.render(<Root store={store} />, root);
+  // ReactDOM.render(<Root store={store} />, root);
 });

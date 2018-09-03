@@ -3,11 +3,11 @@ import { WebView } from 'react-native';
 
 const ImageLayer = () => (
   <WebView
-    javaScriptEnabled={true}
+    javaScriptEnabled
     scrollEnabled={false}
+    style={{ backgroundColor: 'transparent' }}
     source={{
-      uri:
-        '/Users/mason/Desktop/App_Academy/Projects/flex/typedraw/client/canvas_testing/canvas.html'
+      uri: 'https://typedraw.herokuapp.com/canvas'
     }}
   />
 );

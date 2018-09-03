@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import styles from '../../styles';
 
-
 class AddCollaborators extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +11,7 @@ class AddCollaborators extends React.Component {
   }
 
   render() {
-    const { documentId, collaborators, addCollaborator, removeCollaborator } = this.props;
+    const { documentId, collaborators, addCollaborator } = this.props;
     const { user } = this.state;
 
     return (
@@ -21,7 +20,7 @@ class AddCollaborators extends React.Component {
           <TextInput
             style={styles.input}
             placeholder="Collaborators Email"
-            onChangeText={(text) => this.setState({ user: text })}
+            onChangeText={text => this.setState({ user: text })}
           />
           <Button
             style={styles.text}
@@ -29,7 +28,11 @@ class AddCollaborators extends React.Component {
             onPress={() => addCollaborator({ id: documentId }, user)}
           />
           <View style={styles.text}>
-            {collaborators ? collaborators.map((collaborator) => <Text>{collaborator}</Text>) : <Text>No Collaborators Yet</Text>}
+            {collaborators ? (
+              collaborators.map(collaborator => <Text>{collaborator}</Text>)
+            ) : (
+              <Text>No Collaborators Yet</Text>
+            )}
           </View>
           {/* <Button
             title="remove collaborator"

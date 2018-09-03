@@ -5,10 +5,10 @@ module.exports = {
   entry: './client/web/index.jsx',
   output: {
     path: path.resolve(__dirname, 'server', 'static'),
-    filename: 'main.js',
+    filename: 'main.js'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '*'],
+    extensions: ['.js', '.jsx', '*']
   },
   module: {
     rules: [
@@ -18,11 +18,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
-      },
-    ],
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      }
+    ]
   },
-  devtool: 'source-map',
+  devtool: 'source-map'
 };

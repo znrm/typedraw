@@ -40,7 +40,10 @@ app.use('/api/documents', documents);
 // serve static frontend files
 app.use(express.static(path.join(__dirname, './static')));
 
-// react should handle all other requests
+app.get('/canvas', (req, res) => {
+  res.sendFile(path.join(__dirname, './static', 'canvas.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './static', 'index.html'));
 });

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View } from 'react-native';
 import io from 'socket.io-client';
+import TextLayer from './text_layer';
 import ImageLayer from './image_layer';
 
 class Document extends React.Component {
@@ -18,8 +19,7 @@ class Document extends React.Component {
     });
 
     this.socket.on('text', text =>
-      receiveDocument({ id: documentId, textLayer: text })
-    );
+      receiveDocument({ id: documentId, textLayer: text }));
   }
 
   sendText(text) {
@@ -27,7 +27,7 @@ class Document extends React.Component {
   }
 
   render() {
-    const { action, textLayer } = this.props;
+    const { action, textLayer, documentId, receiveDocument } = this.props;
     return (
       <View
         style={{
@@ -40,10 +40,10 @@ class Document extends React.Component {
           width: '100%'
         }}
       >
-        <TextInput
-          onChangeText={text => this.sendText(text)}
-          multiline
-          value={textLayer}
+        <TextLayer
+          textLayer={textLayer}
+          documentId={documentId}
+          receiveDocument={receiveDocument}
           style={{
             height: '100%',
             width: '100%',

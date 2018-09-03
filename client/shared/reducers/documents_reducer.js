@@ -15,8 +15,46 @@ const combineDocumentWithDiffs = (previousDocument, documentDiffs) => {
 
 const initialState = {
   0: {
+    id: 0,
     textLayer: 'hi',
-    imageLayer: []
+    imageLayer: [],
+    title: 'Document Zero',
+    owner: 'guest@guest.com'
+  },
+  1: {
+    id: 1,
+    textLayer: 'Hello',
+    imageLayer: [],
+    title: 'Greetings',
+    owner: 'guest@guest.com'
+  },
+  2: {
+    id: 2,
+    textLayer: 'Started something',
+    imageLayer: [],
+    title: 'Snappy Title',
+    owner: 'guest@guest.com'
+  },
+  3: {
+    id: 3,
+    textLayer: 'Started something part 2',
+    imageLayer: [],
+    title: 'Cool Drawings yet to come',
+    owner: 'guest@guest.com'
+  },
+  4: {
+    id: 4,
+    textLayer: 'Started something part 3',
+    imageLayer: [],
+    title: 'Group Collab 3',
+    owner: 'guest@guest.com'
+  },
+  5: {
+    id: 5,
+    textLayer: 'Started something part 4',
+    imageLayer: [],
+    title: 'Project 2',
+    owner: 'guest@guest.com'
   }
 };
 

@@ -44,7 +44,28 @@ const styles = StyleSheet.create({
   text: {
     alignItems: 'center',
     margin: 10,
+  },
+  modalView: {
+    backgroundColor: '#aaa',
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    width: 200
+  },
+  modalText: {
+    marginTop: 60
+  },
+  fixPadding: {
+    padding: 10
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 5,
+    borderRadius: 5,
+    margin: 10,
+    height: 50
   }
+
 });
 
 export default styles;

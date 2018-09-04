@@ -20,7 +20,18 @@ const babelLoaderConfiguration = {
     options: {
       cacheDirectory: true,
       presets: ['react-native', 'react', 'env'],
-      plugins: ['react-native-web', 'transform-react-jsx', 'transform-class-properties']
+      plugins: [
+        'react-native-web',
+        [
+          'transform-runtime',
+          {
+            polyfill: false,
+            regenerator: true
+          }
+        ],
+        'transform-react-jsx',
+        'transform-class-properties'
+      ]
     }
   }
 };

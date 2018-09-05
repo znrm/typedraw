@@ -6,14 +6,16 @@ const appDirectory = path.resolve(__dirname, 'client');
 const babelLoaderConfiguration = {
   test: /\.js$/,
   // Add every directory that needs to be compiled by Babel during the build.
+  exclude: /node_modules/,
   include: [
     path.resolve(__dirname),
-    path.resolve(appDirectory, 'web', 'index.web.js'),
+    path.resolve(appDirectory),
+    path.resolve(appDirectory, 'web', 'index.js'),
     path.resolve(appDirectory, 'shared'),
-    path.resolve(appDirectory, 'mobile'),
+    // path.resolve(appDirectory, 'mobile'),
     path.resolve(appDirectory, 'node_modules', 'react-native'),
-    path.resolve(appDirectory, 'node_modules', 'react-navigation'),
-    path.resolve(appDirectory, 'node_modules', 'native-base')
+    // path.resolve(appDirectory, 'node_modules', 'react-navigation'),
+    // path.resolve(appDirectory, 'node_modules', 'native-base')
   ],
   use: {
     loader: 'babel-loader',
@@ -49,7 +51,7 @@ const imageLoaderConfiguration = {
 module.exports = {
   context: path.resolve(__dirname),
 
-  entry: [path.resolve(appDirectory, 'web', 'index.web.js')],
+  entry: [path.resolve(appDirectory, 'web', 'index.js')],
 
   output: {
     filename: 'main.js',
@@ -60,11 +62,11 @@ module.exports = {
     alias: {
       'react-native$': 'react-native-web'
     },
-    extensions: ['.web.js', '.js']
+    extensions: ['.js']
   },
 
   module: {
-    rules: [babelLoaderConfiguration, imageLoaderConfiguration]
+    rules: [babelLoaderConfiguration, imageLoaderConfiguration],
   },
   devtool: 'source-map'
 };

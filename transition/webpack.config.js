@@ -13,7 +13,7 @@ const babelLoaderConfiguration = {
   test: /\.js$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
-    path.resolve(appDirectory, 'App.web.js'),
+    path.resolve(appDirectory, 'src'),
     path.resolve(appDirectory, 'web'),
     path.resolve(appDirectory, 'shared'),
     path.resolve(appDirectory, 'mobile'),
@@ -84,7 +84,7 @@ const ttfLoaderConfiguration = {
 
 module.exports = {
   // your web-specific entry file
-  entry: path.resolve(appDirectory, 'web/index.js'),
+  entry: path.resolve(appDirectory, 'src', 'index.js'),
   devtool: 'eval',
 
   // configures where the build ends up

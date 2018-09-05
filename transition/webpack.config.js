@@ -13,10 +13,15 @@ const babelLoaderConfiguration = {
   test: /\.js$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
-    path.resolve(appDirectory),
+    path.resolve(appDirectory, 'App.web.js'),
     path.resolve(appDirectory, 'web'),
+    path.resolve(appDirectory, 'shared'),
     path.resolve(appDirectory, 'mobile'),
     path.resolve(appDirectory, 'node_modules/react-navigation'),
+    path.resolve(appDirectory, 'node_modules/react-navigation-stack'),
+    path.resolve(appDirectory, 'node_modules/react-native'),
+    path.resolve(appDirectory, 'node_modules/react-native-safe-module'),
+    path.resolve(appDirectory, 'node_modules/react-native-safe-area-view'),
     path.resolve(appDirectory, 'node_modules/react-native-tab-view'),
     path.resolve(appDirectory, 'node_modules/react-native-paper'),
     path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
@@ -120,6 +125,7 @@ module.exports = {
       '@expo/vector-icons': 'expo-web',
       expo: 'expo-web',
       'react-native': 'react-native-web',
+      'react-native-web/dist/exports/MaskedViewIOS': 'react-native-web/dist/index.js',
     },
   },
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import TextLayer from './text_layer';
-import ImageLayer from './image_layer';
+// import ImageLayer from './image_layer';
 
 const Document = ({
   action,
@@ -28,7 +28,7 @@ const Document = ({
       action={action}
       updateText={updateText}
     />
-    <View
+    {/* <View
       style={{
         flex: 1,
         zIndex: action === 'typing' ? -1 : 1,
@@ -38,7 +38,7 @@ const Document = ({
       }}
     >
       <ImageLayer />
-    </View>
+    </View> */}
   </View>
 );
 

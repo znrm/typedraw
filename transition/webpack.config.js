@@ -13,6 +13,8 @@ const babelLoaderConfiguration = {
   test: /\.js$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
+    path.resolve(appDirectory),
+    path.resolve(appDirectory, 'web'),
     path.resolve(appDirectory, 'mobile'),
     path.resolve(appDirectory, 'node_modules/react-navigation'),
     path.resolve(appDirectory, 'node_modules/react-native-tab-view'),
@@ -77,7 +79,7 @@ const ttfLoaderConfiguration = {
 
 module.exports = {
   // your web-specific entry file
-  entry: path.resolve(appDirectory, 'mobile/index.js'),
+  entry: path.resolve(appDirectory, 'web/index.js'),
   devtool: 'eval',
 
   // configures where the build ends up

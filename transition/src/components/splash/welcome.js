@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../../styles';
-import { login } from '../../../shared/actions/session_actions';
+import { login } from '../../actions/session_actions';
 
 const mapDispatch = dispatch => ({
   demoLogin: () =>

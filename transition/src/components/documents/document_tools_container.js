@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectDocumentAction, toggle, selectColor, selectDocument } from '../../../shared/actions/ui_actions';
+import { selectDocumentAction, toggle, selectColor, selectDocument } from '../../actions/ui_actions';
 import DocumentTools from './document_tools';
 
 const mapState = (state) => ({

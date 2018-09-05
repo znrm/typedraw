@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addCollaborator } from '../../../shared/actions/document_actions';
+import { addCollaborator } from '../../actions/document_actions';
 import AddCollaborators from './add_collaborators';
 
 const mapStateToProps = ({ documents, ui }) => ({

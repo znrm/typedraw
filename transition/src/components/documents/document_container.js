@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Document from './document';
-import { updateText, receiveDocument } from '../../../shared/actions/document_actions';
+import { updateText, receiveDocument } from '../../actions/document_actions';
 
 const mapStateToProps = ({ ui, documents }) => ({
   documentId: ui.selectedDocument,

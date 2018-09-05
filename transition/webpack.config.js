@@ -77,7 +77,7 @@ const ttfLoaderConfiguration = {
     },
   ],
   include: [
-    path.resolve(appDirectory, './mobile/assets/fonts'),
+    path.resolve(appDirectory, './assets/fonts'),
     path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
   ],
 };

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Home from './home';
-import { logout } from '../../../shared/actions/session_actions';
+import { logout } from '../../actions/session_actions';
 import {
   getDocument,
   createDocument
-} from '../../../shared/actions/document_actions';
+} from '../../actions/document_actions';
 
 const mapStateToProps = ({ session }) => ({
   userId: session.currentUser

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import configureStore from '../shared/store/store';
-import RootContainer from '../mobile/root';
-import { getAuthToken } from '../shared/util/mobile_auth_util';
-import { fetchCurrentSession } from '../shared/actions/session_actions';
+import configureStore from './store/store';
+import RootContainer from './root';
+import { getAuthToken } from './util/mobile_auth_util';
+import { fetchCurrentSession } from './actions/session_actions';
 
 const store = configureStore();
 

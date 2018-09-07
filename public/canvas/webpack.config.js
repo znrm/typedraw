@@ -2,7 +2,7 @@ module.exports = {
   entry: './public/canvas/canvas_src.js',
   output: {
     path: __dirname,
-    filename: '[name].[chunkhash:8].js'
+    filename: 'canvas.js'
   },
   devtool: 'source-map',
   module: {

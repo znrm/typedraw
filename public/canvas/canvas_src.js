@@ -7,12 +7,21 @@ class Drawing {
     this.height = document.body.clientHeight;
 
     const canvas = document.querySelector('canvas');
-    this.width = this.width;
-    this.height = this.height;
+    canvas.width = this.width;
+    canvas.height = this.height;
     this.ctx = canvas.getContext('2d');
 
     this.drawing = false;
-    this.initialData = this.getData();
+    this.initialData = this.ctx.getImageData(
+      0,
+      0,
+      this.width,
+      this.height
+    ).data;
+
+    this.startDraw = this.startDraw.bind(this);
+    this.draw = this.draw.bind(this);
+    this.endDraw = this.endDraw.bind(this);
 
     this.startSockets();
     this.addListeners();
@@ -38,17 +47,6 @@ class Drawing {
     document.addEventListener('touchend', this.endDraw);
   }
 
-  getData() {
-    const imgData = this.ctx.getImageData(0, 0, this.width, this.height);
-    const imgRows = {};
-
-    for (let i = 0; i < this.height; i += 1) {
-      const start = i * this.width * 4;
-      imgRows[i] = imgData.data.slice(start, start + this.width * 4);
-    }
-    return imgRows;
-  }
-
   startDraw(e) {
     const x = e.touches ? e.touches[0].clientX : e.clientX;
     const y = e.touches ? e.touches[0].clientY : e.clientY;
@@ -69,8 +67,6 @@ class Drawing {
   }
 
   endDraw() {
-    clearInterval(this.initDiff);
-    this.diff();
     this.drawing = false;
     this.ctx.closePath();
 
@@ -78,29 +74,35 @@ class Drawing {
   }
 
   sendImageDiff() {
-    const newData = this.getData();
+    const newData = this.ctx.getImageData(0, 0, this.width, this.height).data;
     const diffData = {};
 
-    const keys = Object.keys(newData).filter(
-      key => this.data[key].toString() !== newData[key].toString()
-    );
+    const { length } = newData;
 
-    keys.forEach(key => {
-      diffData[key] = newData[key];
+    for (let i = 0; i < length; i += 1) {
+      if (newData[i] !== this.initialData[i]) diffData[i] = newData[i];
+    }
+    this.socket.emit('drawing', {
+      newPixels: diffData,
+      width: this.width,
+      height: this.height
     });
-
-    // this.socket.emit('drawing', diffData);
-    console.log(diffData);
 
     this.initialData = newData;
   }
 
-  receiveImageDiff(diff) {
-    const { textLayer, receiveDocument, documentId } = this.props;
-    const patch = this.dmp.patch_make(textLayer, diff);
-    const patchedText = this.dmp.patch_apply(patch, textLayer)[0];
+  receiveImageDiff({ newPixels, width, height }) {
+    const imageSize = 4 * width * height;
+    const data = new Uint8ClampedArray(imageSize);
+    const pixelIndex = Object.keys(newPixels);
 
-    receiveDocument({ id: documentId, textLayer: patchedText });
+    for (let i = 0; i < pixelIndex.length; i += 1) {
+      data[pixelIndex[i]] = newPixels[pixelIndex[i]];
+    }
+
+    const imageDiff = new ImageData(data, width, height);
+
+    this.ctx.putImageData(imageDiff, 0, 0, 0, 0, width, height);
   }
 }
 

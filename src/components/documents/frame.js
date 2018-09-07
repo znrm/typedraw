@@ -1,21 +1,19 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
 import DocumentContainer from './document_container';
-import DocumentToolsContainer from './document_tools_container';
-// import DocumentTools from './document_tools';
+import ToolbarContainer from './toolbar_container';
 
 class DocumentFrame extends React.Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerTitle:
         <View>
-          <DocumentToolsContainer navigation={navigation}/>
+          <ToolbarContainer navigation={navigation}/>
         </View>
     };
   }
 
   render() {
-    const { navigation } = this.props;
     return (
       <DocumentContainer />
     );

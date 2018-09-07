@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import styles from '../../styles/styles';
 
-class AddCollaborators extends React.Component {
+class Collaborators extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,14 +34,10 @@ class AddCollaborators extends React.Component {
               <Text>No Collaborators Yet</Text>
             )}
           </View>
-          {/* <Button
-            title="remove collaborator"
-            onPress={() => removeCollaborator()}
-          /> */}
         </View>
       </View>
     );
   }
 }
 
-export default AddCollaborators;
+export default Collaborators;

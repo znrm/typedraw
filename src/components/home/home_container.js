@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(createDocument(userId)).then(() =>
       navByPlatform(ownProps, 'DocumentFrameContainer', '/document')),
   getPublicDoc: () =>
-    dispatch(getDocument('5b8ade489b77030014ecbec5')).then(() =>
+    dispatch(getDocument('5b92020d97943a001453aa67')).then(() =>
       navByPlatform(ownProps, 'DocumentFrameContainer', '/document'))
 });
 

@@ -66,7 +66,7 @@ const ttfLoaderConfiguration = {
 
 module.exports = {
   entry: path.resolve(appDirectory, 'src', 'index.js'),
-  devtool: 'eval',
+  devtool: 'eval, cheap-module-eval-source-map',
 
   output: {
     filename: 'bundle.js',
@@ -100,6 +100,7 @@ module.exports = {
       expo: 'expo-web',
       'react-native': 'react-native-web',
       'react-native-web/dist/exports/MaskedViewIOS': 'react-native-web/dist/index.js',
+      './image_layer': './image_layer.web'
     },
   },
 };

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { selectDocumentAction, toggle, selectColor, selectDocument } from '../../actions/ui_actions';
-import DocumentTools from './document_tools';
+import Toolbar from './toolbar';
 
 const mapState = (state) => ({
   documents: state.documents
@@ -14,6 +14,6 @@ const mapProps = (dispatch, ownProps) => ({
   selectDoc: (docId) => dispatch(selectDocument(docId))
 });
 
-const DocumentToolsContainer = connect(mapState, mapProps)(DocumentTools);
+const ToolbarContainer = connect(mapState, mapProps)(Toolbar);
 
-export default DocumentToolsContainer;
+export default ToolbarContainer;

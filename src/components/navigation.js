@@ -2,10 +2,9 @@ import { createStackNavigator } from 'react-navigation';
 import HomeContainer from './home/home_container';
 import Welcome from './splash/welcome';
 import Splash from './splash/splash';
-import DocumentTools from './documents/document_tools';
-import DocumentFrameContainer from './documents/document_frame_container';
-import AddCollaboratorsContainer from './documents/add_collaborators_container';
-import DocumentToolsContainer from './documents/document_tools_container';
+import FrameContainer from './documents/frame_container';
+import CollaboratorsContainer from './home/collaborators_container';
+import ToolBarContainer from './documents/toolbar';
 
 export const RootStack = createStackNavigator(
   {
@@ -18,9 +17,9 @@ export const RootStack = createStackNavigator(
 export const AppStack = createStackNavigator(
   {
     HomeContainer,
-    DocumentFrameContainer,
-    AddCollaboratorsContainer,
-    DocumentToolsContainer
+    FrameContainer,
+    CollaboratorsContainer,
+    ToolBarContainer
   },
   { initialRouteName: 'HomeContainer' }
 );

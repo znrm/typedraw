@@ -11,7 +11,7 @@ import {
 import styles from '../../styles/styles';
 // prop is sent to document tools instead of DocumentFrame in the container
 // go fix it
-class DocumentTools extends React.Component {
+class Toolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,4 +98,4 @@ class DocumentTools extends React.Component {
   }
 }
 
-export default DocumentTools;
+export default Toolbar;

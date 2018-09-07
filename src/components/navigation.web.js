@@ -3,8 +3,8 @@ import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import HomeContainer from './home/home_container';
 import Welcome from './splash/welcome';
 import Splash from './splash/splash';
-import DocumentFrameContainer from './documents/document_frame_container';
-import AddCollaboratorsContainer from './documents/add_collaborators_container';
+import FrameContainer from './documents/frame_container';
+import CollaboratorsContainer from './home/collaborators_container';
 
 export const RootStack = () => (
   <HashRouter>
@@ -19,8 +19,8 @@ export const RootStack = () => (
 export const AppStack = () => (
   <HashRouter>
     <Switch>
-      <Route path="/document" component={DocumentFrameContainer} />
-      <Route path="/share" component={AddCollaboratorsContainer} />
+      <Route path="/document" component={FrameContainer} />
+      <Route path="/share" component={CollaboratorsContainer} />
       <Route exact path="/" component={HomeContainer} />
       <Redirect to="/" />
     </Switch>

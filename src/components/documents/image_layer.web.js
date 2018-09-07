@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ImageLayer = () => (
+const ImageLayer = ({ documentId }) => (
   <iframe
     title="canvas"
     style={{ height: '100%', backgroundColor: 'transparent' }}
-    src="https://typedraw.herokuapp.com/canvas"
+    src={`https://typedraw.herokuapp.com/canvas/${documentId}`}
   />
 );
 

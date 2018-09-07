@@ -37,7 +37,7 @@ const Document = ({
         height: '100%'
       }}
     >
-      <ImageLayer />
+      <ImageLayer documentId={documentId} />
     </View>
   </View>
 );

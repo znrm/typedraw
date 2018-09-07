@@ -40,7 +40,7 @@ app.use('/api/documents', documents);
 // serve static frontend files
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/canvas', (req, res) => {
+app.get('/canvas/:documentId', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'canvas', 'canvas.html'));
 });
 

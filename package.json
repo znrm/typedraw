@@ -1,19 +1,10 @@
 {
   "name": "typedraw",
-  "version": "0.2.1",
-  "author": "",
-  "private": true,
-  "homepage": "https://typedraw.herokuapp.com/",
-  "license": "MIT",
   "description": "A cross-platform app for real-time collaboration.",
-  "scripts": {
-    "server": "nodemon server/server.js",
-    "client": "webpack -- watch --config ./client/webpack.config.js -d",
-    "test": "yarn server & yarn client",
-    "build": "NODE_ENV=production webpack -p --config ./client/webpack.config.js",
-    "postinstall": "yarn build",
-    "start": "node server/server.js"
-  },
+  "author": "",
+  "version": "0.3.0",
+  "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/znrm/typedraw.git"
@@ -21,9 +12,45 @@
   "bugs": {
     "url": "https://github.com/znrm/typedraw/issues"
   },
+  "homepage": "https://typedraw.herokuapp.com/",
+  "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-plugin-expo-web": "^0.0.5",
+    "babel-plugin-react-native-web": "^0.4.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-imports": "^1.4.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.7",
+    "jest-expo": "~27.0.0",
+    "react-native-scripts": "latest",
+    "react-test-renderer": "16.3.1",
+    "style-loader": "^0.19.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.14.2"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry-web.js",
+  "scripts": {
+    "expo-start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "web": "webpack -- watch --config ./webpack.config.js -d",
+    "server": "nodemon server/server.js",
+    "web-server": "webpack-dev-server -d --config ./webpack.config.js  --inline --hot --colors --content-base public/ --history-api-fallback",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.config.js",
+    "test": "yarn server & yarn client",
+    "postinstall": "yarn build",
+    "start": "node server/server.js"
+  },
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-loader": "^7.1.5",
     "babel-polyfill": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -38,20 +65,27 @@
     "passport-jwt": "^4.0.0",
     "socket.io": "^2.1.1",
     "url-loader": "^1.1.1",
-    "validator": "^10.7.0"
-  },
-  "devDependencies": {
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.2"
+    "validator": "^10.7.0",
+    "diff-match-patch": "^1.0.4",
+    "expo": "^27.0.1",
+    "expo-web": "^0.0.12",
+    "react": "16.3.1",
+    "react-art": "^16.4.2",
+    "react-dom": "16.0.0",
+    "react-native": "~0.55.2",
+    "react-native-web": "^0.4.0",
+    "react-navigation": "^2.12.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.1.1",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "2.9.4"
   },
   "engines": {
-    "node": "8.11.4",
-    "npm": "6.4.1"
+    "node": "10.10.0",
+    "yarn": "1.9.4"
   }
 }

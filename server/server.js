@@ -38,14 +38,14 @@ app.use('/api/session', session);
 app.use('/api/documents', documents);
 
 // serve static frontend files
-app.use(express.static(path.join(__dirname, './static')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/canvas', (req, res) => {
-  res.sendFile(path.join(__dirname, './static', 'canvas.html'));
+  res.sendFile(path.join(__dirname, '../public', 'canvas', 'canvas.html'));
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './static', 'index.html'));
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 const port = process.env.PORT || 5000;

@@ -14,11 +14,6 @@ const babelLoaderConfiguration = {
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
     path.resolve(appDirectory, 'src'),
-    path.resolve(appDirectory, 'web'),
-    path.resolve(appDirectory, 'shared'),
-    path.resolve(appDirectory, 'mobile'),
-    path.resolve(appDirectory, 'node_modules/react-navigation'),
-    path.resolve(appDirectory, 'node_modules/react-navigation-stack'),
     path.resolve(appDirectory, 'node_modules/react-native'),
     path.resolve(appDirectory, 'node_modules/react-native-safe-module'),
     path.resolve(appDirectory, 'node_modules/react-native-safe-area-view'),
@@ -33,24 +28,18 @@ const babelLoaderConfiguration = {
   use: {
     loader: 'babel-loader',
     options: {
-      // cacheDirectory: false,
       babelrc: false,
-      // Babel configuration (or use .babelrc)
-      // This aliases 'react-native' to 'react-native-web' and includes only
-      // the modules needed by the app.
       plugins: [
         'expo-web',
         'react-native-web',
         'transform-decorators-legacy',
         ['transform-runtime', { helpers: false, polyfill: false, regenerator: true }],
       ],
-      // The 'react-native' preset is recommended to match React Native's packager
       presets: ['react-native'],
     },
   },
 };
 
-// This is needed for loading css
 const cssLoaderConfiguration = {
   test: /\.css$/,
   use: ['style-loader', 'css-loader'],
@@ -83,7 +72,6 @@ const ttfLoaderConfiguration = {
 };
 
 module.exports = {
-  // your web-specific entry file
   entry: path.resolve(appDirectory, 'src', 'index.js'),
   devtool: 'eval',
 

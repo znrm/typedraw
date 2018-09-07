@@ -1,17 +1,18 @@
 {
   "name": "typedraw",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "author": "",
+  "private": true,
   "homepage": "https://typedraw.herokuapp.com/",
   "license": "MIT",
   "description": "A cross-platform app for real-time collaboration.",
   "scripts": {
-    "test": "webpack --watch --mode=development & nodemon server/server.js",
-    "preinstall": "npm install --prefix ./client",
-    "postinstall": "webpack --mode=production",
-    "start": "node server/server.js",
-    "build": "webpack --mode=production",
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "client": "webpack -- watch --config ./client/webpack.config.js -d",
+    "test": "yarn server & yarn client",
+    "build": "NODE_ENV=production webpack -p --config ./client/webpack.config.js",
+    "postinstall": "yarn build",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -37,18 +38,9 @@
     "passport-jwt": "^4.0.0",
     "socket.io": "^2.1.1",
     "url-loader": "^1.1.1",
-    "validator": "^10.7.0",
-    "webpack": "^4.17.1"
+    "validator": "^10.7.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-module-resolver": "^3.1.1",
-    "babel-plugin-react-native-web": "^0.8.9",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-react-native": "^4.0.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -56,8 +48,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.2",
-    "webpack-cli": "^3.1.0"
+    "prettier": "^1.14.2"
   },
   "engines": {
     "node": "8.11.4",

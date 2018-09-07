@@ -24,6 +24,7 @@ class TextLayer extends React.Component {
   componentWillUnmount() {
     const { updateText, documentId, textLayer } = this.props;
     updateText(documentId, textLayer);
+    this.socket.close();
   }
 
   sendTextDiff(text) {
@@ -47,10 +48,10 @@ class TextLayer extends React.Component {
     return (
       <TextInput
         onChangeText={text => this.sendTextDiff(text)}
-        placeholder="Enter text here"
         value={textLayer}
         multiline
         style={{
+          padding: 10,
           height: '100%',
           width: '100%',
           position: 'absolute',

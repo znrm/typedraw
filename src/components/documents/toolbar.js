@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import styles from '../../styles/styles';
 
 class Toolbar extends React.Component {
@@ -29,11 +30,7 @@ class Toolbar extends React.Component {
   }
 
   render() {
-    const {
-      selectAction,
-      navigation,
-      documents
-    } = this.props;
+    const { selectAction, navigation, documents } = this.props;
     const { showModal } = this.state;
     return (
       <View style={styles.header}>
@@ -52,8 +49,8 @@ class Toolbar extends React.Component {
           {/* some action to handle color change */}
           {/* some action to handle erasing */}
           <Button
-            title="share"
-            onPress={() => navigation.navigate('AddCollaboratorsContainer')}
+            title="Share"
+            onPress={() => navigation.navigate('CollaboratorsContainer')}
           />
         </View>
         <Modal visible={showModal}>
@@ -93,4 +90,4 @@ class Toolbar extends React.Component {
   }
 }
 
-export default Toolbar;
+export default withNavigation(Toolbar);

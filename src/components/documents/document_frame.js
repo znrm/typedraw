@@ -3,7 +3,7 @@ import DocumentContainer from './document_container';
 import ToolbarContainer from './toolbar_container';
 
 class DocumentFrame extends React.Component {
-  get navigationOptions() {
+  static get navigationOptions() {
     return {
       headerTitle: <ToolbarContainer />
     };

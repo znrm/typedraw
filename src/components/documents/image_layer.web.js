@@ -3,8 +3,8 @@ import React from 'react';
 const ImageLayer = () => (
   <iframe
     title="canvas"
-    style={{ backgroundColor: 'transparent' }}
-    source="https://typedraw.herokuapp.com/canvas"
+    style={{ height: '100%', backgroundColor: 'transparent' }}
+    src="https://typedraw.herokuapp.com/canvas"
   />
 );
 

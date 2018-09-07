@@ -6,8 +6,10 @@ import styles from '../../styles/styles';
 
 const DocumentFrame = () => (
   <View style={styles.container}>
-    <ToolbarContainer />
-    <DocumentContainer />
+    <View style={styles.document}>
+      <ToolbarContainer />
+      <DocumentContainer />
+    </View>
   </View>
 );
 

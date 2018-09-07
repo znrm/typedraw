@@ -10,7 +10,7 @@ const Toolbar = ({ selectAction, history }) => (
     <Button title="Draw" onPress={() => selectAction('drawing')} />
     {/* some action to handle color change */}
     {/* some action to handle erasing */}
-    <Button title="share" onPress={() => history.push('/share')} />
+    <Button title="Share" onPress={() => history.push('/share')} />
   </View>
 );
 

@@ -8,7 +8,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
-import styles from '../../styles';
+import styles from '../../styles/styles';
 // prop is sent to document tools instead of DocumentFrame in the container
 // go fix it
 class DocumentTools extends React.Component {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-import HomeContainer from './components/home/home_container';
-import Welcome from './components/splash/welcome';
-import Splash from './components/splash/splash';
-import DocumentFrameContainer from './components/documents/document_frame_container';
-import AddCollaboratorsContainer from './components/documents/add_collaborators_container';
+import HomeContainer from './home/home_container';
+import Welcome from './splash/welcome';
+import Splash from './splash/splash';
+import DocumentFrameContainer from './documents/document_frame_container';
+import AddCollaboratorsContainer from './documents/add_collaborators_container';
 
 export const RootStack = () => (
   <HashRouter>

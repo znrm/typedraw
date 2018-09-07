@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
-import styles from '../../styles';
+import styles from '../../styles/styles';
 import { login } from '../../actions/session_actions';
 
 const mapDispatch = dispatch => ({

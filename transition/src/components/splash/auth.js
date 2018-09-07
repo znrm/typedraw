@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
-import styles from '../../styles';
+import styles from '../../styles/styles';
 
 class Auth extends React.Component {
   constructor(props) {

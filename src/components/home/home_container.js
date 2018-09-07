@@ -12,10 +12,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   logout: () => dispatch(logout()),
   createDoc: userId =>
     dispatch(createDocument(userId)).then(() =>
-      navByPlatform(ownProps, 'DocumentFrameContainer', '/document')),
+      navByPlatform(ownProps, 'DocumentFrame', '/document')),
   getPublicDoc: () =>
     dispatch(getDocument('5b92020d97943a001453aa67')).then(() =>
-      navByPlatform(ownProps, 'DocumentFrameContainer', '/document'))
+      navByPlatform(ownProps, 'DocumentFrame', '/document'))
 });
 
 const HomeContainer = connect(

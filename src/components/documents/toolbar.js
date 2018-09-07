@@ -9,8 +9,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import styles from '../../styles/styles';
-// prop is sent to document tools instead of DocumentFrame in the container
-// go fix it
+
 class Toolbar extends React.Component {
   constructor(props) {
     super(props);
@@ -32,8 +31,6 @@ class Toolbar extends React.Component {
   render() {
     const {
       selectAction,
-      colorSelect,
-      toggles,
       navigation,
       documents
     } = this.props;
@@ -53,9 +50,7 @@ class Toolbar extends React.Component {
           <Button title="Type" onPress={() => selectAction('typing')} />
           <Button title="Draw" onPress={() => selectAction('drawing')} />
           {/* some action to handle color change */}
-          <Button title="blk" onPress={() => colorSelect('black')} />
           {/* some action to handle erasing */}
-          <Button title="erase" onPress={() => toggles('erasing')} />
           <Button
             title="share"
             onPress={() => navigation.navigate('AddCollaboratorsContainer')}

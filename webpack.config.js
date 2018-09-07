@@ -98,9 +98,7 @@ module.exports = {
       './assets/images/slack-icon.png': './assets/images/slack-icon@2x.png',
       '@expo/vector-icons': 'expo-web',
       expo: 'expo-web',
-      'react-native': 'react-native-web',
-      'react-native-web/dist/exports/MaskedViewIOS': 'react-native-web/dist/index.js',
-      './image_layer': './image_layer.web'
+      'react-native': 'react-native-web'
     },
   },
 };

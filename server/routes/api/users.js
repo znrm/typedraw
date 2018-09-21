@@ -20,6 +20,20 @@ router.get(
   }
 );
 
+router.get('/:userId/documents', (req, res) => {
+  User.findById(req.params.userId).then(user => {
+    if (user) {
+      return res.json({ documents: user.documents });
+    }
+
+    return res
+      .status(404)
+      .json({
+        message: `User with id ${req.params.userId} not found`
+      });
+  });
+});
+
 router.post('/register', (req, res) => {
   // Check to make sure nobody has already registered with this email
   User.findOne({ email: req.body.email }).then(user => {

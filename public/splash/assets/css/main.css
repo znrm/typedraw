@@ -1,4 +1,5 @@
 @import url(font-awesome.min.css);
+@import url(demo.css);
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400";
 
 /*
@@ -3097,7 +3098,7 @@ input, select, textarea {
 				display: block;
 				margin: 0 0 1.5em 0;
 			}
-			
+
 			#header.alt .logo img {
 					width: 100px;
 					height: 100px;

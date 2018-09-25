@@ -45,7 +45,7 @@
     "web": "webpack --watch --config ./webpack.config.js -d",
     "server": "nodemon server/server.js",
     "web-server": "webpack-dev-server -d --config ./webpack.config.js  --inline --hot --colors --content-base public/ --history-api-fallback",
-    "build": "NODE_ENV=production webpack -p --config ./webpack.config.js",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js -p",
     "test": "yarn server & yarn web",
     "test-all": "yarn server & yarn web & yarn mobile",
     "postinstall": "yarn build & yarn webpack --config ./public/canvas/webpack.config.js -p",

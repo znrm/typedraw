@@ -14,8 +14,12 @@ const mapDispatch = (dispatch, ownProps) => ({
 const Welcome = ({ navigateToSplash, demoLogin }) => (
   <View style={styles.container}>
     <Text style={styles.titleText}>TypeDraw</Text>
-    <Button title="sign up / log in" onPress={navigateToSplash} />
-    <Button title="take a look around" onPress={demoLogin} />
+    <View style={styles.btn}>
+      <Button title="sign up / log in" onPress={navigateToSplash} />
+    </View>
+    <View style={styles.btn}>
+      <Button title="take a look around" onPress={demoLogin} />
+    </View>
   </View>
 );
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import io from 'socket.io-client';
 import DiffMatchPatch from 'diff-match-patch';
+import { textInputStyleMaker } from '../../styles/document_styles';
 
 class TextLayer extends React.Component {
   constructor(props) {
@@ -50,13 +51,7 @@ class TextLayer extends React.Component {
         onChangeText={text => this.sendTextDiff(text)}
         value={textLayer}
         multiline
-        style={{
-          padding: 10,
-          height: '100%',
-          width: '100%',
-          position: 'absolute',
-          zIndex: action === 'typing' ? 1 : -1
-        }}
+        style={textInputStyleMaker((action === 'typing' ? 1 : -1)).textInput}
       />
     );
   }

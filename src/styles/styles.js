@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
   },
   document: {
     width: '100vw',
-    maxWidth: 425,
-    height: 550
+    height: '100vh'
   }
 
 });

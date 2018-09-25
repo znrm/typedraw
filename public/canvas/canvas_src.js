@@ -3,8 +3,8 @@ import io from 'socket.io-client';
 class Drawing {
   constructor() {
     [, , this.documentId, this.selection] = window.location.pathname.split('/');
-    this.width = 425;
-    this.height = 550;
+    this.width = 310;
+    this.height = 596;
 
     const canvas = document.querySelector('canvas');
     canvas.width = this.width;

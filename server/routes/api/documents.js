@@ -8,8 +8,8 @@ const router = express.Router();
 router.get('/:documentId', (req, res) => {
   Document.findById(req.params.documentId).then(document => {
     if (document) {
-      const { imageLayer, textLayer, id, collaborators, title } = document;
-      return res.json({ imageLayer, textLayer, id, collaborators, title });
+      const { imageLayer, textLayer, id, collaborators, title, owner } = document;
+      return res.json({ imageLayer, textLayer, id, collaborators, title, owner });
     }
     return res.status(404).json({
       message: `Document with id ${req.params.documentId} not found`

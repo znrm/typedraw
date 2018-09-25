@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     height: 50
   },
   document: {
-    width: 425,
+    width: '100vw',
+    maxWidth: 425,
     height: 550
   }
 

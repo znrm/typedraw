@@ -88,7 +88,10 @@
     "webpack-dev-server": "2.9.4"
   },
   "engines": {
-    "node": "10.10.0",
+    "node": "^10.10.0",
     "yarn": "1.9.4"
+  },
+  "peerDependencies": {
+    "babel-core": "^6.0.0"
   }
 }

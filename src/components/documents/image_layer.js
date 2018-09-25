@@ -7,11 +7,11 @@ const ImageLayer = ({ documentId }) => (
     scrollEnabled={false}
     style={{
       backgroundColor: 'transparent',
-      width: 425,
-      height: 550
+      width: 310,
+      height: 596
     }}
     source={{
-      uri: `https://typedraw.herokuapp.com/canvas/${documentId}`
+      uri: `http://www.typedraw.app/canvas/${documentId}`
     }}
   />
 );

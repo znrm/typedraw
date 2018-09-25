@@ -1,0 +1,16 @@
+.demo {
+  width: 360px;
+  height: 722px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.demo iframe {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  height: 89.8%;
+  width: 86%;
+  border-radius: 30px;
+  overflow: hidden;
+}

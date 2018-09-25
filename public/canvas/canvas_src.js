@@ -3,13 +3,15 @@ import io from 'socket.io-client';
 class Drawing {
   constructor() {
     [, , this.documentId, this.selection] = window.location.pathname.split('/');
-    this.width = 425;
-    this.height = 550;
+    this.width = 310;
+    this.height = 596;
 
     const canvas = document.querySelector('canvas');
     canvas.width = this.width;
     canvas.height = this.height;
     this.ctx = canvas.getContext('2d');
+    this.ctx.lineWidth = 2;
+    this.ctx.lineCap = 'round';
 
     this.drawing = false;
     this.initialData = this.getData();
@@ -51,27 +53,36 @@ class Drawing {
     const x = e.touches ? e.touches[0].clientX : e.clientX;
     const y = e.touches ? e.touches[0].clientY : e.clientY;
     this.drawing = true;
+
     this.ctx.beginPath();
-    this.ctx.moveTo(x - 1, y - 1);
-    this.ctx.lineTo(x, y);
-    this.ctx.stroke();
+    this.previousX = x;
+    this.previousY = y;
   }
 
   draw(e) {
     if (this.drawing) {
       const x = e.touches ? e.touches[0].clientX : e.clientX;
       const y = e.touches ? e.touches[0].clientY : e.clientY;
+
+      this.ctx.lineTo(this.previousX, this.previousY);
       this.ctx.lineTo(x, y);
       this.ctx.stroke();
+      this.ctx.closePath();
       this.sendImageDiff();
+
+      this.ctx.beginPath();
+
+      this.previousX = x;
+      this.previousY = y;
     }
   }
 
   endDraw() {
-    this.drawing = false;
+    this.ctx.lineTo(this.previousX, this.previousY);
+    this.ctx.stroke();
     this.ctx.closePath();
-    clearInterval(this.intervalSender);
     this.sendImageDiff();
+    this.drawing = false;
   }
 
   sendImageDiff() {

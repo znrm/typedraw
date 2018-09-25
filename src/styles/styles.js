@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  btn: {
+    margin: 5,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

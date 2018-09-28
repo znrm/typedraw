@@ -8,15 +8,13 @@ const startSockets = require('./services/start_sockets');
 const users = require('./routes/api/users');
 const session = require('./routes/api/session');
 const documents = require('./routes/api/documents');
-const { mongoURI } = require('./config/keys');
-
-const db = process.env.PROD_MONGODB || mongoURI;
-
-require('./config/passport')(passport);
+const mongoURI = process.env.PROD_MONGODB
+  ? process.env.PROD_MONGODB
+  : require('./config/keys').mongoURI;
 
 mongoose
   .connect(
-    encodeURI(db),
+    encodeURI(mongoURI),
     { useNewUrlParser: true }
   )
   .then(() => console.log('Connected to MongoDB successfully'))
@@ -24,7 +22,7 @@ mongoose
 
 const app = express();
 
-// temporary:
+// temporary
 app.use(cors());
 
 // middleware

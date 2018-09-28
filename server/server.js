@@ -26,16 +26,9 @@ const app = express();
 app.use(cors());
 
 // middleware
-
-// middleware for body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
-
-// routes
-app.use('/api/users', users);
-app.use('/api/session', session);
-app.use('/api/documents', documents);
 
 // serve static frontend files
 app.use(express.static(path.join(__dirname, '../public')));
@@ -44,17 +37,17 @@ app.get('/canvas/:documentId', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'canvas', 'canvas.html'));
 });
 
-app.get('/app', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'app', 'app.html'));
-});
-
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-const port = process.env.PORT || 5000;
+// routes
+app.use('/api/users', users);
+app.use('/api/session', session);
+app.use('/api/documents', documents);
 
-const server = app.listen(port, () =>
-  console.log(`Server is running on port ${port}`));
+
+const port = process.env.PORT || 5000;
+const server = app.listen(port, () => console.log(`Running on port ${port}`));
 
 startSockets(server);

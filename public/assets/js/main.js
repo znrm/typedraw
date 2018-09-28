@@ -48,7 +48,7 @@
 				var $nav_a = $nav.find('a');
 
 				$nav_a
-					.scrolly({
+					.scrollY({
 						speed: 1000,
 						offset: function() { return $nav.height(); }
 					})

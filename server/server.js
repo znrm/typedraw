@@ -44,6 +44,10 @@ app.get('/canvas/:documentId', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'canvas', 'canvas.html'));
 });
 
+app.get('/app', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'app', 'app.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });

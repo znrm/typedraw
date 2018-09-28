@@ -3,6 +3,7 @@
 **/bundle.js.map
 **/canvas.js
 **/canvas.js.map
+public/app/app.js
 
 .expo/
 /node_modules

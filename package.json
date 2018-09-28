@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/znrm/typedraw/issues"
   },
-  "homepage": "https://typedraw.herokuapp.com/",
+  "homepage": "https://www.typedraw.app/",
   "devDependencies": {
     "babel-loader": "^7.1.2",
     "babel-plugin-expo-web": "^0.0.5",
@@ -39,15 +39,13 @@
   "scripts": {
     "eject": "react-native-scripts eject",
     "expo": "react-native-scripts start",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
     "mobile": "exp start --tunnel",
     "web": "webpack --watch --config ./webpack.config.js -d",
     "server": "nodemon server/server.js",
     "web-server": "webpack-dev-server -d --config ./webpack.config.js  --inline --hot --colors --content-base public/ --history-api-fallback",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js -p",
-    "test": "yarn server & yarn web",
-    "test-all": "yarn server & yarn web & yarn mobile",
+    "test": "yarn server & yarn web & yarn canvas",
+    "test-all": "yarn server & yarn web & yarn mobile & yarn canvas",
     "postinstall": "yarn build & yarn webpack --config ./public/canvas/webpack.config.js -p",
     "start": "node server/server.js",
     "canvas": "webpack --config ./public/canvas/webpack.config.js -d --watch"

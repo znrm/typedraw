@@ -13,7 +13,7 @@ class TextLayer extends React.Component {
 
   componentDidMount() {
     const { documentId } = this.props;
-    this.socket = io('https://typedraw.herokuapp.com');
+    this.socket = io('https://www.typedraw.app');
 
     this.socket.on('connect', () => {
       this.socket.emit('document', documentId);

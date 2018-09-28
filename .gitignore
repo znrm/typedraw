@@ -1,6 +1,8 @@
 **/keys.js
 **/bundle.js
 **/bundle.js.map
+**/canvas.js
+**/canvas.js.map
 
 .expo/
 /node_modules

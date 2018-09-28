@@ -49,7 +49,8 @@
     "test": "yarn server & yarn web",
     "test-all": "yarn server & yarn web & yarn mobile",
     "postinstall": "yarn build & yarn webpack --config ./public/canvas/webpack.config.js -p",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "canvas": "webpack --config ./public/canvas/webpack.config.js -d --watch"
   },
   "dependencies": {
     "axios": "^0.18.0",

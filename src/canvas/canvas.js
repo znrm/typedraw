@@ -1,29 +1,5 @@
 import io from 'socket.io-client';
-
-class Pointer {
-  constructor(x = 0, y = 0) {
-    this.currentPos = { x, y };
-    this.previousPos = { x, y };
-    this.pressing = false;
-    this.eraser = false;
-  }
-
-  update(e) {
-    this.previousPos = this.currentPos;
-    this.currentPos = {
-      x: e.touches ? e.touches[0].clientX : e.clientX,
-      y: e.touches ? e.touches[0].clientY : e.clientY
-    };
-  }
-
-  down() {
-    this.pressing = true;
-  }
-
-  up() {
-    this.pressing = false;
-  }
-}
+import Pointer from './pointer';
 
 class Drawing {
   constructor() {
@@ -76,7 +52,6 @@ class Drawing {
     document.addEventListener('mouseup', this.mouseUp());
     document.addEventListener('touchend', this.mouseUp());
 
-    document.addEventListener('dblclick', this.toggleEraser());
     document.addEventListener('dblclick', this.toggleEraser());
   }
 
@@ -170,6 +145,7 @@ class Drawing {
         this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = 2;
       } else {
+        this.pointer.eraser = true;
         this.ctx.strokeStyle = 'rgba(255,255,255,1)';
         this.ctx.lineWidth = 20;
       }

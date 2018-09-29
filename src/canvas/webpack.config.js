@@ -1,8 +1,11 @@
+const path = require('path');
+
 module.exports = {
-  entry: './public/canvas/canvas_src.js',
+  entry: './src/canvas/canvas.js',
   output: {
-    path: __dirname,
-    filename: 'canvas.js'
+    filename: 'canvas.bundle.js',
+    publicPath: '/',
+    path: path.resolve(__dirname, '../../', 'public', 'canvas')
   },
   devtool: 'source-map',
   module: {

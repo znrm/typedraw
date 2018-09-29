@@ -41,14 +41,15 @@
     "expo": "react-native-scripts start",
     "mobile": "exp start --tunnel",
     "web": "webpack --watch --config ./webpack.config.js -d",
+    "canvas": "webpack --watch --config ./src/canvas/webpack.config.js -d ",
     "server": "nodemon server/server.js",
     "web-server": "webpack-dev-server -d --config ./webpack.config.js  --inline --hot --colors --content-base public/ --history-api-fallback",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js -p",
+    "build-canvas": "NODE_ENV=production webpack --config ./src/canvas/webpack.config.js -p",
     "test": "yarn server & yarn web & yarn canvas",
     "test-all": "yarn server & yarn web & yarn mobile & yarn canvas",
-    "postinstall": "yarn build & yarn webpack --config ./public/canvas/webpack.config.js -p",
-    "start": "node server/server.js",
-    "canvas": "webpack --config ./public/canvas/webpack.config.js -d --watch"
+    "postinstall": "yarn build & yarn build-canvas",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

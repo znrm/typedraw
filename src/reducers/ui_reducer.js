@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
 import { SELECT_DOCUMENT_ACTION, SELECT_DOCUMENT, TOGGLE, SELECT_COLOR } from '../actions/ui_actions';
 
 const initialUI = {

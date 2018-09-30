@@ -2,6 +2,8 @@
 
 _A cross-platform app for real-time collaboration._
 
+[Live Site](https://www.typedraw.app/)
+
 ## Background and Overview
 
 TypeDraw is a minimal viable product that tackles three challenges in application development, software engineering, and user experience. These challenges are expressed, respectively, in the following ideals:
@@ -110,7 +112,7 @@ The top of the screen will feature an unobtrusive fixed bar for document informa
 **Zaniar Moradian**,
 **Mason Anders**,
 **Matt Moe**,
-**Aidan Gadberry**,
+**Aidan Gadberry**
 
 ## Attribution
 

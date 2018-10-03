@@ -4,17 +4,17 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const cors = require('cors');
 const path = require('path');
-const startSockets = require('./app/start_sockets');
+const startSockets = require('./services/start_sockets');
 const users = require('./routes/api/users');
 const session = require('./routes/api/session');
 const documents = require('./routes/api/documents');
-const db = process.env.PROD_MONGODB || require('./config/keys').mongoURI;
-
-require('./config/passport')(passport);
+const mongoURI = process.env.PROD_MONGODB
+  ? process.env.PROD_MONGODB
+  : require('./config/keys').mongoURI;
 
 mongoose
   .connect(
-    encodeURI(db),
+    encodeURI(mongoURI),
     { useNewUrlParser: true }
   )
   .then(() => console.log('Connected to MongoDB successfully'))
@@ -22,20 +22,13 @@ mongoose
 
 const app = express();
 
-// temporary:
+// temporary
 app.use(cors());
 
 // middleware
-
-// middleware for body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
-
-// routes
-app.use('/api/users', users);
-app.use('/api/session', session);
-app.use('/api/documents', documents);
 
 // serve static frontend files
 app.use(express.static(path.join(__dirname, '../public')));
@@ -44,13 +37,16 @@ app.get('/canvas/:documentId', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'canvas', 'canvas.html'));
 });
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-const port = process.env.PORT || 5000;
+// routes
+app.use('/api/users', users);
+app.use('/api/session', session);
+app.use('/api/documents', documents);
 
-const server = app.listen(port, () =>
-  console.log(`Server is running on port ${port}`));
+const port = process.env.PORT || 5000;
+const server = app.listen(port, () => console.log(`Running on port ${port}`));
 
 startSockets(server);

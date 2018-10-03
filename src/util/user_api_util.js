@@ -1,7 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
 
 export const createUser = ({ email, password }) =>
-  axios.post('https://typedraw.herokuapp.com/api/users/register', {
+  axios.post('https://www.typedraw.app/api/users/register', {
     email,
     password
   });

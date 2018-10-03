@@ -69,9 +69,9 @@ module.exports = {
   devtool: 'eval, cheap-module-eval-source-map',
 
   output: {
-    filename: 'bundle.js',
+    filename: 'app.js',
     publicPath: '/',
-    path: path.resolve(appDirectory, './public'),
+    path: path.resolve(appDirectory, './public', 'app'),
   },
 
   module: {

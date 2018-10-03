@@ -9,7 +9,7 @@ const ImageLayer = ({ documentId }) => (
       width: '100%',
       backgroundColor: 'transparent'
     }}
-    src={`https://typedraw.herokuapp.com/canvas/${documentId}`}
+    src={`https://www.typedraw.app/canvas/${documentId}`}
   />
 );
 

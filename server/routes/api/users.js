@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
 const User = require('../../models/User');
+require('../../config/passport')(passport);
 
 const secretOrKey = process.env.SECRET_OR_KEY || 'DevelopmentSecretNotNeeded';
 
@@ -26,11 +27,9 @@ router.get('/:userId/documents', (req, res) => {
       return res.json({ documents: user.documents });
     }
 
-    return res
-      .status(404)
-      .json({
-        message: `User with id ${req.params.userId} not found`
-      });
+    return res.status(404).json({
+      message: `User with id ${req.params.userId} not found`
+    });
   });
 });
 

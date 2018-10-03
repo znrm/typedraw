@@ -1,5 +1,4 @@
-
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
 import { RECEIVE_USER } from '../actions/user_actions';
 
 import { START_SESSION } from '../actions/session_actions';

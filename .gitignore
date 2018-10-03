@@ -1,13 +1,11 @@
 **/keys.js
+
 **/bundle.js
-**/bundle.js.map
-**/canvas.js
-**/canvas.js.map
-public/app/app.js
+**/*.map
+**/*.bundle.js
 
 .expo/
-/node_modules
-client/node_modules
+**/node_modules
 
 **/npm-debug.*
 

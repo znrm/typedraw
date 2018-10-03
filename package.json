@@ -41,14 +41,15 @@
     "expo": "react-native-scripts start",
     "mobile": "exp start --tunnel",
     "web": "webpack --watch --config ./webpack.config.js -d",
+    "canvas": "webpack --watch --config ./src/canvas/webpack.config.js -d ",
     "server": "nodemon server/server.js",
     "web-server": "webpack-dev-server -d --config ./webpack.config.js  --inline --hot --colors --content-base public/ --history-api-fallback",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js -p",
+    "build-canvas": "NODE_ENV=production webpack --config ./src/canvas/webpack.config.js -p",
     "test": "yarn server & yarn web & yarn canvas",
     "test-all": "yarn server & yarn web & yarn mobile & yarn canvas",
-    "postinstall": "yarn build & yarn webpack --config ./public/canvas/webpack.config.js -p",
-    "start": "node server/server.js",
-    "canvas": "webpack --config ./public/canvas/webpack.config.js -d --watch"
+    "postinstall": "yarn build & yarn build-canvas",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -62,7 +63,7 @@
     "expo-web": "^0.0.12",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.10",
+    "lodash.merge": "^4.6.1",
     "mongoose": "^5.2.10",
     "native-base": "^2.8.0",
     "nodemon": "^1.18.4",
@@ -88,7 +89,7 @@
   },
   "engines": {
     "node": "^10.10.0",
-    "yarn": "1.9.4"
+    "yarn": "^1.9.4"
   },
   "peerDependencies": {
     "babel-core": "^6.0.0"

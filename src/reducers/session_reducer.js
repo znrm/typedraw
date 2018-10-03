@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
 import { setAuthToken, destroyAuthToken } from '../util/mobile_auth_util';
 
 import {

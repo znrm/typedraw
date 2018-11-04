@@ -17,23 +17,29 @@ const startSockets = server => {
         .then(() =>
           socket.emit('loadImage', documentSessions.getImageDataURI(documentId)));
 
-      const saveRegularly = setInterval(() => {
-        socket.emit('saveImage');
-      }, 10000);
-
       const sendTextDiff = text => {
         const responseText = handleText(text);
         socket.to(documentId).emit('text', responseText);
       };
 
+      let saveImageTimeout;
+
+      const saveImageAfterEdits = () => {
+        saveImageTimeout = setTimeout(() => {
+          socket.emit('saveImage');
+        }, 1000);
+      };
+
       const sendImageDiff = image => {
+        clearTimeout(saveImageTimeout);
+        saveImageAfterEdits();
+
         const responseImage = handleImage(image);
         socket.to(documentId).emit('image', responseImage);
       };
 
       const saveAndCleanup = () => {
         documentSessions.disconnection(documentId);
-        clearInterval(saveRegularly);
       };
 
       const saveImageData = imageDataURI => {

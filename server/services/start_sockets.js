@@ -10,38 +10,39 @@ const startSockets = server => {
 
   io.sockets.on('connection', socket => {
     socket.on('document', documentId => {
-      documentSessions.newConnection(documentId);
-
       socket.join(documentId);
+
+      documentSessions
+        .newConnection(documentId)
+        .then(() => socket.emit('loadImage', documentSessions.getImageData(documentId)));
 
       const saveRegularly = setInterval(() => {
         socket.emit('saveImage');
       }, 10000);
 
-      socket.emit('loadImage', documentSessions.getImageData(documentId));
-
-      socket.on('drawing', image => {
-        const responseImage = handleImage(image);
-
-        socket.to(documentId).emit('image', responseImage);
-      });
-
-      socket.on('typing', text => {
+      const sendTextDiff = text => {
         const responseText = handleText(text);
-
         socket.to(documentId).emit('text', responseText);
-      });
+      };
 
-      socket.on('imageDataURI', imageDataURI => {
-        console.log('Recieved image data');
-        documentSessions.saveImageData(documentId, imageDataURI);
-      });
+      const sendImageDiff = image => {
+        const responseImage = handleImage(image);
+        socket.to(documentId).emit('image', responseImage);
+      };
 
-      socket.on('disconnect', () => {
+      const saveAndCleanup = () => {
         documentSessions.disconnection(documentId);
         clearInterval(saveRegularly);
-        // save the image data in persistent storage if no more connections
-      });
+      };
+
+      const saveImageData = imageDataURI => {
+        documentSessions.saveImageData(documentId, imageDataURI);
+      };
+
+      socket.on('drawing', sendImageDiff);
+      socket.on('typing', sendTextDiff);
+      socket.on('imageDataURI', saveImageData);
+      socket.on('disconnect', saveAndCleanup);
     });
   });
 };

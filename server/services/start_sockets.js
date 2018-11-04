@@ -14,7 +14,8 @@ const startSockets = server => {
 
       documentSessions
         .newConnection(documentId)
-        .then(() => socket.emit('loadImage', documentSessions.getImageData(documentId)));
+        .then(() =>
+          socket.emit('loadImage', documentSessions.getImageDataURI(documentId)));
 
       const saveRegularly = setInterval(() => {
         socket.emit('saveImage');
@@ -36,7 +37,7 @@ const startSockets = server => {
       };
 
       const saveImageData = imageDataURI => {
-        documentSessions.saveImageData(documentId, imageDataURI);
+        documentSessions.saveImageDataURI(documentId, imageDataURI);
       };
 
       socket.on('drawing', sendImageDiff);

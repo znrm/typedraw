@@ -34,12 +34,24 @@ class Drawing {
   }
 
   startSockets() {
-    this.socket = io('https://www.typedraw.app');
+    this.socket = io('http://localhost:5000');
     this.socket.on('connect', () => {
       this.socket.emit('document', this.documentId);
     });
 
     this.socket.on('image', diff => this.receiveImageDiff(diff));
+
+    this.socket.on('loadImage', savedImageDataURI => {
+      const img = new Image();
+      img.onload = () => {
+        this.ctx.drawImage(img, 0, 0);
+      };
+      img.src = savedImageDataURI;
+    });
+
+    this.socket.on('saveImage', () => {
+      this.socket.emit('imageDataURI', this.ctx.canvas.toDataURL());
+    });
   }
 
   addListeners() {

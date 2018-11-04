@@ -22,8 +22,8 @@ const DocumentSchema = new mongoose.Schema({
     default: ''
   },
   imageLayer: {
-    type: Buffer,
-    default: []
+    type: String,
+    default: ''
   }
 });
 

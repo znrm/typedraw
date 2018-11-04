@@ -36,7 +36,7 @@ class Drawing {
   }
 
   startSockets() {
-    this.socket = io('http://localhost:5000');
+    this.socket = io('https://www.typedraw.app');
     this.socket.on('connect', () => {
       this.socket.emit('document', this.documentId);
     });

@@ -1,34 +1,24 @@
 const socketIO = require('socket.io');
 const handleText = require('./handle_text');
 const handleImage = require('./handle_image');
-
-const documentSessions = {};
-
-const startSession = documentId => {
-  documentSessions[documentId] = {
-    connections: 0,
-    imageData: ''
-  };
-};
+const DocumentSessions = require('./document_sessions');
 
 const startSockets = server => {
+  const documentSessions = new DocumentSessions();
+
   const io = socketIO.listen(server);
 
   io.sockets.on('connection', socket => {
-    console.log('New socket connection has been established');
-
     socket.on('document', documentId => {
+      documentSessions.newConnection(documentId);
+
       socket.join(documentId);
-
-      if (documentSessions[documentId] === undefined) startSession(documentId);
-
-      const documentSession = documentSessions[documentId];
 
       const saveRegularly = setInterval(() => {
         socket.emit('saveImage');
       }, 10000);
 
-      socket.emit('loadImage', documentSession.imageData);
+      socket.emit('loadImage', documentSessions.getImageData(documentId));
 
       socket.on('drawing', image => {
         const responseImage = handleImage(image);
@@ -43,12 +33,12 @@ const startSockets = server => {
       });
 
       socket.on('imageDataURI', imageDataURI => {
-        console.log('recieved image data');
-        documentSession.imageData = imageDataURI;
+        console.log('Recieved image data');
+        documentSessions.saveImageData(documentId, imageDataURI);
       });
 
-      socket.on('disconenct', () => {
-        documentSession.connections -= 1;
+      socket.on('disconnect', () => {
+        documentSessions.disconnection(documentId);
         clearInterval(saveRegularly);
         // save the image data in persistent storage if no more connections
       });

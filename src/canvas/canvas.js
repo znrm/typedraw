@@ -23,6 +23,8 @@ class Drawing {
     this.ctx.strokeStyle = 'black';
     this.ctx.lineCap = 'round';
 
+    this.uiButton = document.querySelector('.ui-btn');
+
     this.initialData = this.data();
 
     this.startSockets();
@@ -55,16 +57,16 @@ class Drawing {
   }
 
   addListeners() {
-    document.addEventListener('mousedown', this.mouseDown());
-    document.addEventListener('touchstart', this.mouseDown());
+    this.ctx.canvas.addEventListener('mousedown', this.mouseDown());
+    this.ctx.canvas.addEventListener('touchstart', this.mouseDown());
 
     document.addEventListener('mousemove', this.mouseMove());
     document.addEventListener('touchmove', this.mouseMove());
 
-    document.addEventListener('mouseup', this.mouseUp());
-    document.addEventListener('touchend', this.mouseUp());
+    this.ctx.canvas.addEventListener('mouseup', this.mouseUp());
+    this.ctx.canvas.addEventListener('touchend', this.mouseUp());
 
-    document.addEventListener('dblclick', this.toggleEraser());
+    this.uiButton.addEventListener('click', this.toggleEraser());
   }
 
   mouseDown() {
@@ -153,13 +155,17 @@ class Drawing {
   toggleEraser() {
     return () => {
       if (this.pointer.eraser) {
+        this.ctx.globalCompositeOperation = 'source-over';
         this.pointer.eraser = false;
         this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = 2;
+        this.uiButton.id = 'eraser';
       } else {
+        this.ctx.globalCompositeOperation = 'destination-out';
         this.pointer.eraser = true;
-        this.ctx.strokeStyle = 'rgba(255,255,255,1)';
+        this.ctx.strokeStyle = 'rgba(0,0,0,1)';
         this.ctx.lineWidth = 20;
+        this.uiButton.id = 'pencil';
       }
     };
   }

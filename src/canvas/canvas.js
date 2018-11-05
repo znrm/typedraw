@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import Pointer from './pointer';
+import HOST from '../util/host';
 
 class Drawing {
   constructor() {
@@ -36,7 +37,7 @@ class Drawing {
   }
 
   startSockets() {
-    this.socket = io('https://www.typedraw.app');
+    this.socket = io(HOST);
     this.socket.on('connect', () => {
       this.socket.emit('document', this.documentId);
     });

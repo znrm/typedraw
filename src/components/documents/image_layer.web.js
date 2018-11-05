@@ -1,4 +1,5 @@
 import React from 'react';
+import HOST from '../../util/host';
 
 const ImageLayer = ({ documentId }) => (
   <iframe
@@ -9,7 +10,7 @@ const ImageLayer = ({ documentId }) => (
       width: '100%',
       backgroundColor: 'transparent'
     }}
-    src={`https://www.typedraw.app/canvas/${documentId}`}
+    src={`${HOST}/canvas/${documentId}`}
   />
 );
 

@@ -3,6 +3,7 @@ import { TextInput } from 'react-native';
 import io from 'socket.io-client';
 import DiffMatchPatch from 'diff-match-patch';
 import { textInputStyleMaker } from '../../styles/document_styles';
+import HOST from '../../util/host';
 
 class TextLayer extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class TextLayer extends React.Component {
 
   componentDidMount() {
     const { documentId } = this.props;
-    this.socket = io('https://www.typedraw.app');
+    this.socket = io(HOST);
 
     this.socket.on('connect', () => {
       this.socket.emit('document', documentId);

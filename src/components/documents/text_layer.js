@@ -10,6 +10,13 @@ class TextLayer extends React.Component {
     super(props);
     this.props = props;
     this.dmp = new DiffMatchPatch();
+
+    this.state = {
+      selection: {
+        start: props.textLayer.length,
+        end: props.textLayer.length
+      }
+    };
   }
 
   componentDidMount() {
@@ -47,12 +54,18 @@ class TextLayer extends React.Component {
 
   render() {
     const { textLayer, action } = this.props;
+    const { selection } = this.state;
+
     return (
       <TextInput
         onChangeText={text => this.sendTextDiff(text)}
+        onSelectionChange={({ nativeEvent }) => {
+          this.setState({ selection: nativeEvent.selection });
+        }}
         value={textLayer}
         multiline
-        style={textInputStyleMaker((action === 'typing' ? 1 : -1)).textInput}
+        style={textInputStyleMaker(action === 'typing' ? 1 : -1).textInput}
+        selection={selection}
       />
     );
   }

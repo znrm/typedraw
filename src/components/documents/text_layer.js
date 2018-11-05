@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 import io from 'socket.io-client';
-import DiffMatchPatch from 'diff-match-patch';
+import { diff_match_patch as DiffMatchPatch } from 'diff-match-patch';
 import { textInputStyleMaker } from '../../styles/document_styles';
 import HOST from '../../util/host';
 
@@ -36,18 +36,48 @@ class TextLayer extends React.Component {
     this.socket.close();
   }
 
-  sendTextDiff(text) {
-    const { textLayer, receiveDocument, documentId } = this.props;
-    receiveDocument({ id: documentId, textLayer: text });
-    const diff = this.dmp.diff_main(textLayer, text);
+  recalculateSelectionState(startLocationOfChange, changeLength, selfInput) {
+    const { selection } = this.state;
+    const { start, end } = selection;
 
-    this.socket.emit('typing', diff);
+    let [newStart, newEnd] = [start, end];
+
+    newStart = startLocationOfChange <= start ? start + changeLength : start;
+
+    if (selfInput) {
+      newStart += end - start;
+      newEnd = newStart;
+    } else {
+      newEnd += newStart - start;
+    }
+
+    this.setState({ selection: { start: newStart, end: newEnd } });
   }
 
-  receiveTextDiff(diff) {
+  sendTextDiff(text) {
+    const { textLayer, receiveDocument, documentId } = this.props;
+    const {
+      selection: { start }
+    } = this.state;
+
+    this.recalculateSelectionState(start, text.length - textLayer.length, true);
+
+    receiveDocument({ id: documentId, textLayer: text });
+
+    const diff = this.dmp.diff_main(textLayer, text);
+    this.socket.emit('typing', { diff, start });
+  }
+
+  receiveTextDiff({ diff, start }) {
     const { textLayer, receiveDocument, documentId } = this.props;
     const patch = this.dmp.patch_make(textLayer, diff);
     const patchedText = this.dmp.patch_apply(patch, textLayer)[0];
+
+    this.recalculateSelectionState(
+      start,
+      patchedText.length - textLayer.length,
+      false
+    );
 
     receiveDocument({ id: documentId, textLayer: patchedText });
   }

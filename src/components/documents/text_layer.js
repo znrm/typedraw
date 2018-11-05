@@ -55,7 +55,13 @@ class TextLayer extends React.Component {
   }
 
   sendTextDiff(text) {
-    const { textLayer, receiveDocument, documentId } = this.props;
+    const { updateText, textLayer, receiveDocument, documentId } = this.props;
+
+    clearTimeout(this.saveTextAfterDelay);
+    this.saveTextAfterDelay = setTimeout(() => {
+      updateText(documentId, text);
+    }, 1000);
+
     const {
       selection: { start }
     } = this.state;

@@ -1,19 +1,27 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 import io from 'socket.io-client';
-import DiffMatchPatch from 'diff-match-patch';
+import { diff_match_patch as DiffMatchPatch } from 'diff-match-patch';
 import { textInputStyleMaker } from '../../styles/document_styles';
+import HOST from '../../util/host';
 
 class TextLayer extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
     this.dmp = new DiffMatchPatch();
+
+    this.state = {
+      selection: {
+        start: props.textLayer.length,
+        end: props.textLayer.length
+      }
+    };
   }
 
   componentDidMount() {
     const { documentId } = this.props;
-    this.socket = io('https://www.typedraw.app');
+    this.socket = io(HOST);
 
     this.socket.on('connect', () => {
       this.socket.emit('document', documentId);
@@ -28,30 +36,72 @@ class TextLayer extends React.Component {
     this.socket.close();
   }
 
-  sendTextDiff(text) {
-    const { textLayer, receiveDocument, documentId } = this.props;
-    receiveDocument({ id: documentId, textLayer: text });
-    const diff = this.dmp.diff_main(textLayer, text);
+  recalculateSelectionState(startLocationOfChange, changeLength, selfInput) {
+    const { selection } = this.state;
+    const { start, end } = selection;
 
-    this.socket.emit('typing', diff);
+    let [newStart, newEnd] = [start, end];
+
+    newStart = startLocationOfChange <= start ? start + changeLength : start;
+
+    if (selfInput) {
+      newStart += end - start;
+      newEnd = newStart;
+    } else {
+      newEnd += newStart - start;
+    }
+
+    this.setState({ selection: { start: newStart, end: newEnd } });
   }
 
-  receiveTextDiff(diff) {
+  sendTextDiff(text) {
+    const { updateText, textLayer, receiveDocument, documentId } = this.props;
+
+    clearTimeout(this.saveTextAfterDelay);
+    this.saveTextAfterDelay = setTimeout(() => {
+      updateText(documentId, text);
+    }, 1000);
+
+    const {
+      selection: { start }
+    } = this.state;
+
+    this.recalculateSelectionState(start, text.length - textLayer.length, true);
+
+    receiveDocument({ id: documentId, textLayer: text });
+
+    const diff = this.dmp.diff_main(textLayer, text);
+    this.socket.emit('typing', { diff, start });
+  }
+
+  receiveTextDiff({ diff, start }) {
     const { textLayer, receiveDocument, documentId } = this.props;
     const patch = this.dmp.patch_make(textLayer, diff);
     const patchedText = this.dmp.patch_apply(patch, textLayer)[0];
+
+    this.recalculateSelectionState(
+      start,
+      patchedText.length - textLayer.length,
+      false
+    );
 
     receiveDocument({ id: documentId, textLayer: patchedText });
   }
 
   render() {
     const { textLayer, action } = this.props;
+    const { selection } = this.state;
+
     return (
       <TextInput
         onChangeText={text => this.sendTextDiff(text)}
+        onSelectionChange={({ nativeEvent }) => {
+          this.setState({ selection: nativeEvent.selection });
+        }}
         value={textLayer}
         multiline
-        style={textInputStyleMaker((action === 'typing' ? 1 : -1)).textInput}
+        style={textInputStyleMaker(action === 'typing' ? 1 : -1).textInput}
+        selection={selection}
       />
     );
   }

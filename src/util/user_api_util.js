@@ -1,7 +1,8 @@
 import axios from 'axios';
+import HOST from './host';
 
 export const createUser = ({ email, password }) =>
-  axios.post('https://www.typedraw.app/api/users/register', {
+  axios.post(`${HOST}/api/users/register`, {
     email,
     password
   });

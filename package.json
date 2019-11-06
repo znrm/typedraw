@@ -64,7 +64,7 @@
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "lodash.merge": "^4.6.1",
-    "mongoose": "^5.2.10",
+    "mongoose": "^5.7.5",
     "native-base": "^2.8.0",
     "nodemon": "^1.18.4",
     "passport": "^0.4.0",

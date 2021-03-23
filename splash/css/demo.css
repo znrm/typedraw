@@ -13,3 +13,22 @@
   width: 86%;
   overflow: hidden;
 }
+
+.notice {
+  padding: 1.5em;
+  text-align: center;
+  background-color: white;
+  border: black solid 2px;
+  width: 100%;
+}
+
+.notice h1,
+.notice h2 {
+  color: black;
+}
+
+.notice a,
+.notice a:hover {
+  color: initial;
+  text-decoration: underline;
+}

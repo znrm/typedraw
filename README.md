@@ -1,8 +1,18 @@
-# TypeDraw
+# TypeDraw Project Archive
 
-_A cross-platform app for real-time collaboration._
+TypeDraw was a web and mobile app demonstration of a multi-user, real-time virtual whiteboard.
 
-[Live Site](https://www.typedraw.app/)
+![Type & Draw](./public/images/typedraw.gif)
+
+The live web demo had its final deploy in December 2018 and ran until its database provider ended operations in December 2020.
+
+A landing page similar to what was formerly deployed on `typedraw.app` can be viewed on https://znrm.github.io/typedraw.
+
+---
+
+**The remainder of this document includes the preliminary planning and design documentation for the project.**
+
+---
 
 ## Background and Overview
 
@@ -66,11 +76,13 @@ Given that mobile devices support web technology (JS, HTML, CSS), the typical ap
 TypeDraw's solution is to take the opposite approach and begin by writing all components in React Native. From there, the React Native for Web package will be used to adapt the existing components for use in TypeDraw's web app.
 
 ### Realtime Communication
-We will be incorporating websockets with our app to implement real-time communication between our users. 
+
+We will be incorporating websockets with our app to implement real-time communication between our users.
 
 Our server will be listening for incoming connections and will establish a connection between clients through the WebSocket handshake when a request is made by a client.
 
 We will be managing real-time display of changes by processing information from the upstream and downstream communications between our server and the clients.
+
 ### Cross-Platform Typing & Drawing
 
 Our aim with this project is to create a cohesive experience across all web browsers for both mobile and desktop users. Users must be able to type, draw, and collaboratively edit documents, regardless of platform.

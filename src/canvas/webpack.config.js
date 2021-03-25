@@ -5,9 +5,8 @@ module.exports = {
   output: {
     filename: 'canvas.bundle.js',
     publicPath: '/',
-    path: path.resolve(__dirname, '../../', 'public', 'canvas')
+    path: path.resolve(__dirname, '../../', 'public', 'canvas'),
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -16,10 +15,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env']
-          }
-        }
-      }
-    ]
-  }
+            presets: ['env'],
+          },
+        },
+      },
+    ],
+  },
 };

@@ -19,7 +19,7 @@ const babelLoaderConfiguration = {
     path.resolve(modulesDir, 'react-native-safe-area-view'),
     path.resolve(modulesDir, '@expo/samples'),
     path.resolve(modulesDir, '@expo/vector-icons'),
-    path.resolve(modulesDir, 'react-native-platform-touchable')
+    path.resolve(modulesDir, 'react-native-platform-touchable'),
   ],
   use: {
     loader: 'babel-loader',
@@ -31,17 +31,17 @@ const babelLoaderConfiguration = {
         'transform-decorators-legacy',
         [
           'transform-runtime',
-          { helpers: false, polyfill: false, regenerator: true }
-        ]
+          { helpers: false, polyfill: false, regenerator: true },
+        ],
       ],
-      presets: ['react-native']
-    }
-  }
+      presets: ['react-native'],
+    },
+  },
 };
 
 const cssLoaderConfiguration = {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader']
+  use: ['style-loader', 'css-loader'],
 };
 
 const imageLoaderConfiguration = {
@@ -49,9 +49,9 @@ const imageLoaderConfiguration = {
   use: {
     loader: 'file-loader',
     options: {
-      name: '[name].[ext]'
-    }
-  }
+      name: '[name].[ext]',
+    },
+  },
 };
 
 const ttfLoaderConfiguration = {
@@ -60,23 +60,20 @@ const ttfLoaderConfiguration = {
     {
       loader: 'file-loader',
       options: {
-        name: './fonts/[hash].[ext]'
-      }
-    }
+        name: './fonts/[hash].[ext]',
+      },
+    },
   ],
-  include: [
-    path.resolve(modulesDir, 'react-native-vector-icons')
-  ]
+  include: [path.resolve(modulesDir, 'react-native-vector-icons')],
 };
 
 module.exports = {
   entry: path.resolve(srcDir, 'index.js'),
-  devtool: 'eval, cheap-module-eval-source-map',
 
   output: {
     filename: 'app.bundle.js',
     publicPath: '/',
-    path: path.resolve(pubDir, 'app')
+    path: path.resolve(pubDir, 'app'),
   },
 
   module: {
@@ -84,8 +81,8 @@ module.exports = {
       babelLoaderConfiguration,
       cssLoaderConfiguration,
       imageLoaderConfiguration,
-      ttfLoaderConfiguration
-    ]
+      ttfLoaderConfiguration,
+    ],
   },
 
   plugins: [
@@ -93,8 +90,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(
         process.env.NODE_ENV || 'development'
       ),
-      __DEV__: process.env.NODE_ENV === 'production' || true
-    })
+      __DEV__: process.env.NODE_ENV === 'production' || true,
+    }),
   ],
 
   resolve: {
@@ -105,7 +102,7 @@ module.exports = {
       './assets/images/slack-icon.png': './assets/images/slack-icon@2x.png',
       '@expo/vector-icons': 'expo-web',
       expo: 'expo-web',
-      'react-native': 'react-native-web'
-    }
-  }
+      'react-native': 'react-native-web',
+    },
+  },
 };

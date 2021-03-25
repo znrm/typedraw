@@ -13,7 +13,7 @@ const Document = ({
   <View
     style={{
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
@@ -31,7 +31,7 @@ const Document = ({
     <View
       style={{
         flex: 1,
-        zIndex: action === 'typing' ? -1 : 1,
+        zIndex: action === 'typing' ? -2 : -1,
         position: 'absolute',
         width: '100%',
         height: '100%'

@@ -1,7 +1,6 @@
 import React from 'react';
-import HOST from '../../util/host';
 
-const ImageLayer = ({ documentId }) => (
+const ImageLayer = () => (
   <iframe
     title="canvas"
     style={{
@@ -10,7 +9,7 @@ const ImageLayer = ({ documentId }) => (
       width: '100%',
       backgroundColor: 'transparent'
     }}
-    src={`${HOST}/canvas/${documentId}`}
+    src="../canvas/canvas.html"
   />
 );
 

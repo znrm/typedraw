@@ -5,12 +5,12 @@ import styles from '../../styles/styles';
 
 const Toolbar = ({ selectAction, history }) => (
   <View style={styles.row}>
-    <Button title="Docs" onPress={() => history.push('/')} />
+    <Button title="Docs" onPress={() => history.push('')} />
     <Button title="Type" onPress={() => selectAction('typing')} />
     <Button title="Draw" onPress={() => selectAction('drawing')} />
     {/* some action to handle color change */}
     {/* some action to handle erasing */}
-    <Button title="Share" onPress={() => history.push('/share')} />
+    <Button title="Share" onPress={() => history.push('')} />
   </View>
 );
 

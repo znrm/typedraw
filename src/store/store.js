@@ -1,15 +1,27 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import RootReducer from '../reducers/root_reducer';
+import { combineReducers, createStore } from 'redux';
 
-const middleware = [thunk];
+const initialUI = {
+  documentAction: 'typing'
+};
 
-if (process.env.NODE_ENV !== 'production') {
-  middleware.push(logger);
-}
+const uiReducer = (state = initialUI, action) => {
+  const newState = { documentAction: state.documentAction };
+
+  switch (action.type) {
+    case 'SELECT_DOCUMENT_ACTION':
+      newState.documentAction = action.documentAction;
+      return newState;
+    default:
+      return state;
+  }
+};
 
 const configureStore = (preloadedState = {}) =>
-  createStore(RootReducer, preloadedState, applyMiddleware(...middleware));
+  createStore(
+    combineReducers({
+      ui: uiReducer
+    }),
+    preloadedState
+  );
 
 export default configureStore;

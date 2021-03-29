@@ -6,11 +6,11 @@ TypeDraw was a web and mobile app demonstration of a multi-user, real-time virtu
 
 The live web demo had its final deploy in December 2018 and ran until its database provider ended operations in December 2020.
 
-A landing page similar to what was formerly deployed on `typedraw.app` can be viewed on https://znrm.github.io/typedraw.
+A landing page similar to what was formerly deployed can still be found on https://typedraw.app.
 
 ---
 
-**The remainder of this document includes the preliminary planning and design documentation for the project.**
+**The remainder of this document includes the original preliminary planning and design docs for the project.**
 
 ---
 
